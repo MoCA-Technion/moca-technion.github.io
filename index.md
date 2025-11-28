@@ -1,37 +1,21 @@
 ---
-layout: page
+layout: default
 title: MoCA Lab
-subtitle: Mobility Computation & Analytics (Technion)
-hide_hero: true
+permalink: /
 ---
 
-<section class="hero is-primary is-large moca-home-hero">
+<section class="hero moca-home-hero">
   <div class="hero-body">
     <div class="container">
       <p class="moca-kicker mb-3">Technion · Mobility Computation &amp; Analytics Lab</p>
 
-      <div class="mb-4">
-        <div class="moca-strike"><span>MoCA Lab</span></div>
-      </div>
+      <h1 class="moca-hero-title">MoCA Lab</h1>
 
-      <p class="subtitle mb-5">
+      <p class="moca-hero-subtitle">
         Scalable, theory-grounded models and computational tools for
         <strong style="color:#fff;">mobility systems</strong> and
         <strong style="color:#fff;">infrastructure analytics</strong>.
       </p>
-
-      <div class="buttons">
-        <a class="button is-warning is-medium" href="{{ site.baseurl }}/research/">Explore research</a>
-        <a class="button is-ghost is-medium" href="{{ site.baseurl }}/publications/">Publications</a>
-        <a class="button is-light is-medium" href="{{ site.baseurl }}/join/">Join</a>
-      </div>
-
-      <div class="mt-5">
-        <span class="tag is-muted mr-2 mb-2">Perturbed utility &amp; choice</span>
-        <span class="tag is-muted mr-2 mb-2">Trajectory-based estimation</span>
-        <span class="tag is-muted mr-2 mb-2">Network &amp; equilibrium computation</span>
-        <span class="tag is-muted mb-2">Bridge analytics</span>
-      </div>
     </div>
   </div>
 </section>
@@ -42,7 +26,7 @@ hide_hero: true
     <div class="columns is-multiline">
       <div class="column is-4">
         <div class="moca-slab moca-slab--cream" style="height:100%;">
-          <p class="moca-kicker mb-2" style="color: rgba(0,0,0,.65);">Mobility systems</p>
+          <p class="moca-kicker moca-kicker--dark mb-2">Mobility systems</p>
           <h2 class="title is-4 mb-2">Behavior + scale</h2>
           <div class="moca-accent mb-4"></div>
           <p class="content">
@@ -54,7 +38,7 @@ hide_hero: true
 
       <div class="column is-4">
         <div class="moca-slab moca-slab--cream" style="height:100%;">
-          <p class="moca-kicker mb-2" style="color: rgba(0,0,0,.65);">Bridge analytics</p>
+          <p class="moca-kicker moca-kicker--dark mb-2">Bridge analytics</p>
           <h2 class="title is-4 mb-2">Data + structure</h2>
           <div class="moca-accent mb-4"></div>
           <p class="content">
@@ -66,7 +50,7 @@ hide_hero: true
 
       <div class="column is-4">
         <div class="moca-slab moca-slab--cream" style="height:100%;">
-          <p class="moca-kicker mb-2" style="color: rgba(0,0,0,.65);">Computation</p>
+          <p class="moca-kicker moca-kicker--dark mb-2">Computation</p>
           <h2 class="title is-4 mb-2">Optimization + inference</h2>
           <div class="moca-accent mb-4"></div>
           <p class="content">
@@ -104,7 +88,7 @@ hide_hero: true
 
         <div class="column is-4">
           <div class="moca-slab moca-slab--gold" style="height:100%;">
-            <p class="moca-kicker mb-2" style="color: rgba(0,0,0,.65);">Quick links</p>
+            <p class="moca-kicker moca-kicker--dark mb-2">Quick links</p>
             <h3 class="title is-5 mb-3" style="color:#141414;">Explore</h3>
             <div class="content" style="color:rgba(0,0,0,.78);">
               <ul>

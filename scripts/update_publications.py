@@ -42,6 +42,8 @@ def _extract_scholar_config():
             in_scholar = False
         if in_scholar and ":" in raw:
             key, val = raw.strip().split(":", 1)
+            val = val.split("#", 1)[0].strip()
+            # Remove surrounding quotes (if any)
             val = val.strip().strip('"').strip("'")
             if key in cfg:
                 cfg[key] = val

@@ -1,0 +1,26 @@
+<footer class="footer">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-6">
+        <p>
+          <strong>MoCA Lab</strong><br>
+          Mobility Computation & Analytics<br>
+          Technion – Israel Institute of Technology
+        </p>
+        <p class="is-size-7 has-text-grey mt-4">
+          &copy; {{ site.time | date: '%Y' }} MoCA Lab. All rights reserved.
+        </p>
+      </div>
+      
+      <div class="column is-6 has-text-right-tablet">
+        {% if site.data.footer_menu %}
+          <div class="buttons is-right">
+          {% for item in site.data.footer_menu %}
+            <a href="{{ item.link }}" class="button is-text is-small has-text-grey">{{ item.name }}</a>
+          {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>

@@ -3,7 +3,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 <script>
-/* Force light mode */
 (function () {
   try {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -12,22 +11,15 @@
 })();
 </script>
 
-<script>
-  document.documentElement.style.scrollBehavior = "smooth";
-</script>
-
 <style>
-  /* Reset body margins */
-  body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  /* 1. Global Width Lock (Matches Container) */
+  .container {
+    max-width: 1280px !important;
+    width: 90% !important;
+    margin: 0 auto !important;
   }
 
-  /* GLOBAL HERO TEXT FIX 
-     Matches the container width set in app.scss (1344px)
-  */
-  
+  /* 2. Hero Text */
   .moca-hero-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -44,8 +36,6 @@
     font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
     color: rgba(255, 255, 255, 0.9) !important;
     line-height: 1.6;
-    
-    /* Ensure subtitle lines up nicely with the title */
     max-width: 800px; 
   }
 
@@ -54,24 +44,12 @@
     font-weight: 500;
   }
 
-  /* Mobile Tweaks */
+  /* Mobile */
   @media (max-width: 768px) {
-    .moca-hero-title {
-      white-space: normal;
-      font-size: 3rem !important;
-    }
-    .moca-home-hero {
-      padding-top: 5rem;
-    }
+    .moca-hero-title { white-space: normal; font-size: 3rem !important; }
   }
 </style>
 
 {% if page.math or site.math %}
-<script>
-  window.MathJax = {
-    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
-    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
-  };
-</script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}

@@ -31,12 +31,13 @@ $box-radius: $radius-large;
 .navbar.is-fixed-top,
 .navbar.is-fixed-bottom { box-shadow: 0 1px 0 rgba(0,0,0,.06); }
 
-/* Home hero: match page-hero vibe (like /research), but larger + crisper typography */
+/* Home hero: full-bleed background, starts immediately under fixed navbar */
 .moca-home-hero {
   position: relative;
   overflow: hidden;
-  /* Use the Technion navy */
   background: var(--moca-navy);
+  margin-top: 0;
+  border-radius: 0; /* not a card */
 }
 
 .moca-home-hero::before {
@@ -52,18 +53,52 @@ $box-radius: $radius-large;
   pointer-events: none;
 }
 
-.moca-home-hero .hero-body { position: relative; padding-top: 5rem; padding-bottom: 5rem; }
+/* Make the hero body padding feel "tight to the top" while still comfortable */
+.moca-home-hero .hero-body {
+  position: relative;
+  padding-top: 2.25rem;
+  padding-bottom: 3.75rem;
+}
 @media (min-width: 1024px) {
-  .moca-home-hero .hero-body { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+  .moca-home-hero .hero-body { padding-top: 2.75rem; padding-bottom: 4.75rem; }
 }
 
-.moca-home-hero .title {
+.moca-kicker {
+  font-size: .84rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .86;
+  color: rgba(255,255,255,.88);
+}
+
+/* Strike-through title: horizontal line passes behind text */
+.moca-strike {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.moca-strike::before,
+.moca-strike::after {
+  content: "";
+  height: 2px;
+  width: clamp(48px, 8vw, 140px);
+  background: rgba(255,255,255,.22);
+  border-radius: 999px;
+}
+
+.moca-strike::after {
+  background: linear-gradient(90deg, rgba(255,255,255,.22), rgba(213,159,15,.85));
+}
+
+.moca-strike span {
   font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   font-weight: 700;
   font-size: clamp(2.9rem, 5.4vw, 4.6rem);
   line-height: 1.04;
   color: #fff;
-  margin-bottom: 1rem;
+  padding: .08rem .2rem;
 }
 
 .moca-home-hero .subtitle {
@@ -72,15 +107,7 @@ $box-radius: $radius-large;
   font-size: clamp(1.15rem, 1.8vw, 1.55rem);
   line-height: 1.35;
   color: rgba(255,255,255,.92);
-  max-width: 60ch;
-}
-
-.moca-kicker {
-  font-size: .84rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  opacity: .85;
-  color: rgba(255,255,255,.88);
+  max-width: 62ch;
 }
 
 .moca-home-hero .buttons .button.is-warning {
@@ -88,23 +115,27 @@ $box-radius: $radius-large;
   border-color: var(--moca-gold);
   color: #141414;
 }
-
 .moca-home-hero .buttons .button.is-ghost {
   background: transparent;
   border: 1px solid rgba(255,255,255,.35);
   color: #fff;
 }
-
 .moca-home-hero .buttons .button.is-ghost:hover { background: rgba(255,255,255,.08); }
 
-/* Large "slab" blocks for content sections */
+.tag.is-muted {
+  background: rgba(255,255,255,.14);
+  color: inherit;
+  border-radius: 999px;
+  padding: .25rem .65rem;
+}
+.tag.is-muted.is-dark { background: rgba(0,0,0,.06); }
+
 .moca-slab {
   position: relative;
   overflow: hidden;
   border-radius: 28px;
   padding: clamp(1.25rem, 2.6vw, 2.25rem);
 }
-
 .moca-slab--cream { background: #F8FAFC; border: 1px solid rgba(0,0,0,.08); }
 .moca-slab--gold { background: var(--moca-gold); color: #141414; }
 
@@ -128,14 +159,6 @@ $box-radius: $radius-large;
   border-radius: 999px;
   background: var(--moca-gold);
 }
-
-.tag.is-muted {
-  background: rgba(255,255,255,.14);
-  color: inherit;
-  border-radius: 999px;
-  padding: .25rem .65rem;
-}
-.tag.is-muted.is-dark { background: rgba(0,0,0,.06); }
 
 /* Publications */
 .pub-item { padding: .95rem 1rem; border: 1px solid rgba(0,0,0,.10); background: #fff; border-radius: 18px; }

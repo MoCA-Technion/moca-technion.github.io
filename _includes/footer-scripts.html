@@ -1,1 +1,15 @@
-<!-- Add extra scripts here if needed -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const burgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  if (burgers.length === 0) return;
+
+  burgers.forEach(el => {
+    el.addEventListener('click', () => {
+      const targetId = el.dataset.target;
+      const target = document.getElementById(targetId);
+      el.classList.toggle('is-active');
+      if (target) target.classList.toggle('is-active');
+    });
+  });
+});
+</script>

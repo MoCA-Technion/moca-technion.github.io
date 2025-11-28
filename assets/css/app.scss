@@ -144,3 +144,36 @@ $box-radius: $radius-large;
 .moca-home-hero .container {
   max-width: 1152px; /* Bulma container xl */
 }
+
+
+/* --- Home hero final tuning --- */
+/* Bulma fixed navbar height is ~3.25rem; theme often compensates using body padding-top.
+   To remove the visible "gap", pull the hero up by that offset and add padding so content
+   still starts below the navbar. */
+:root { --moca-nav-offset: 3.25rem; }
+
+/* Ensure the home hero is full-bleed even inside theme wrappers */
+.moca-home-hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  /* cover the fixed-navbar spacer */
+  margin-top: calc(-1 * var(--moca-nav-offset));
+  padding-top: var(--moca-nav-offset);
+}
+
+/* Make hero a bit larger (but not huge) */
+.moca-home-hero .hero-body {
+  padding-top: 3.25rem;
+  padding-bottom: 4.0rem;
+}
+@media (min-width: 1024px) {
+  .moca-home-hero .hero-body {
+    padding-top: 3.75rem;
+    padding-bottom: 4.75rem;
+  }
+}
+
+/* Optional: keep title readable on very wide screens */
+.moca-home-hero .container { max-width: 1152px; }

@@ -1,73 +1,99 @@
 ---
 ---
-/* MoCA style overrides for Bulma Clean Theme
-   Docs: create assets/css/app.scss and set Bulma variables before @import "main"; */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-// Brand tokens
-$primary: #3B82F6;         // modern blue
-$info: #06B6D4;            // cyan
-$success: #22C55E;         // green
-$warning: #F59E0B;         // amber
-$danger: #EF4444;          // red
+/* Brand-ish tokens (Google-ish: clean, minimal, blue accent) */
+$primary: #1A73E8;
+$info: #06B6D4;
+$success: #22C55E;
+$warning: #F59E0B;
+$danger: #EA4335;
 
-// Typography
 $family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 
-// Layout
 $radius-large: 18px;
 $box-radius: $radius-large;
+$hero-darken: rgba(0, 0, 0, 0.35);
 
-// Hero overlay tweak (used when hero_darken true)
-$hero-darken: rgba(0, 0, 0, 0.45);
-
-// Import Main CSS file from theme
 @import "main";
 
-/* --- Custom components --- */
-.moca-hero {
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+/* --- Global polish --- */
+.section { padding-top: 3rem; padding-bottom: 3rem; }
+.title { letter-spacing: -0.02em; }
+.subtitle { opacity: .9; }
+
+.navbar.is-fixed-top,
+.navbar.is-fixed-bottom {
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
 }
 
-.moca-hero::before {
+/* "Research.google"-like hero: light, airy, with subtle gradients */
+.moca-hero-lite {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.moca-hero-lite::before {
   content: "";
   position: absolute;
   inset: -40%;
   background:
-    radial-gradient(circle at 20% 20%, rgba(59,130,246,.55), transparent 45%),
-    radial-gradient(circle at 80% 40%, rgba(6,182,212,.35), transparent 50%),
-    radial-gradient(circle at 50% 90%, rgba(34,197,94,.25), transparent 55%);
-  filter: blur(8px);
+    radial-gradient(circle at 20% 10%, rgba(26,115,232,.20), transparent 48%),
+    radial-gradient(circle at 75% 25%, rgba(234,67,53,.10), transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(52,168,83,.12), transparent 58%);
+  filter: blur(12px);
   transform: translateZ(0);
+  pointer-events: none;
 }
 
-.moca-hero .hero-body {
-  position: relative;
-}
+.moca-hero-lite .container { position: relative; }
 
-.card.is-soft {
-  border: 1px solid rgba(0,0,0,.06);
-  box-shadow: 0 10px 30px rgba(0,0,0,.07);
+/* Minimal, modern cards: border-first, soft hover */
+.card.is-minimal {
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: none;
   border-radius: 18px;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.card.is-minimal:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0,0,0,.18);
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+}
+
+.moca-kicker {
+  font-size: .9rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .72;
 }
 
 .tag.is-muted {
-  background: rgba(100, 116, 139, .14);
+  background: rgba(60, 64, 67, .08);
   color: inherit;
+  border-radius: 999px;
+  padding: .25rem .6rem;
 }
 
-.prose-ish p { max-width: 70ch; }
+.prose-ish p { max-width: 72ch; }
 
+/* Publication item style */
 .pub-item {
-  padding: .75rem 1rem;
-  border-left: 3px solid rgba(59,130,246,.35);
-  background: rgba(59,130,246,.04);
-  border-radius: 12px;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(0,0,0,.10);
+  background: #fff;
+  border-radius: 16px;
 }
 
 .pub-meta {
-  opacity: .8;
+  opacity: .82;
   font-size: .95rem;
+}
+
+/* Make “ghost” buttons look clean on white background */
+.button.is-ghost {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,.14);
 }

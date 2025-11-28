@@ -1,5 +1,7 @@
 {
-  "updated_at_utc": null,
-  "source": "SerpApi Google Scholar Author API",
-  "author_id": "lEg_t6kAAAAJ"
+  "updated_at_utc": "2025-11-28T18:26:52+00:00",
+  "source": "SerpApi google_scholar_author",
+  "author_id": "lEg_t6kAAAAJ\"   # https://scholar.google.com/citations?user=<author_id>",
+  "count": 0,
+  "scholar_profile": "https://scholar.google.com/citations?hl=en&user=lEg_t6kAAAAJ\"   # https://scholar.google.com/citations?user=<author_id>"
 }

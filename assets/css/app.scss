@@ -163,16 +163,28 @@ $box-radius: $radius-large;
   padding-top: var(--moca-nav-offset);
 }
 
-/* Make hero a bit larger (but not huge) */
+/* Bigger hero (requested): more vertical space + larger typography */
 .moca-home-hero .hero-body {
-  padding-top: 3.25rem;
-  padding-bottom: 4.0rem;
+  padding-top: 4.5rem;
+  padding-bottom: 5.25rem;
 }
 @media (min-width: 1024px) {
   .moca-home-hero .hero-body {
-    padding-top: 3.75rem;
-    padding-bottom: 4.75rem;
+    padding-top: 5.75rem;
+    padding-bottom: 6.5rem;
   }
+}
+
+/* Bigger type */
+.moca-hero-title {
+  font-size: clamp(2.9rem, 5.6vw, 5.0rem);
+  line-height: 1.04;
+}
+
+.moca-hero-subtitle {
+  font-size: clamp(1.2rem, 1.95vw, 1.75rem);
+  line-height: 1.42;
+  max-width: 70ch;
 }
 
 /* Optional: keep title readable on very wide screens */

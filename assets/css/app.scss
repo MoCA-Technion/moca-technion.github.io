@@ -1,7 +1,7 @@
 ---
 ---
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
 
 /* Technion palette */
 $moca-navy: #002147;   /* Pantone 282 */
@@ -81,7 +81,7 @@ $box-radius: $radius-large;
 .moca-hero-title {
   font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   font-weight: 700;
-  font-size: clamp(2.35rem, 4.6vw, 3.9rem);
+  font-size: clamp(4.2rem, 8.2vw, 7.2rem);
   line-height: 1.06;
   color: #fff;
   margin: 0 0 0.75rem 0;
@@ -184,7 +184,7 @@ $box-radius: $radius-large;
 
 /* Bigger landing type */
 .moca-hero-title {
-  font-size: clamp(3.2rem, 6.2vw, 5.6rem);
+  font-size: clamp(4.2rem, 8.2vw, 7.2rem);
   line-height: 1.02;
   letter-spacing: -0.02em;
 }

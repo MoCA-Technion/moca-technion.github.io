@@ -1,3 +1,6 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <script>
 /* Force light mode (disable dark/night mode) */
 (function () {
@@ -16,6 +19,7 @@
   document.documentElement.style.scrollBehavior = "smooth";
 </script>
 
+{% if page.math or site.math %}
 <script>
   window.MathJax = {
     tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
@@ -23,3 +27,4 @@
   };
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endif %}

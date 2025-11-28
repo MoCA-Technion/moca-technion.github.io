@@ -30,3 +30,7 @@ scholar:
 exclude:
   - scripts/
   - README.md
+
+
+sass:
+  style: compressed

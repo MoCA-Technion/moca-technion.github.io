@@ -163,29 +163,36 @@ $box-radius: $radius-large;
   padding-top: var(--moca-nav-offset);
 }
 
-/* Bigger hero (requested): more vertical space + larger typography */
+/* Landing banner: ~65% viewport height (excluding the navbar offset),
+   vertically centered, with generous breathing room. */
 .moca-home-hero .hero-body {
-  padding-top: 4.5rem;
-  padding-bottom: 5.25rem;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+
+  /* padding is additive on top of min-height; keep moderate */
+  padding-top: 4.25rem;
+  padding-bottom: 4.25rem;
 }
+
 @media (min-width: 1024px) {
   .moca-home-hero .hero-body {
-    padding-top: 5.75rem;
-    padding-bottom: 6.5rem;
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
   }
 }
 
-/* Bigger type */
+/* Bigger landing type */
 .moca-hero-title {
-  font-size: clamp(2.9rem, 5.6vw, 5.0rem);
-  line-height: 1.04;
+  font-size: clamp(3.2rem, 6.2vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
 }
 
 .moca-hero-subtitle {
-  font-size: clamp(1.2rem, 1.95vw, 1.75rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.9rem);
   line-height: 1.42;
-  max-width: 70ch;
+  max-width: 68ch;
 }
-
 /* Optional: keep title readable on very wide screens */
 .moca-home-hero .container { max-width: 1152px; }

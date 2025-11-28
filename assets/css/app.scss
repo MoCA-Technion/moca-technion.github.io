@@ -196,3 +196,70 @@ $box-radius: $radius-large;
 }
 /* Optional: keep title readable on very wide screens */
 .moca-home-hero .container { max-width: 1152px; }
+
+
+
+/* --- Unified hero experience across the site --- */
+:root { --moca-nav-offset: 3.25rem; } /* used to cover fixed-navbar spacer */
+html { color-scheme: light; } /* hint to UA: no dark scheme */
+
+/* Same gradient background for all theme heroes (non-home pages) */
+.hero.is-primary:not(.moca-home-hero) {
+  position: relative;
+  overflow: hidden;
+  background: var(--moca-navy);
+  /* cover fixed-navbar spacer so there's no visible gap */
+  margin-top: calc(-1 * var(--moca-nav-offset));
+  padding-top: var(--moca-nav-offset);
+}
+
+.hero.is-primary:not(.moca-home-hero)::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(213,159,15,.28), transparent 52%),
+    radial-gradient(circle at 78% 22%, rgba(255,255,255,.10), transparent 55%),
+    radial-gradient(circle at 55% 95%, rgba(0,0,0,.22), transparent 55%);
+  filter: blur(18px);
+  opacity: .95;
+  pointer-events: none;
+}
+
+.hero.is-primary:not(.moca-home-hero) .hero-body {
+  position: relative;
+  min-height: 28vh;         /* smaller than landing banner */
+  display: flex;
+  align-items: flex-end;    /* reads like a page header */
+  padding-top: 2.25rem;
+  padding-bottom: 2.75rem;
+}
+
+@media (min-width: 1024px) {
+  .hero.is-primary:not(.moca-home-hero) .hero-body {
+    min-height: 32vh;
+    padding-top: 2.5rem;
+    padding-bottom: 3.25rem;
+  }
+}
+
+/* White page titles/subtitles on the hero headers */
+.hero.is-primary .title,
+.hero.is-primary .subtitle,
+.hero.is-primary .content,
+.hero.is-primary p,
+.hero.is-primary li { color: rgba(255,255,255,.94) !important; }
+
+.hero.is-primary a { color: #fff; text-decoration: underline; text-underline-offset: .2em; }
+
+/* Navbar: ensure burger icon + text are white on mobile */
+.navbar.is-primary .navbar-burger { color: #fff; }
+.navbar.is-primary .navbar-burger span { background-color: rgba(255,255,255,.95); }
+.navbar.is-primary .navbar-item,
+.navbar.is-primary .navbar-link { color: rgba(255,255,255,.92); }
+.navbar.is-primary .navbar-item:hover,
+.navbar.is-primary .navbar-link:hover { color: #fff; background: rgba(255,255,255,.06); }
+
+/* If any dark-mode attribute sneaks in, neutralize it to light */
+html[data-theme="dark"],
+body[data-theme="dark"] { filter: none; }

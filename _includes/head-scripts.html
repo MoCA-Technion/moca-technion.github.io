@@ -1,4 +1,18 @@
 <script>
+/* Force light mode (disable dark/night mode) */
+(function () {
+  try {
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.classList.remove('dark');
+    localStorage.removeItem('theme');
+    localStorage.removeItem('color-theme');
+    localStorage.removeItem('bulma-theme');
+    localStorage.removeItem('darkMode');
+  } catch (e) {}
+})();
+</script>
+
+<script>
   document.documentElement.style.scrollBehavior = "smooth";
 </script>
 

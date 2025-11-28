@@ -12,13 +12,20 @@ $border-light: #dadce0;
 $primary: $moca-navy;
 $link: $moca-navy;
 $info: $moca-gold;
-$family-sans-serif: 'Roboto', sans-serif; /* Google Body Font */
+$family-sans-serif: 'Roboto', sans-serif; /* Global Body Font */
 $body-background-color: #f8f9fa; /* Light Gray Background (Google Style) */
+$widescreen-enabled: false;
+$fullhd-enabled: false;
 
 @import "main";
 
-/* 3. Typography Overrides */
-h1, h2, h3, h4, h5, .title, .navbar-item, .button {
+/* 3. Global Typography Overrides (Consistency) */
+html, body, p, li, a {
+  font-family: 'Roboto', sans-serif;
+  color: $google-gray;
+}
+
+h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   font-family: 'Outfit', sans-serif !important;
   letter-spacing: -0.01em;
 }
@@ -41,36 +48,68 @@ h1, h2, h3, h4, h5, .title, .navbar-item, .button {
   color: #fff !important;
 }
 
-/* 5. Hero Section (Technion Navy) */
+/* 5. Hero Section (Full Bleed Fix) */
 .moca-home-hero {
+  width: 100vw; /* Force full viewport width */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw; /* Center and stretch */
+  margin-right: -50vw;
+  margin-top: -3.25rem; /* Pull up to cover any navbar gap */
+  padding-top: 5rem; /* Push content down so it's not hidden by navbar */
+  padding-bottom: 4rem;
+  
   background-color: $moca-navy;
-  /* Subtle modern gradient (Navy to slightly lighter Navy) */
   background: linear-gradient(135deg, #002147 0%, #003366 100%);
   color: #fff;
-  margin-top: -1px; /* Fix hairline gap */
-  padding-bottom: 2rem;
 }
 
-/* 6. Material Design Cards (The Google Look) */
-.moca-slab {
+.moca-home-hero .hero-body .container {
+  max-width: 1400px !important; /* Wide container for text */
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* 6. Unified "Card" Style (Used for slabs, people, pubs) */
+@mixin moca-card {
   background: #ffffff;
   border: 1px solid $border-light;
-  border-radius: 8px; /* Google uses slightly smaller radius than Apple */
-  padding: 2rem;
-  height: 100%;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
   transition: all 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
-/* Hover Effect: Lift up + Shadow */
-.moca-slab:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+@mixin moca-card-hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
   border-color: transparent;
 }
 
-/* Gold Accent Line on Cards */
+/* Apply Card Style to Homepage Slabs */
+.moca-slab {
+  @include moca-card;
+  height: 100%;
+}
+.moca-slab:hover {
+  @include moca-card-hover;
+}
+
+/* Apply Card Style to Publications & People (.pub-item) */
+.pub-item {
+  @include moca-card;
+  /* Reset previous styles if any */
+  background: #fff; 
+}
+.pub-item:hover {
+  @include moca-card-hover;
+}
+
+/* Gold Accent Line (Only for Homepage Slabs) */
 .moca-slab::after {
   content: "";
   display: block;
@@ -81,14 +120,10 @@ h1, h2, h3, h4, h5, .title, .navbar-item, .button {
   border-radius: 2px;
 }
 
-/* Typography Inside Cards */
-.moca-slab .title { color: $moca-navy !important; margin-bottom: 0.5rem; }
-.moca-slab .subtitle { color: $google-gray; margin-bottom: 1.5rem; }
-.moca-slab p { color: #4d5156; line-height: 1.6; }
-
 /* 7. Footer */
 .footer {
   background: #fff;
   border-top: 1px solid $border-light;
   color: $google-gray;
+  margin-top: 4rem;
 }

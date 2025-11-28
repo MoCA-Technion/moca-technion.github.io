@@ -1,44 +1,13 @@
-<style>
-  /* Set the background immediately to avoid white flash */
-  .moca-home-hero {
-    background-color: #002147; /* moca-navy */
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Style the text immediately so it doesn't wait for Bulma */
-  .moca-hero-title {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 5rem; /* Fallback size */
-    color: #fff;
-    margin: 0;
-    opacity: 1 !important; /* Force visibility */
-  }
-  
-  /* Optional: Style subtitle too */
-  .moca-hero-subtitle {
-    font-family: system-ui, -apple-system, sans-serif;
-    color: rgba(255,255,255,0.9);
-    font-size: 1.5rem;
-  }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
-  /* Responsive adjustments for mobile to prevent huge text layout shifts */
-  @media (max-width: 768px) {
-    .moca-hero-title { font-size: 3.5rem; }
-  }
-</style>
 <script>
 /* Force light mode (disable dark/night mode) */
 (function () {
   try {
     document.documentElement.setAttribute('data-theme', 'light');
     document.documentElement.classList.remove('dark');
-    localStorage.removeItem('theme');
-    localStorage.removeItem('color-theme');
-    localStorage.removeItem('bulma-theme');
-    localStorage.removeItem('darkMode');
   } catch (e) {}
 })();
 </script>
@@ -46,6 +15,57 @@
 <script>
   document.documentElement.style.scrollBehavior = "smooth";
 </script>
+
+<style>
+  /* Ensure the body has no margin to prevent white borders */
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll from full-bleed hack */
+  }
+
+  /* Wide & Clean Title */
+  .moca-hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    /* Responsive sizing: Starts at 3.5rem, grows to 6rem */
+    font-size: clamp(3.5rem, 6vw, 6rem) !important;
+    white-space: nowrap; /* Prevents "MoCA Lab" from breaking into two lines */
+    color: #ffffff !important;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  /* Subtitle: Wide enough to not look like a column */
+  .moca-hero-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    line-height: 1.5;
+    max-width: 900px; /* Increased from 800px for wider text block */
+  }
+
+  /* Gold Highlight in Subtitle */
+  .moca-hero-subtitle strong {
+    color: #D59F0F !important;
+    font-weight: 500;
+  }
+
+  /* Mobile: Allow text wrap on small screens */
+  @media (max-width: 768px) {
+    .moca-hero-title {
+      white-space: normal;
+      font-size: 3rem !important;
+    }
+    .moca-home-hero {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      left: 0;
+    }
+  }
+</style>
 
 {% if page.math or site.math %}
 <script>
@@ -56,51 +76,3 @@
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-  /* Fix Container Width */
-  .moca-home-hero .hero-body .container {
-    max-width: 1200px !important;
-    width: 90%;
-  }
-
-  /* Main Title: White, Clean, No Wrapping */
-  .moca-hero-title {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    /* Balanced Size: Large but fits */
-    font-size: clamp(3.5rem, 6vw, 6.5rem) !important;
-    white-space: nowrap;
-    color: #ffffff !important;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  /* Subtitle: Legible & Gold Accent */
-  .moca-hero-subtitle {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
-    color: rgba(255, 255, 255, 0.85) !important;
-    line-height: 1.5;
-    max-width: 800px;
-  }
-
-  /* Bold text in subtitle becomes Gold */
-  .moca-hero-subtitle strong {
-    color: #D59F0F !important; /* Technion Gold */
-    font-weight: 500;
-  }
-
-  /* Mobile Adjustment */
-  @media (max-width: 768px) {
-    .moca-hero-title {
-      white-space: normal; /* Wrap on phones */
-      font-size: 3.5rem !important;
-    }
-  }
-</style>

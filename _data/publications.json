@@ -1,1 +1,122 @@
-[]
+[
+  {
+    "title": "Integrated equilibrium model for electrified logistics and power systems",
+    "authors": "R Yao, X Liu, A Scaglione, S Bekhor, K Zhang",
+    "venue": "arXiv preprint arXiv:2505.04532, 2025",
+    "year": 2025,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:kWvqk_afx_IC"
+  },
+  {
+    "title": "Perturbed utility Markovian choice model: choice probability generation function and estimation",
+    "authors": "R Yao, K Zhang",
+    "venue": "The 12th Triennial Symposium on Transportation Analysis conference (TRISTAN …, 2025",
+    "year": 2025,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ce2CqMG-AY4C"
+  },
+  {
+    "title": "Sensitivity Analysis of The Perturbed Utility Stochastic Traffic Equilibrium",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "Available at SSRN 5276550, 2025",
+    "year": 2025,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:2l5NCbZemmgC"
+  },
+  {
+    "title": "Perturbed utility stochastic traffic assignment",
+    "authors": "R Yao, M Fosgerau, M Paulsen, TK Rasmussen",
+    "venue": "Transportation Science, 2024",
+    "year": 2024,
+    "cited_by": 9,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
+  },
+  {
+    "title": "Deep neural networks for choice analysis: Enhancing behavioral regularity with gradient regularization",
+    "authors": "S Feng, R Yao, S Hess, RA Daziano, T Brathwaite, J Walker, S Wang",
+    "venue": "Transportation Research Part C: Emerging Technologies 166, 104767, 2024",
+    "year": 2024,
+    "cited_by": 8,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:sNmaIFBj_lkC"
+  },
+  {
+    "title": "Design an intermediary mobility-as-a-service (MaaS) platform using many-to-many stable matching framework",
+    "authors": "R Yao, K Zhang",
+    "venue": "Transportation Research Part B: Methodological 189, 102991, 2024",
+    "year": 2024,
+    "cited_by": 7,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:HtS1dXgVpQUC"
+  },
+  {
+    "title": "Substitution in the perturbed utility route choice model",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "arXiv preprint arXiv:2409.08347, 2024",
+    "year": 2024,
+    "cited_by": 1,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:SGW5VrABaM0C"
+  },
+  {
+    "title": "A perturbed utility model with semi-nonparametric perturbation function",
+    "authors": "R Yao, X Liu, M Fosgerau, K Zhang",
+    "venue": "Conference in Emerging Technologies in Transportation Systems (TRC-30), 2024, 2024",
+    "year": 2024,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:jL-93Qbq4QoC"
+  },
+  {
+    "title": "Estimating the perturbed utility route choice model with individual-level data",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, T Rasmussen, R Yao",
+    "venue": "Proceedings of the hEART 2024, 2024",
+    "year": 2024,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:CaZNVDsoPx4C"
+  },
+  {
+    "title": "A general equilibrium model for multi-passenger ridesharing systems with stable matching",
+    "authors": "R Yao, S Bekhor",
+    "venue": "Transportation Research Part B: Methodological 175, 102775, 2023",
+    "year": 2023,
+    "cited_by": 11,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:_FM0Bhl9EiAC"
+  },
+  {
+    "title": "A variational autoencoder approach for choice set generation and implicit perception of alternatives in choice modeling",
+    "authors": "R Yao, S Bekhor",
+    "venue": "Transportation Research Part B: Methodological 158, 273-294, 2022",
+    "year": 2022,
+    "cited_by": 23,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:M05iB0D1s5AC"
+  },
+  {
+    "title": "A ridesharing simulation model that considers dynamic supply-demand interactions",
+    "authors": "R Yao, S Bekhor",
+    "venue": "Journal of Intelligent Transportation Systems 28 (1), 31-53, 2022",
+    "year": 2022,
+    "cited_by": 16,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:tS2w5q8j5-wC"
+  },
+  {
+    "title": "A Dynamic Tree Algorithm for Peer-to-Peer Ride-sharing Matching",
+    "authors": "R Yao, S Bekhor",
+    "venue": "Networks and Spatial Economics 21 (4), 801 - 837, 2021",
+    "year": 2021,
+    "cited_by": 21,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:3fE2CSJIrl8C"
+  },
+  {
+    "title": "Data-driven choice set generation and estimation of route choice models",
+    "authors": "R Yao, S Bekhor",
+    "venue": "Transportation Research Part C: Emerging Technologies 121, 102832, 2020",
+    "year": 2020,
+    "cited_by": 62,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:Tyk-4Ss8FVUC"
+  },
+  {
+    "title": "Experiments on route choice set generation using a large GPS trajectory set",
+    "authors": "R Yao, S Bekhor",
+    "venue": "arXiv preprint arXiv:2006.04536, 2020",
+    "year": 2020,
+    "cited_by": 5,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ZHo1McVdvXMC"
+  }
+]

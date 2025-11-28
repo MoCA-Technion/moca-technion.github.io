@@ -27,14 +27,10 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: .
-          destination: ./_site
+      - name: Build site (Bundler + Jekyll)
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace --destination _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

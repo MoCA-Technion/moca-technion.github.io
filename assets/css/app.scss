@@ -1,0 +1,73 @@
+---
+---
+/* MoCA style overrides for Bulma Clean Theme
+   Docs: create assets/css/app.scss and set Bulma variables before @import "main"; */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+// Brand tokens
+$primary: #3B82F6;         // modern blue
+$info: #06B6D4;            // cyan
+$success: #22C55E;         // green
+$warning: #F59E0B;         // amber
+$danger: #EF4444;          // red
+
+// Typography
+$family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+
+// Layout
+$radius-large: 18px;
+$box-radius: $radius-large;
+
+// Hero overlay tweak (used when hero_darken true)
+$hero-darken: rgba(0, 0, 0, 0.45);
+
+// Import Main CSS file from theme
+@import "main";
+
+/* --- Custom components --- */
+.moca-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.moca-hero::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(59,130,246,.55), transparent 45%),
+    radial-gradient(circle at 80% 40%, rgba(6,182,212,.35), transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(34,197,94,.25), transparent 55%);
+  filter: blur(8px);
+  transform: translateZ(0);
+}
+
+.moca-hero .hero-body {
+  position: relative;
+}
+
+.card.is-soft {
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,.07);
+  border-radius: 18px;
+}
+
+.tag.is-muted {
+  background: rgba(100, 116, 139, .14);
+  color: inherit;
+}
+
+.prose-ish p { max-width: 70ch; }
+
+.pub-item {
+  padding: .75rem 1rem;
+  border-left: 3px solid rgba(59,130,246,.35);
+  background: rgba(59,130,246,.04);
+  border-radius: 12px;
+}
+
+.pub-meta {
+  opacity: .8;
+  font-size: .95rem;
+}

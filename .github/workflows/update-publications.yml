@@ -1,0 +1,42 @@
+name: Update publications (Google Scholar via SerpApi)
+
+on:
+  schedule:
+    # Weekly: Monday 05:00 UTC
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-publications:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch & write publications
+        env:
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+        run: python scripts/update_publications.py
+
+      - name: Commit changes (if any)
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "moca-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add _data/publications.json _data/publications_meta.json
+          git commit -m "Update publications (auto)"
+          git push

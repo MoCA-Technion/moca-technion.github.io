@@ -1,0 +1,14 @@
+<!-- Extra scripts loaded in <head>. (Bulma Clean Theme provides this include.) -->
+<script>
+  // Optional: enable smooth scrolling for hash links
+  document.documentElement.style.scrollBehavior = "smooth";
+</script>
+
+<!-- MathJax for LaTeX in Markdown -->
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>

@@ -1,0 +1,9 @@
+# Add lab members here. Photos should go in /assets/img/people/ and referenced as /assets/img/people/<file>
+# Example:
+# - name: Jane Doe
+#   role: PhD Student
+#   interests: "Transit operations, discrete choice, causal inference"
+#   email: jane.doe@technion.ac.il
+#   website: https://example.com
+#   photo: /assets/img/people/jane.jpg
+[]

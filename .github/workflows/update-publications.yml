@@ -1,4 +1,4 @@
-name: Update publications (Google Scholar via SerpApi)
+name: Update publications (Google Scholar via SerpApi) + Deploy
 
 on:
   schedule:
@@ -8,10 +8,18 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  update-publications:
+  update:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,14 +37,49 @@ jobs:
           SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
         run: python scripts/update_publications.py
 
-      - name: Commit changes (if any)
+      - name: Detect changes
+        id: diff
         run: |
           if git diff --quiet; then
-            echo "No changes to commit."
-            exit 0
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Commit & push changes (if any)
+        if: steps.diff.outputs.changed == 'true'
+        run: |
           git config user.name "moca-bot"
           git config user.email "actions@users.noreply.github.com"
           git add _data/publications.json _data/publications_meta.json
           git commit -m "Update publications (auto)"
           git push
+
+  deploy:
+    needs: update
+    if: needs.update.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build site (Bundler + Jekyll)
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace --destination _site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

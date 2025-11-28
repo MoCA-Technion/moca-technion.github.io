@@ -30,3 +30,8 @@ This workflow:
 bundle install
 bundle exec jekyll serve
 ```
+
+
+## If your deployed site still shows Quarto / an old site
+If https://<your>.github.io is still showing a Quarto-built site, GitHub Pages is deploying a different source (e.g., `/docs` or `gh-pages` branch).
+Set **Repo → Settings → Pages → Source** to **GitHub Actions**, and ensure `main` contains this Jekyll project (remove Quarto folders like `docs/` if needed).

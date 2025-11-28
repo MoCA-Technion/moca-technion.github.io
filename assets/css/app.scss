@@ -44,9 +44,10 @@ $box-radius: $radius-large;
     radial-gradient(circle at 18% 20%, rgba(213,159,15,.30), transparent 52%),
     radial-gradient(circle at 78% 22%, rgba(255,255,255,.10), transparent 55%),
     radial-gradient(circle at 55% 95%, rgba(0,0,0,.22), transparent 55%);
-  filter: blur(18px);
+  filter: blur(18px); /* CHANGE THIS */
   opacity: .95;
   pointer-events: none;
+  transform: translateZ(0); /* NEW: Forces GPU acceleration to reduce lag */
 }
 
 .moca-home-hero .hero-body {

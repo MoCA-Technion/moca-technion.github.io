@@ -1,3 +1,34 @@
+<style>
+  /* Set the background immediately to avoid white flash */
+  .moca-home-hero {
+    background-color: #002147; /* moca-navy */
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style the text immediately so it doesn't wait for Bulma */
+  .moca-hero-title {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 5rem; /* Fallback size */
+    color: #fff;
+    margin: 0;
+    opacity: 1 !important; /* Force visibility */
+  }
+  
+  /* Optional: Style subtitle too */
+  .moca-hero-subtitle {
+    font-family: system-ui, -apple-system, sans-serif;
+    color: rgba(255,255,255,0.9);
+    font-size: 1.5rem;
+  }
+
+  /* Responsive adjustments for mobile to prevent huge text layout shifts */
+  @media (max-width: 768px) {
+    .moca-hero-title { font-size: 3.5rem; }
+  }
+</style>
 <script>
 /* Force light mode (disable dark/night mode) */
 (function () {

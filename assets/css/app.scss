@@ -131,3 +131,16 @@ $box-radius: $radius-large;
 /* Publications */
 .pub-item { padding: .95rem 1rem; border: 1px solid rgba(0,0,0,.10); background: #fff; border-radius: 18px; }
 .pub-meta { opacity: .82; font-size: .95rem; }
+
+
+/* Force full-bleed for home hero even if theme wraps content in a container/section */
+.moca-home-hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Remove any accidental max-width constraints in nested theme wrappers */
+.moca-home-hero .container {
+  max-width: 1152px; /* Bulma container xl */
+}

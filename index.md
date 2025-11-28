@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: page
 title: MoCA Lab
 permalink: /
+hide_hero: true
 ---
 
 <section class="hero moca-home-hero">

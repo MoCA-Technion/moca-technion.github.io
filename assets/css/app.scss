@@ -7,19 +7,27 @@ $moca-navy: #002147;   /* Technion Navy */
 $moca-gold: #D59F0F;   /* Technion Gold */
 $google-gray: #202124; /* Standard Dark Text */
 $border-light: #dadce0;
+$bg-color: #f8f9fa;    /* Light Gray Background */
 
 /* 2. Bulma Variable Overrides */
 $primary: $moca-navy;
 $link: $moca-navy;
 $info: $moca-gold;
-$family-sans-serif: 'Roboto', sans-serif; /* Global Body Font */
-$body-background-color: #f8f9fa; /* Light Gray Background (Google Style) */
-$widescreen-enabled: false;
-$fullhd-enabled: false;
+$family-sans-serif: 'Roboto', sans-serif; 
+$body-background-color: $bg-color;
+$section-padding: 3rem 1.5rem;
 
 @import "main";
 
-/* 3. Global Typography Overrides (Consistency) */
+/* 3. Global Container Alignment (The "Invisible Column") */
+/* This forces Navbar, Hero, and Page Content to share the EXACT same width */
+.container {
+  max-width: 1344px !important; /* Bulma FullHD Standard */
+  width: 92% !important;        /* Consistent side margins on mobile/tablet */
+  margin: 0 auto !important;
+}
+
+/* 4. Global Typography Overrides */
 html, body, p, li, a {
   font-family: 'Roboto', sans-serif;
   color: $google-gray;
@@ -30,7 +38,7 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   letter-spacing: -0.01em;
 }
 
-/* 4. Navbar (Navy Blue & Sticky) */
+/* 5. Navbar (Navy Blue & Sticky) */
 .navbar.is-primary {
   background-color: $moca-navy !important;
   height: 64px;
@@ -48,40 +56,32 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   color: #fff !important;
 }
 
-/* 5. Hero Section (Full Bleed Fix) */
+/* 6. Hero Section (Full Bleed) */
 .moca-home-hero {
-  width: 100vw; /* Force full viewport width */
+  width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw; /* Center and stretch */
+  margin-left: -50vw;
   margin-right: -50vw;
-  margin-top: -3.25rem; /* Pull up to cover any navbar gap */
-  padding-top: 5rem; /* Push content down so it's not hidden by navbar */
-  padding-bottom: 4rem;
+  margin-top: -3.25rem; /* Pull up behind navbar */
+  padding-top: 6rem;    /* Push content down */
+  padding-bottom: 5rem;
   
   background-color: $moca-navy;
   background: linear-gradient(135deg, #002147 0%, #003366 100%);
   color: #fff;
 }
 
-.moca-home-hero .hero-body .container {
-  max-width: 1400px !important; /* Wide container for text */
-  width: 92%;
-  margin: 0 auto;
-}
-
-/* 6. Unified "Card" Style (Used for slabs, people, pubs) */
-@mixin moca-card {
+/* 7. CARD MIXIN (The Google "Slab" Look) */
+@mixin moca-card-base {
   background: #ffffff;
   border: 1px solid $border-light;
-  border-radius: 8px;
-  padding: 1.5rem 2rem;
-  margin-bottom: 1.5rem;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  overflow: hidden;
+  border-radius: 12px;
+  padding: 2.5rem;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 2rem;
 }
 
 @mixin moca-card-hover {
@@ -90,26 +90,15 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   border-color: transparent;
 }
 
-/* Apply Card Style to Homepage Slabs */
+/* Apply to Homepage Slabs */
 .moca-slab {
-  @include moca-card;
+  @include moca-card-base;
   height: 100%;
 }
 .moca-slab:hover {
   @include moca-card-hover;
 }
-
-/* Apply Card Style to Publications & People (.pub-item) */
-.pub-item {
-  @include moca-card;
-  /* Reset previous styles if any */
-  background: #fff; 
-}
-.pub-item:hover {
-  @include moca-card-hover;
-}
-
-/* Gold Accent Line (Only for Homepage Slabs) */
+/* Gold Accent for Slabs */
 .moca-slab::after {
   content: "";
   display: block;
@@ -120,7 +109,32 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   border-radius: 2px;
 }
 
-/* 7. Footer */
+/* Apply to Publications & People Lists */
+.pub-item {
+  @include moca-card-base;
+  padding: 1.5rem 2rem; /* Slightly compact for lists */
+}
+.pub-item:hover {
+  @include moca-card-hover;
+}
+
+/* Apply to Standard Pages (Research, Join, Contact) */
+/* This makes the text content appear on a white card centered on the screen */
+.content {
+  @include moca-card-base;
+  max-width: 100%; 
+}
+
+/* Adjust headings inside the card content */
+.content h1, .content h2 {
+  color: $moca-navy;
+  margin-top: 1.5rem;
+}
+.content h1:first-child, .content h2:first-child {
+  margin-top: 0;
+}
+
+/* 8. Footer */
 .footer {
   background: #fff;
   border-top: 1px solid $border-light;

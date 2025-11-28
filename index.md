@@ -8,18 +8,21 @@ hide_hero: true
 <section class="hero moca-home-hero">
   <div class="hero-body">
     <div class="container">
-      <p class="moca-kicker mb-3">Technion · Mobility Computation &amp; Analytics Lab</p>
+      <p class="moca-kicker" style="color: #D59F0F; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+        Technion · Mobility Computation &amp; Analytics Lab
+      </p>
 
       <h1 class="moca-hero-title">MoCA Lab</h1>
 
       <p class="moca-hero-subtitle">
         Scalable, theory-grounded models and computational tools for
-        <strong style="color:#fff;">mobility systems</strong> and
-        <strong style="color:#fff;">infrastructure analytics</strong>.
+        <strong>mobility systems</strong> and
+        <strong>infrastructure analytics</strong>.
       </p>
     </div>
   </div>
 </section>
+
 
 <section class="section">
   <div class="container">

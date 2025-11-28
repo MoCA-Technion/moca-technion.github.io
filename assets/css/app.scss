@@ -1,263 +1,94 @@
 ---
 ---
-/* Technion palette */
-$moca-navy: #002147;   /* Pantone 282 */
-$moca-gold: #D59F0F;   /* Pantone 1245 */
+/* TECHNION BRANDING + GOOGLE RESEARCH LAYOUT */
 
+/* 1. Technion Palette */
+$moca-navy: #002147;   /* Technion Navy */
+$moca-gold: #D59F0F;   /* Technion Gold */
+$google-gray: #202124; /* Standard Dark Text */
+$border-light: #dadce0;
+
+/* 2. Bulma Variable Overrides */
 $primary: $moca-navy;
 $link: $moca-navy;
-$info: #0EA5E9;
-$success: #22C55E;
-$warning: $moca-gold;
-$danger: #EF4444;
-
-$family-sans-serif: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-$radius-large: 22px;
-$box-radius: $radius-large;
+$info: $moca-gold;
+$family-sans-serif: 'Roboto', sans-serif; /* Google Body Font */
+$body-background-color: #f8f9fa; /* Light Gray Background (Google Style) */
 
 @import "main";
 
-:root { --moca-navy: #002147; --moca-gold: #D59F0F; }
-
-.section { padding-top: 3.25rem; padding-bottom: 3.25rem; }
-.title { letter-spacing: -0.02em; }
-.subtitle { opacity: .92; }
-.prose-ish p { max-width: 72ch; }
-
-.navbar.is-fixed-top,
-.navbar.is-fixed-bottom { box-shadow: 0 1px 0 rgba(0,0,0,.06); }
-
-/* Full-bleed home hero (no card) */
-.moca-home-hero {
-  position: relative;
-  overflow: hidden;
-  background: var(--moca-navy);
-  border-radius: 0;
-  margin-top: 0;
+/* 3. Typography Overrides */
+h1, h2, h3, h4, h5, .title, .navbar-item, .button {
+  font-family: 'Outfit', sans-serif !important;
+  letter-spacing: -0.01em;
 }
 
-.moca-home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -45%;
-  background:
-    radial-gradient(circle at 18% 20%, rgba(213,159,15,.30), transparent 52%),
-    radial-gradient(circle at 78% 22%, rgba(255,255,255,.10), transparent 55%),
-    radial-gradient(circle at 55% 95%, rgba(0,0,0,.22), transparent 55%);
-  filter: blur(18px); /* CHANGE THIS */
-  opacity: .95;
-  pointer-events: none;
-  transform: translateZ(0); /* NEW: Forces GPU acceleration to reduce lag */
+/* 4. Navbar (Navy Blue & Sticky) */
+.navbar.is-primary {
+  background-color: $moca-navy !important;
+  height: 64px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
 
-.moca-home-hero .hero-body {
-  position: relative;
-  padding-top: 2.0rem;
-  padding-bottom: 3.0rem;
-}
-
-@media (min-width: 1024px) {
-  .moca-home-hero .hero-body {
-    padding-top: 2.5rem;
-    padding-bottom: 3.5rem;
-  }
-}
-
-.moca-kicker {
-  font-size: .84rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  opacity: .86;
-  color: rgba(255,255,255,.88);
-}
-
-.moca-kicker--dark {
-  color: rgba(0,0,0,.62);
-  opacity: 1;
-}
-
-.moca-hero-title {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  font-weight: 700;
-  font-size: clamp(5.0rem, 10.0vw, 8.5rem);
-  line-height: 1.06;
-  color: #fff !important;
-  margin: 0 0 0.75rem 0;
-}
-
-.moca-hero-subtitle {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+.navbar-item {
   font-weight: 500;
-  font-size: clamp(1.35rem, 2.5vw, 2.1rem);
-  line-height: 1.4;
-  color: rgba(255,255,255,.92);
-  max-width: 68ch;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9) !important;
 }
 
-/* Content slabs */
+.navbar-item:hover, .navbar-item.is-active {
+  background-color: rgba(255,255,255,0.1) !important;
+  color: #fff !important;
+}
+
+/* 5. Hero Section (Technion Navy) */
+.moca-home-hero {
+  background-color: $moca-navy;
+  /* Subtle modern gradient (Navy to slightly lighter Navy) */
+  background: linear-gradient(135deg, #002147 0%, #003366 100%);
+  color: #fff;
+  margin-top: -1px; /* Fix hairline gap */
+  padding-bottom: 2rem;
+}
+
+/* 6. Material Design Cards (The Google Look) */
 .moca-slab {
+  background: #ffffff;
+  border: 1px solid $border-light;
+  border-radius: 8px; /* Google uses slightly smaller radius than Apple */
+  padding: 2rem;
+  height: 100%;
+  transition: all 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
-  border-radius: 28px;
-  padding: clamp(1.15rem, 2.4vw, 2.1rem);
 }
 
-.moca-slab--cream { background: #F8FAFC; border: 1px solid rgba(0,0,0,.08); }
-.moca-slab--gold { background: var(--moca-gold); color: #141414; }
+/* Hover Effect: Lift up + Shadow */
+.moca-slab:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+  border-color: transparent;
+}
 
-.moca-slab--cream::before {
+/* Gold Accent Line on Cards */
+.moca-slab::after {
   content: "";
-  position: absolute;
-  inset: -45%;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(0,33,71,.12), transparent 55%),
-    radial-gradient(circle at 85% 25%, rgba(213,159,15,.18), transparent 55%),
-    radial-gradient(circle at 50% 100%, rgba(0,0,0,.06), transparent 55%);
-  filter: blur(18px);
-  opacity: .9;
-  pointer-events: none;
-}
-.moca-slab > * { position: relative; }
-
-.moca-accent {
-  height: 3px;
-  width: 72px;
-  border-radius: 999px;
-  background: var(--moca-gold);
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: $moca-gold;
+  margin-top: 1.5rem;
+  border-radius: 2px;
 }
 
-/* Publications */
-.pub-item { padding: .95rem 1rem; border: 1px solid rgba(0,0,0,.10); background: #fff; border-radius: 18px; }
-.pub-meta { opacity: .82; font-size: .95rem; }
+/* Typography Inside Cards */
+.moca-slab .title { color: $moca-navy !important; margin-bottom: 0.5rem; }
+.moca-slab .subtitle { color: $google-gray; margin-bottom: 1.5rem; }
+.moca-slab p { color: #4d5156; line-height: 1.6; }
 
-
-/* Force full-bleed for home hero even if theme wraps content in a container/section */
-.moca-home-hero {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+/* 7. Footer */
+.footer {
+  background: #fff;
+  border-top: 1px solid $border-light;
+  color: $google-gray;
 }
-
-/* Remove any accidental max-width constraints in nested theme wrappers */
-.moca-home-hero .container {
-  max-width: 1152px; /* Bulma container xl */
-}
-
-
-/* --- Home hero final tuning --- */
-/* Bulma fixed navbar height is ~3.25rem; theme often compensates using body padding-top.
-   To remove the visible "gap", pull the hero up by that offset and add padding so content
-   still starts below the navbar. */
-:root { --moca-nav-offset: 3.25rem; }
-
-/* Ensure the home hero is full-bleed even inside theme wrappers */
-.moca-home-hero {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-
-  /* cover the fixed-navbar spacer */
-  margin-top: calc(-1 * var(--moca-nav-offset));
-  padding-top: var(--moca-nav-offset);
-}
-
-/* Landing banner: ~65% viewport height (excluding the navbar offset),
-   vertically centered, with generous breathing room. */
-.moca-home-hero .hero-body {
-  min-height: 65vh;
-  display: flex;
-  align-items: center;
-
-  /* padding is additive on top of min-height; keep moderate */
-  padding-top: 4.25rem;
-  padding-bottom: 4.25rem;
-}
-
-@media (min-width: 1024px) {
-  .moca-home-hero .hero-body {
-    padding-top: 5.5rem;
-    padding-bottom: 5.5rem;
-  }
-}
-
-/* Bigger landing type */
-.moca-hero-title {
-  font-size: clamp(5.0rem, 10.0vw, 8.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-}
-
-.moca-hero-subtitle {
-  font-size: clamp(1.35rem, 2.5vw, 2.1rem);
-  line-height: 1.42;
-  max-width: 68ch;
-}
-/* Optional: keep title readable on very wide screens */
-.moca-home-hero .container { max-width: 1152px; }
-
-
-
-/* --- Unified hero experience across the site --- */
-:root { --moca-nav-offset: 3.25rem; } /* used to cover fixed-navbar spacer */
-html { color-scheme: light; } /* hint to UA: no dark scheme */
-
-/* Same gradient background for all theme heroes (non-home pages) */
-.hero.is-primary:not(.moca-home-hero) {
-  position: relative;
-  overflow: hidden;
-  background: var(--moca-navy);
-  /* cover fixed-navbar spacer so there's no visible gap */
-  margin-top: calc(-1 * var(--moca-nav-offset));
-  padding-top: var(--moca-nav-offset);
-}
-
-.hero.is-primary:not(.moca-home-hero)::before {
-  content: "";
-  position: absolute;
-  inset: -45%;
-  background:
-    radial-gradient(circle at 18% 20%, rgba(213,159,15,.28), transparent 52%),
-    radial-gradient(circle at 78% 22%, rgba(255,255,255,.10), transparent 55%),
-    radial-gradient(circle at 55% 95%, rgba(0,0,0,.22), transparent 55%);
-  filter: blur(18px);
-  opacity: .95;
-  pointer-events: none;
-}
-
-.hero.is-primary:not(.moca-home-hero) .hero-body {
-  position: relative;
-  min-height: 28vh;         /* smaller than landing banner */
-  display: flex;
-  align-items: flex-end;    /* reads like a page header */
-  padding-top: 2.25rem;
-  padding-bottom: 2.75rem;
-}
-
-@media (min-width: 1024px) {
-  .hero.is-primary:not(.moca-home-hero) .hero-body {
-    min-height: 32vh;
-    padding-top: 2.5rem;
-    padding-bottom: 3.25rem;
-  }
-}
-
-/* White page titles/subtitles on the hero headers */
-.hero.is-primary .title,
-.hero.is-primary .subtitle,
-.hero.is-primary .content,
-.hero.is-primary p,
-.hero.is-primary li { color: #fff !important; }
-
-.hero.is-primary a { color: #fff; text-decoration: underline; text-underline-offset: .2em; }
-
-/* Navbar: ensure burger icon + text are white on mobile */
-.navbar.is-primary .navbar-burger { color: #fff; }
-.navbar.is-primary .navbar-burger span { background-color: rgba(255,255,255,.95); }
-.navbar.is-primary .navbar-item,
-.navbar.is-primary .navbar-link { color: rgba(255,255,255,.92); }
-.navbar.is-primary .navbar-item:hover,
-.navbar.is-primary .navbar-link:hover { color: #fff; background: rgba(255,255,255,.06); }
-
-/* If any dark-mode attribute sneaks in, neutralize it to light */
-html[data-theme="dark"],
-body[data-theme="dark"] { filter: none; }

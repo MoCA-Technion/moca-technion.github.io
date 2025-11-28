@@ -57,45 +57,49 @@
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-  /* 1. Container Fix: Ensure content isn't too narrow */
+  /* Fix Container Width */
   .moca-home-hero .hero-body .container {
-    max-width: 1200px !important; /* Give it more breathing room */
+    max-width: 1200px !important;
     width: 90%;
   }
 
-  /* 2. Title Fix: Balanced size & prevent wrapping */
+  /* Main Title: White, Clean, No Wrapping */
   .moca-hero-title {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
-
-    /* REVISED SIZE:
-       Min: 3rem (mobile)
-       Scales at: 5vw (much gentler scaling)
-       Max: 6rem (approx 96px, large but fits on one line)
-    */
-    font-size: clamp(3rem, 5vw, 6rem) !important;
-
-    white-space: nowrap; /* Forces "MoCA Lab" to stay on one line */
+    /* Balanced Size: Large but fits */
+    font-size: clamp(3.5rem, 6vw, 6.5rem) !important;
+    white-space: nowrap;
+    color: #ffffff !important;
     line-height: 1.1;
-    color: #fff !important;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
-  /* 3. Subtitle Fix: Wider reading area */
+  /* Subtitle: Legible & Gold Accent */
   .moca-hero-subtitle {
-    font-size: clamp(1.25rem, 2vw, 1.75rem) !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.95) !important;
-
-    /* Allow subtitle to span wider so it doesn't look like a thin column */
-    max-width: 100%;
+    max-width: 800px;
   }
 
-  /* Mobile tweaks to prevent overflow */
+  /* Bold text in subtitle becomes Gold */
+  .moca-hero-subtitle strong {
+    color: #D59F0F !important; /* Technion Gold */
+    font-weight: 500;
+  }
+
+  /* Mobile Adjustment */
   @media (max-width: 768px) {
     .moca-hero-title {
-      white-space: normal; /* Allow wrapping on very small phones only */
+      white-space: normal; /* Wrap on phones */
       font-size: 3.5rem !important;
     }
   }

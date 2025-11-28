@@ -58,32 +58,45 @@
 {% endif %}
 
 <style>
-  /* 1. Force the title to be BIG immediately */
+  /* 1. Container Fix: Ensure content isn't too narrow */
+  .moca-home-hero .hero-body .container {
+    max-width: 1200px !important; /* Give it more breathing room */
+    width: 90%;
+  }
+
+  /* 2. Title Fix: Balanced size & prevent wrapping */
   .moca-hero-title {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-weight: 700;
-    /* This makes it responsive: Minimum 4rem, scales with width (10vw), Max 8.5rem */
-    font-size: clamp(4rem, 10vw, 8.5rem) !important;
+
+    /* REVISED SIZE:
+       Min: 3rem (mobile)
+       Scales at: 5vw (much gentler scaling)
+       Max: 6rem (approx 96px, large but fits on one line)
+    */
+    font-size: clamp(3rem, 5vw, 6rem) !important;
+
+    white-space: nowrap; /* Forces "MoCA Lab" to stay on one line */
     line-height: 1.1;
     color: #fff !important;
-    margin-bottom: 1rem;
-    display: block; /* Ensures it takes up the full line */
+    margin-bottom: 1.5rem;
   }
 
-  /* 2. Ensure the subtitle is legible */
+  /* 3. Subtitle Fix: Wider reading area */
   .moca-hero-subtitle {
-    font-size: clamp(1.2rem, 2.5vw, 2rem) !important;
-    line-height: 1.4;
+    font-size: clamp(1.25rem, 2vw, 1.75rem) !important;
+    line-height: 1.5;
     color: rgba(255, 255, 255, 0.95) !important;
-    max-width: 800px;
+
+    /* Allow subtitle to span wider so it doesn't look like a thin column */
+    max-width: 100%;
   }
 
-  /* 3. Fix the container height so the text isn't cramped */
-  .moca-home-hero .hero-body {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+  /* Mobile tweaks to prevent overflow */
+  @media (max-width: 768px) {
+    .moca-hero-title {
+      white-space: normal; /* Allow wrapping on very small phones only */
+      font-size: 3.5rem !important;
+    }
   }
 </style>

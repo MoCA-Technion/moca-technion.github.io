@@ -1,34 +1,30 @@
 ---
 ---
-/* TECHNION BRANDING + CLEAN GOOGLE LAYOUT */
+/* MOcA LAB: RESPONSIVE & POLISHED THEME */
 
-/* 1. Technion Palette */
-$moca-navy: #002147;   /* Technion Navy */
-$moca-gold: #D59F0F;   /* Technion Gold */
-$google-gray: #202124; /* Standard Dark Text */
+/* 1. Colors & Fonts */
+$moca-navy: #002147;
+$moca-gold: #D59F0F;
+$google-gray: #202124;
 $border-light: #dadce0;
-$bg-color: #ffffff;    /* Changed to WHITE to remove "box" feel */
+$bg-color: #f8f9fa;
 
-/* 2. Bulma Variable Overrides */
 $primary: $moca-navy;
 $link: $moca-navy;
 $info: $moca-gold;
-$family-sans-serif: 'Roboto', sans-serif; 
+$family-sans-serif: 'Roboto', sans-serif;
 $body-background-color: $bg-color;
-
-/* Override Theme Spacing */
-$navbar-height: 4rem;
 
 @import "main";
 
-/* 3. GAP FIX: Force Body to top */
-/* The theme adds padding-top to body via JS/CSS. We force it off. */
-html, body {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+/* 2. Global Layout (Desktop Default) */
+.container {
+  max-width: 1400px !important;
+  width: 94% !important;
+  margin: 0 auto !important;
 }
 
-/* 4. Global Typography */
+/* 3. Typography */
 html, body, p, li, a {
   font-family: 'Roboto', sans-serif;
   color: $google-gray;
@@ -38,25 +34,27 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   letter-spacing: -0.01em;
 }
 
-/* 5. Navbar (Transparent on Top, Navy when sticky) */
+/* 4. Navbar */
 .navbar {
   background-color: $moca-navy !important;
-  height: 4rem; /* 64px */
-  box-shadow: none !important;
+  height: 4rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
 .navbar-item {
-  font-weight: 500;
-  font-size: 0.95rem;
   color: rgba(255,255,255,0.9) !important;
+  font-weight: 500;
 }
 .navbar-item:hover, .navbar-item.is-active {
-  background-color: rgba(255,255,255,0.1) !important;
+  background-color: rgba(255,255,255,0.15) !important;
   color: #fff !important;
 }
 
-/* 6. Hero Section (NO GAP & Full Bleed) */
+/* 5. GAP FIX: Desktop Hero */
+html, body {
+  padding-top: 0 !important;
+}
 .moca-home-hero {
+  /* Desktop: Full Bleed Hack */
   width: 100vw;
   position: relative;
   left: 50%;
@@ -64,53 +62,114 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   margin-left: -50vw;
   margin-right: -50vw;
   
-  /* PULL UP to cover navbar area */
-  margin-top: 0 !important; 
-  padding-top: 5rem; /* Space for content below navbar */
-  padding-bottom: 5rem;
+  margin-top: -4rem !important; /* Pull behind navbar */
+  padding-top: 8rem; 
+  padding-bottom: 6rem;
   
-  background-color: $moca-navy;
   background: linear-gradient(135deg, #002147 0%, #003366 100%);
   color: #fff;
 }
 
-/* 7. HOMEPAGE CLEANUP (Remove "White Box") */
-/* We remove the card style from homepage slabs so they blend in */
-.moca-slab {
-  background: transparent; /* No background */
-  border: none;            /* No border */
-  box-shadow: none;        /* No shadow */
-  padding: 1rem 0;         /* Less padding */
+/* 6. CARD SYSTEM */
+@mixin moca-card-style {
+  background: #ffffff;
+  border: 1px solid $border-light;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Homepage Cards */
+.moca-slab {
+  @include moca-card-style;
+  display: flex;
+  flex-direction: column;
+}
+.moca-slab:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-color: transparent;
+}
 .moca-slab::after {
   content: "";
   display: block;
   width: 40px;
   height: 4px;
   background: $moca-gold;
-  margin-top: 1rem;
+  margin-top: auto;
   border-radius: 2px;
 }
 
-/* 8. CARD STYLE (Only for Research/People/Pubs) */
-@mixin moca-card-base {
-  background: #ffffff;
-  border: 1px solid $border-light;
-  border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  margin-bottom: 2rem;
+/* Other Pages Cards */
+.content:not(.is-transparent) {
+  @include moca-card-style;
+  max-width: 100%;
+}
+/* Prevent double-boxing on homepage */
+.moca-slab .content {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-bottom: 1rem;
 }
 
-.pub-item, .content {
-  @include moca-card-base;
+/* Publications */
+.pub-item {
+  @include moca-card-style;
+  padding: 1.5rem;
+  height: auto;
+}
+.pub-item:hover {
+  border-color: $moca-navy;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* 9. FOOTER CLEANUP */
+/* 7. Footer */
 .footer {
   background: #fff;
-  padding: 3rem 1.5rem;
-  margin-top: 4rem;
   border-top: 1px solid $border-light;
+  margin-top: 4rem;
+  padding: 3rem 1.5rem;
+}
+
+/* ========================================= */
+/* 8. ADAPTIVE MOBILE FIXES (The New Part)   */
+/* ========================================= */
+@media screen and (max-width: 1023px) {
+  /* 1. RESET HERO GEOMETRY 
+     Stop the 50vw hack on mobile/tablets to prevent horizontal scroll issues. */
+  .moca-home-hero {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 7rem; /* Slightly less padding */
+    padding-bottom: 4rem;
+  }
+  
+  /* 2. FORCE COLUMNS FULL WIDTH 
+     This fixes the "small columns" issue. We force 100% width on cards. */
+  .column.is-4, .column.is-6, .column.is-3 {
+    width: 100% !important;
+    display: block !important;
+    flex: none;
+    margin-bottom: 1rem;
+  }
+  
+  /* 3. OPTIMIZE PADDING 
+     2rem is too much for a phone. 1.5rem gives more room for text. */
+  .moca-slab, .pub-item, .content:not(.is-transparent) {
+    padding: 1.5rem !important;
+  }
+  
+  /* 4. ENSURE CONTAINER FITS */
+  .container {
+    width: 92% !important;
+    max-width: 100% !important;
+  }
 }

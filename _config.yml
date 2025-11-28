@@ -1,29 +1,20 @@
 title: "MoCA Lab"
 tagline: "Mobility Computation & Analytics Lab"
-description: "MoCA, Mobility Computation & Analytics, is a research lab at the Technion focusing on mobility systems, infrastructure analytics, and computation methods."
-# For GitHub Pages:
-# - If your site is https://<username>.github.io, keep baseurl empty.
-# - If your site is https://<username>.github.io/<repo>, set baseurl: "/<repo>"
-url: "https://moca-technion.github.io"
+description: "MoCA (Mobility Computation & Analytics) is a research lab at the Technion focusing on mobility systems, infrastructure analytics, and computation methods."
+url: ""
 baseurl: ""
 
-# Theme (Bulma Clean Theme)
 theme: bulma-clean-theme
-
 permalink: pretty
 fixed_navbar: top
+theme_color: "#002147"
 
-# Optional: add a theme color for mobile browser UI
-theme_color: "#0B1220"
-
-# Footer menu (see _data/footer_menu.yml)
 footer_menu: footer_menu
 
 plugins:
   - jekyll-sitemap
   - jekyll-feed
 
-# Markdown + LaTeX
 markdown: kramdown
 kramdown:
   input: GFM
@@ -31,11 +22,10 @@ kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
 
-# SerpApi / Google Scholar sync (used by scripts/update_publications.py)
 scholar:
-  author_id: "lEg_t6kAAAAJ"   # https://scholar.google.com/citations?user=<author_id>
+  author_id: "lEg_t6kAAAAJ"
   hl: "en"
-  sort: "pubdate"             # "pubdate" or "title"
+  sort: "pubdate"
 
 exclude:
   - scripts/

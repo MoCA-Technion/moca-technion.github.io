@@ -18,7 +18,7 @@ SERPAPI_ENDPOINT = "https://serpapi.com/search.json"
 
 def _extract_scholar_config():
     '''
-    Minimal YAML reader (avoids extra deps). We only read:
+    Minimal YAML reader (no external deps). Reads:
       scholar:
         author_id: "..."
         hl: "en"
@@ -42,8 +42,9 @@ def _extract_scholar_config():
             in_scholar = False
         if in_scholar and ":" in raw:
             key, val = raw.strip().split(":", 1)
+            # strip inline comment first
             val = val.split("#", 1)[0].strip()
-            # Remove surrounding quotes (if any)
+            # then strip quotes
             val = val.strip().strip('"').strip("'")
             if key in cfg:
                 cfg[key] = val
@@ -54,7 +55,7 @@ def _extract_scholar_config():
 def fetch_all_articles(api_key: str, author_id: str, hl: str = "en", sort: str = "pubdate"):
     all_articles = []
     start = 0
-    num = 100  # max supported by SerpApi for this engine
+    num = 100
 
     while True:
         params = {
@@ -97,31 +98,13 @@ def fetch_all_articles(api_key: str, author_id: str, hl: str = "en", sort: str =
                 "year": year_int,
                 "cited_by": cited_by,
                 "link": (a.get("link") or "").strip(),
-                "citation_id": (a.get("citation_id") or "").strip(),
             })
 
         if len(articles) < num:
             break
         start += num
 
-    # De-duplicate (citation_id preferred)
-    seen = set()
-    dedup = []
-    for p in all_articles:
-        key = p["citation_id"] or f'{p["title"]}::{p.get("year")}'
-        if key in seen:
-            continue
-        seen.add(key)
-        dedup.append(p)
-
-    # Sort: year desc, cited_by desc, title asc
-    def sort_key(p):
-        year = p["year"] if p["year"] is not None else -1
-        cited = p["cited_by"] if isinstance(p["cited_by"], int) else -1
-        return (-year, -cited, p["title"].lower())
-
-    dedup.sort(key=sort_key)
-    return dedup
+    return all_articles
 
 
 def main():
@@ -142,20 +125,38 @@ def main():
 
     pubs = fetch_all_articles(api_key=api_key, author_id=author_id, hl=hl, sort=sort)
 
+    # De-duplicate by (title, year) since we don't store citation_id
+    seen = set()
+    dedup = []
+    for p in pubs:
+        key = (p.get("title"), p.get("year"))
+        if key in seen:
+            continue
+        seen.add(key)
+        dedup.append(p)
+
+    # Sort: year desc, cited_by desc, title asc
+    def sort_key(p):
+        year = p["year"] if p["year"] is not None else -1
+        cited = p["cited_by"] if isinstance(p["cited_by"], int) else -1
+        return (-year, -cited, p["title"].lower())
+
+    dedup.sort(key=sort_key)
+
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    PUBS_PATH.write_text(json.dumps(pubs, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    PUBS_PATH.write_text(json.dumps(dedup, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     meta = {
         "updated_at_utc": now,
         "source": "SerpApi google_scholar_author",
         "author_id": author_id,
-        "count": len(pubs),
+        "count": len(dedup),
         "scholar_profile": f"https://scholar.google.com/citations?hl={hl}&user={author_id}",
     }
     META_PATH.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    print(f"Wrote {len(pubs)} publications to {PUBS_PATH}")
+    print(f"Wrote {len(dedup)} publications to {PUBS_PATH}")
     return 0
 
 

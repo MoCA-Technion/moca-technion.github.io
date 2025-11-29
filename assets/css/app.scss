@@ -48,13 +48,17 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   background-color: rgba(255,255,255,0.15) !important;
   color: #fff !important;
 }
+.navbar-burger {
+  color: #fff !important;
+  height: 4rem;
+  width: 4rem;
+}
 
-/* 5. GAP FIX: Desktop Hero */
+/* 5. HERO SECTION (Desktop) */
 html, body {
   padding-top: 0 !important;
 }
 .moca-home-hero {
-  /* Desktop: Full Bleed Hack */
   width: 100vw;
   position: relative;
   left: 50%;
@@ -102,26 +106,20 @@ html, body {
   margin-top: auto;
   border-radius: 2px;
 }
-
-/* Other Pages Cards */
-.content:not(.is-transparent) {
-  @include moca-card-style;
-  max-width: 100%;
-}
-/* Prevent double-boxing on homepage */
+/* Prevent double-boxing inside homepage slabs */
 .moca-slab .content {
   background: none !important;
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
-/* Publications */
-.pub-item {
+/* Other Pages & Pubs */
+.content:not(.is-transparent), .pub-item {
   @include moca-card-style;
-  padding: 1.5rem;
   height: auto;
+  max-width: 100%;
 }
 .pub-item:hover {
   border-color: $moca-navy;
@@ -137,39 +135,51 @@ html, body {
 }
 
 /* ========================================= */
-/* 8. ADAPTIVE MOBILE FIXES (The New Part)   */
+/* 8. MOBILE & TABLET OVERRIDES (ADAPTIVE)   */
 /* ========================================= */
 @media screen and (max-width: 1023px) {
-  /* 1. RESET HERO GEOMETRY 
-     Stop the 50vw hack on mobile/tablets to prevent horizontal scroll issues. */
+  /* Fix Container: Give it breathing room */
+  .container {
+    max-width: 100% !important;
+    width: 90% !important;
+    padding: 0;
+  }
+
+  /* Fix Columns: STACK THEM VERTICALLY */
+  .columns {
+    display: block !important;
+  }
+  .column {
+    width: 100% !important;
+    display: block !important;
+    margin-bottom: 1.5rem;
+    padding: 0 !important; /* Remove Bulma column padding */
+  }
+
+  /* Fix Cards: Full Width & Normal Padding */
+  .moca-slab, .pub-item, .content:not(.is-transparent) {
+    width: 100% !important;
+    padding: 1.5rem !important; /* Smaller padding for mobile */
+    margin-bottom: 1.5rem;
+    height: auto !important; /* Let height grow naturally */
+  }
+
+  /* Fix Hero: Normal flow, no negative hacks */
   .moca-home-hero {
     width: 100%;
     left: 0;
     right: 0;
     margin-left: 0;
     margin-right: 0;
-    padding-top: 7rem; /* Slightly less padding */
-    padding-bottom: 4rem;
+    margin-top: 0 !important;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
   }
   
-  /* 2. FORCE COLUMNS FULL WIDTH 
-     This fixes the "small columns" issue. We force 100% width on cards. */
-  .column.is-4, .column.is-6, .column.is-3 {
-    width: 100% !important;
-    display: block !important;
-    flex: none;
-    margin-bottom: 1rem;
-  }
-  
-  /* 3. OPTIMIZE PADDING 
-     2rem is too much for a phone. 1.5rem gives more room for text. */
-  .moca-slab, .pub-item, .content:not(.is-transparent) {
-    padding: 1.5rem !important;
-  }
-  
-  /* 4. ENSURE CONTAINER FITS */
-  .container {
-    width: 92% !important;
-    max-width: 100% !important;
+  /* Navbar adjustments for mobile */
+  .navbar-menu {
+    background-color: $moca-navy;
+    box-shadow: none;
+    padding: 1rem;
   }
 }

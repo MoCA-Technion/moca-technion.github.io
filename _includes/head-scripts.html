@@ -12,30 +12,33 @@
 </script>
 
 <style>
-  /* 1. Global Width Lock (Matches Container) */
-  .container {
-    max-width: 1280px !important;
-    width: 90% !important;
-    margin: 0 auto !important;
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0; 
+    padding: 0;
   }
 
-  /* 2. Hero Text */
+  /* Responsive Hero Title */
   .moca-hero-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    font-size: clamp(3.5rem, 6vw, 6rem) !important;
+    /* Desktop: 6rem | Mobile: 3rem */
+    font-size: clamp(3rem, 8vw, 6rem) !important;
     white-space: nowrap; 
     color: #ffffff !important;
     line-height: 1.1;
     margin-bottom: 1rem;
   }
 
+  /* Responsive Subtitle */
   .moca-hero-subtitle {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
+    font-size: clamp(1.1rem, 3vw, 1.5rem) !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    line-height: 1.6;
+    line-height: 1.5;
     max-width: 800px; 
   }
 
@@ -44,9 +47,26 @@
     font-weight: 500;
   }
 
-  /* Mobile */
+  /* STRICT MOBILE OVERRIDES */
   @media (max-width: 768px) {
-    .moca-hero-title { white-space: normal; font-size: 3rem !important; }
+    /* Allow wrapping on phones so "MoCA Lab" fits */
+    .moca-hero-title {
+      white-space: normal !important; 
+      font-size: 3.5rem !important;
+      line-height: 1.1;
+    }
+    
+    /* Ensure subtitle is readable */
+    .moca-hero-subtitle {
+      font-size: 1.2rem !important;
+      max-width: 100%;
+    }
+    
+    /* Fix Hero Padding manually */
+    .moca-home-hero {
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
+    }
   }
 </style>
 

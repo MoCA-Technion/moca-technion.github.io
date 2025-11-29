@@ -6,3 +6,7 @@ _site/
 vendor/
 .DS_Store
 .env
+*.log
+*.tmp
+*.bak
+~*

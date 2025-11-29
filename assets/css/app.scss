@@ -59,6 +59,7 @@ html, body {
   padding-top: 0 !important;
 }
 .moca-home-hero {
+  /* Full Bleed Hack */
   width: 100vw;
   position: relative;
   left: 50%;
@@ -138,48 +139,43 @@ html, body {
 /* 8. MOBILE & TABLET OVERRIDES (ADAPTIVE)   */
 /* ========================================= */
 @media screen and (max-width: 1023px) {
-  /* Fix Container: Give it breathing room */
+  /* 1. FORCE HERO FULL WIDTH (Fixes the white bars) */
+  .moca-home-hero {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    
+    padding-left: 1.5rem; /* Align text inside */
+    padding-right: 1.5rem;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* 2. MAXIMIZE CONTENT WIDTH */
   .container {
+    width: 100% !important;
     max-width: 100% !important;
-    width: 90% !important;
-    padding: 0;
+    padding: 0 1rem; /* Tiny padding so cards don't touch edge of glass */
   }
 
-  /* Fix Columns: STACK THEM VERTICALLY */
+  /* 3. STACK COLUMNS */
   .columns {
     display: block !important;
   }
   .column {
     width: 100% !important;
     display: block !important;
-    margin-bottom: 1.5rem;
-    padding: 0 !important; /* Remove Bulma column padding */
+    padding: 0 !important;
+    margin-bottom: 1rem;
   }
 
-  /* Fix Cards: Full Width & Normal Padding */
+  /* 4. WIDE CARDS */
   .moca-slab, .pub-item, .content:not(.is-transparent) {
     width: 100% !important;
-    padding: 1.5rem !important; /* Smaller padding for mobile */
-    margin-bottom: 1.5rem;
-    height: auto !important; /* Let height grow naturally */
-  }
-
-  /* Fix Hero: Normal flow, no negative hacks */
-  .moca-home-hero {
-    width: 100%;
-    left: 0;
-    right: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0 !important;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-  }
-  
-  /* Navbar adjustments for mobile */
-  .navbar-menu {
-    background-color: $moca-navy;
-    box-shadow: none;
-    padding: 1rem;
+    padding: 1.5rem !important;
+    margin-bottom: 1rem;
   }
 }

@@ -12,60 +12,57 @@
 </script>
 
 <style>
-  /* Prevent horizontal scroll on mobile */
   html, body {
-    overflow-x: hidden;
+    overflow-x: hidden; /* Essential for the full-width hack */
     width: 100%;
     margin: 0; 
     padding: 0;
   }
 
-  /* Responsive Hero Title */
+  /* Desktop Default */
   .moca-hero-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    /* Desktop: 6rem | Mobile: 3rem */
-    font-size: clamp(3rem, 8vw, 6rem) !important;
+    font-size: clamp(3.5rem, 6vw, 6rem) !important;
     white-space: nowrap; 
     color: #ffffff !important;
     line-height: 1.1;
     margin-bottom: 1rem;
   }
 
-  /* Responsive Subtitle */
   .moca-hero-subtitle {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: clamp(1.1rem, 3vw, 1.5rem) !important;
+    font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
     color: rgba(255, 255, 255, 0.9) !important;
     line-height: 1.5;
     max-width: 800px; 
   }
-
+  
   .moca-hero-subtitle strong {
     color: #D59F0F !important;
     font-weight: 500;
   }
 
-  /* STRICT MOBILE OVERRIDES */
+  /* MOBILE FIXES (Based on your Screenshot) */
   @media (max-width: 768px) {
-    /* Allow wrapping on phones so "MoCA Lab" fits */
+    /* 1. Shrink Title to fit "MoCA Lab" on one line */
     .moca-hero-title {
-      white-space: normal !important; 
-      font-size: 3.5rem !important;
-      line-height: 1.1;
+      font-size: 3rem !important; /* Smaller size for phones */
+      white-space: nowrap !important; /* Force one line */
     }
     
-    /* Ensure subtitle is readable */
+    /* 2. Shrink Subtitle and Kicker */
     .moca-hero-subtitle {
-      font-size: 1.2rem !important;
+      font-size: 1.1rem !important;
+      line-height: 1.4;
       max-width: 100%;
     }
     
-    /* Fix Hero Padding manually */
-    .moca-home-hero {
-      padding-top: 3rem !important;
-      padding-bottom: 3rem !important;
+    /* 3. Kicker text (Technion...) adjustment */
+    .moca-kicker {
+      font-size: 0.7rem !important;
+      letter-spacing: 0.5px !important;
     }
   }
 </style>

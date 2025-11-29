@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" role="img" aria-label="MoCA Lab">
-  <rect width="920" height="240" rx="36" fill="#002147"/>
-  <path d="M76 164c34-62 78-94 132-94 50 0 87 25 110 75 22-60 60-90 114-90 54 0 99 33 134 99" fill="none" stroke="#D59F0F" stroke-width="18" stroke-linecap="round"/>
-  <text x="76" y="120" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="78" font-weight="700" fill="#FFFFFF">MoCA</text>
-  <text x="76" y="186" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="26" font-weight="500" fill="rgba(255,255,255,.85)">Mobility Computation &amp; Analytics Lab · Technion</text>
-</svg>

@@ -1,9 +1,13 @@
 {
-  "lab_name": "MoCA \u2014 Mobility Computation & Analytics Lab",
-  "institution": "Technion \u2013 Israel Institute of Technology",
+  "lab_name": "MoCA — Mobility Computation & Analytics Lab",
+  "institution": "Technion – Israel Institute of Technology",
   "pi_name": "Rui Yao",
   "pi_title": "Assistant Professor",
+  "pi_affiliation": "Faculty of Civil and Environmental Engineering",
   "email": "rui.yao@technion.ac.il",
   "location": "Technion, Haifa, Israel",
-  "scholar_profile": "https://scholar.google.com/citations?hl=en&user=lEg_t6kAAAAJ"
+  "office": "Rabin Building 727",
+  "phone": "+972-4-8293049",
+  "scholar_profile": "https://scholar.google.com/citations?hl=en&user=lEg_t6kAAAAJ",
+  "pi_photo": "/assets/img/people/rui-yao.jpg"
 }

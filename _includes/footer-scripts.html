@@ -1,15 +1,182 @@
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const burgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  if (burgers.length === 0) return;
+// Navbar menu is now handled by Alpine.js, so we don't need this handler
+// Removed to prevent double-click issue on mobile
 
-  burgers.forEach(el => {
-    el.addEventListener('click', () => {
-      const targetId = el.dataset.target;
-      const target = document.getElementById(targetId);
-      el.classList.toggle('is-active');
-      if (target) target.classList.toggle('is-active');
-    });
+// Ensure footer stays at bottom - backup JavaScript solution
+(function() {
+  function ensureFooterAtBottom() {
+    const body = document.body;
+    const footer = document.querySelector('.footer');
+    
+    if (!footer) return;
+    
+    // Get viewport height
+    const vh = window.innerHeight;
+    
+    // Get all content height (excluding fixed navbar)
+    const bodyRect = body.getBoundingClientRect();
+    const footerRect = footer.getBoundingClientRect();
+    
+    // Calculate if we need more space
+    const contentEnd = footerRect.bottom;
+    
+    if (contentEnd < vh) {
+      // Content doesn't reach bottom, add padding to body
+      const needed = vh - contentEnd;
+      body.style.paddingBottom = needed + 'px';
+    } else {
+      body.style.paddingBottom = '';
+    }
+  }
+  
+  // Run when ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureFooterAtBottom);
+  } else {
+    ensureFooterAtBottom();
+  }
+  
+  window.addEventListener('load', function() {
+    setTimeout(ensureFooterAtBottom, 100);
+    setTimeout(ensureFooterAtBottom, 500);
   });
-});
+  
+  window.addEventListener('resize', ensureFooterAtBottom);
+})();
+
+// Email obfuscation - decode emails on page load
+(function() {
+  function decodeEmails() {
+    const emailElements = document.querySelectorAll('.email-obfuscated:not(.decoded)');
+    emailElements.forEach(function(el) {
+      const local = el.getAttribute('data-local');
+      const domain = el.getAttribute('data-domain');
+      const display = el.getAttribute('data-display');
+      
+      if (local && domain) {
+        const email = local + '@' + domain;
+        const link = document.createElement('a');
+        link.href = 'mailto:' + email;
+        link.textContent = display || email;
+        
+        // Remove placeholder and noscript
+        const placeholder = el.querySelector('.email-placeholder');
+        if (placeholder) placeholder.remove();
+        const noscript = el.querySelector('noscript');
+        if (noscript) noscript.remove();
+        
+        // Add the link
+        el.appendChild(link);
+        el.classList.add('decoded');
+        el.classList.remove('email-obfuscated');
+      }
+    });
+  }
+  
+  // Run multiple times to ensure it works
+  function runDecode() {
+    decodeEmails();
+    setTimeout(decodeEmails, 50);
+    setTimeout(decodeEmails, 200);
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runDecode);
+  } else {
+    runDecode();
+  }
+  
+  window.addEventListener('load', runDecode);
+})();
+
+// Make cards clickable if they contain a link
+(function() {
+  function makeCardsClickable() {
+    const cards = document.querySelectorAll('.moca-slab, .pub-item');
+    
+    cards.forEach(function(card) {
+      // Find the first link inside the card
+      const link = card.querySelector('a[href]');
+      
+      if (link && link.href && !link.href.includes('#')) {
+        // Mark card as clickable
+        card.classList.add('has-link');
+        card.style.cursor = 'pointer';
+        
+        // Make entire card clickable
+        card.addEventListener('click', function(e) {
+          // Don't navigate if clicking directly on a link or button
+          if (e.target.tagName === 'A' || e.target.closest('a')) {
+            return;
+          }
+          
+          // Navigate to the link
+          window.location.href = link.href;
+        });
+        
+        // Prevent nested link from being clicked when card is clicked
+        link.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      }
+    });
+    
+    // Prevent email button clicks from triggering person card content link
+    const emailButtons = document.querySelectorAll('.person-card-email-button');
+    emailButtons.forEach(function(button) {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+      
+      // Also prevent clicks on links inside email button
+      const emailLinks = button.querySelectorAll('a');
+      emailLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      });
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', makeCardsClickable);
+  } else {
+    makeCardsClickable();
+  }
+  
+  window.addEventListener('load', makeCardsClickable);
+})();
+
+// Smooth scroll for "Back to Top" links on publications page
+(function() {
+  function initBackToTop() {
+    const backToTopLinks = document.querySelectorAll('.pub-back-to-top-link');
+    backToTopLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.getElementById('pub-top');
+        if (target) {
+          const navbarHeight = 64; // 4rem = 64px
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        } else {
+          // Fallback: scroll to top
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBackToTop);
+  } else {
+    initBackToTop();
+  }
+})();
 </script>

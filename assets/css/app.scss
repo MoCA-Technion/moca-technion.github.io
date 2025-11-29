@@ -7,7 +7,7 @@ $moca-navy: #002147;
 $moca-gold: #D59F0F;
 $google-gray: #202124;
 $border-light: #dadce0;
-$bg-color: #f8f9fa;
+$bg-color: #ffffff;
 
 $primary: $moca-navy;
 $link: $moca-navy;
@@ -17,12 +17,187 @@ $body-background-color: $bg-color;
 
 @import "main";
 
-/* 2. Global Layout (Desktop Default) */
+/* 2. Global Layout (Desktop Default) - Google Research style */
 .container {
   max-width: 1400px !important;
   width: 94% !important;
   margin: 0 auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding-left: 0 !important; /* Content starts at container edge */
+  padding-right: 0 !important;
 }
+
+#main-content.column {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.content {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure page layout containers don't add constraints */
+body > .section,
+.content > .section {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Desktop: Align hero and section content to same vertical line */
+/* Both hero and section containers must be identical in width and positioning */
+@media (min-width: 1024px) {
+  /* Hero: full-width background, but container matches section */
+  .moca-home-hero {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .moca-home-hero .hero-body {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Hero container: exact same as section container */
+  .moca-home-hero .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 1400px !important;
+    width: 94% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    /* Ensure it's positioned exactly like section container */
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  
+  /* Section containers: match hero container EXACTLY */
+  .section .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 1400px !important;
+    width: 94% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    /* Ensure identical positioning */
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  
+  /* Home page: reduce margin by making content wider (hero and sections) */
+  .moca-home-hero .container,
+  .moca-home-hero ~ .section .container {
+    width: 100% !important; /* Full width to remove side margins */
+  }
+  
+  /* Ensure section itself has no constraints */
+  .section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Ensure ALL direct children of section container align to left edge (headings, divs, etc.) */
+  .section .container > * {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  /* Ensure columns align with hero content - Bulma columns have negative margin by default */
+  /* CRITICAL: Bulma's .columns has margin-left: -0.75rem by default to offset column padding */
+  .section .container .columns {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Bulma columns have 0.75rem padding by default - remove from first column to align with hero */
+  .section .container .columns .column {
+    padding-left: 0.75rem !important; /* Keep spacing between columns */
+    padding-right: 0.75rem !important;
+  }
+  
+  .section .container .columns .column:first-child {
+    padding-left: 0 !important; /* Align first column with hero content */
+  }
+  
+  .section .container .columns .column:last-child {
+    padding-right: 0 !important; /* Align last column edge */
+  }
+  
+  /* Ensure the first card inside the first column also aligns (cards have their own padding) */
+  .section .container .columns .column:first-child .moca-slab {
+    margin-left: 0 !important;
+  }
+  
+  /* Ensure nested divs (like mb-6 wrapper) also align */
+  .section .container > div {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  /* Ensure headings align */
+  .section .container h1,
+  .section .container h2,
+  .section .container h3,
+  .section .container .title {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  /* Ensure other page heroes align the same way */
+  .hero:not(.moca-home-hero) {
+    padding-left: calc((100% - 94%) / 2) !important;
+    padding-right: calc((100% - 94%) / 2) !important;
+  }
+  
+  .hero:not(.moca-home-hero) .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 1400px !important;
+    width: 94% !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Ensure hero title aligns with section headings */
+  .hero:not(.moca-home-hero) .container h1,
+  .hero:not(.moca-home-hero) .container .title,
+  .hero:not(.moca-home-hero) h1.title,
+  .hero:not(.moca-home-hero) .title {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  /* Ensure hero body content aligns */
+  .hero:not(.moca-home-hero) .hero-body {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .hero:not(.moca-home-hero) .hero-body .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 
 /* 3. Typography */
 html, body, p, li, a {
@@ -32,6 +207,14 @@ html, body, p, li, a {
 h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
   font-family: 'Outfit', sans-serif !important;
   letter-spacing: -0.01em;
+}
+
+/* White page title and subtitle (matching hero style) */
+.hero:not(.moca-home-hero) h1.title,
+.hero:not(.moca-home-hero) p.subtitle,
+.hero:not(.moca-home-hero) .title,
+.hero:not(.moca-home-hero) .subtitle {
+  color: #ffffff !important;
 }
 
 /* 4. Navbar */
@@ -57,6 +240,34 @@ h1, h2, h3, h4, h5, .title, .subtitle, .navbar-item, .button, .moca-hero-title {
 /* 5. HERO SECTION (Desktop) */
 html, body {
   padding-top: 0 !important;
+  background-color: $bg-color !important;
+}
+
+/* Seamless section styling - Google Research style */
+.section {
+  background-color: transparent !important;
+  padding: 3rem 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Full-width horizontal rules */
+hr {
+  display: block !important;
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  border-top: 1px solid $border-light !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  height: 1px !important;
+  background: transparent !important;
 }
 .moca-home-hero {
   /* Full Bleed Hack */
@@ -73,6 +284,29 @@ html, body {
   
   background: linear-gradient(135deg, #002147 0%, #003366 100%);
   color: #fff;
+}
+
+/* Hero button styling */
+.moca-hero-button {
+  background-color: $moca-gold !important;
+  color: $moca-navy !important;
+  border: none !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 2rem !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.moca-hero-button:hover {
+  background-color: #e6a00d !important;
+  color: $moca-navy !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.moca-hero-button:active {
+  transform: translateY(0) !important;
 }
 
 /* 6. CARD SYSTEM */
@@ -92,11 +326,58 @@ html, body {
   @include moca-card-style;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .moca-slab:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   border-color: transparent;
+}
+
+/* Clickable cards */
+.moca-slab.has-link,
+.pub-item.has-link {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.moca-slab.has-link:hover,
+.pub-item.has-link:hover {
+  background-color: #fafafa !important;
+}
+
+.moca-slab.has-link a,
+.pub-item.has-link a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.moca-slab.has-link a:hover,
+.pub-item.has-link a:hover {
+  text-decoration: underline;
+}
+
+/* Research area cards - fully clickable */
+.moca-slab-link {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.moca-slab-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  background-color: #fafafa !important;
+}
+
+.moca-slab-link * {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.moca-slab-link:hover .has-text-weight-semibold {
+  text-decoration: underline !important;
 }
 .moca-slab::after {
   content: "";
@@ -116,30 +397,549 @@ html, body {
   margin-bottom: 0;
 }
 
-/* Other Pages & Pubs */
+/* Other Pages & Pubs - Borderless Google Research style */
 .content:not(.is-transparent), .pub-item {
-  @include moca-card-style;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-bottom: 1.5rem !important;
   height: auto;
   max-width: 100%;
 }
-.pub-item:hover {
-  border-color: $moca-navy;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+/* Publication year divider - section width only, not full-width */
+.pub-year-divider {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  position: relative !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1.5rem !important;
+  border-top: 1px solid $border-light !important;
 }
 
-/* 7. Footer */
+/* Publication item with bullet point */
+.pub-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.75rem !important;
+}
+
+.pub-bullet {
+  flex-shrink: 0 !important;
+  color: $moca-gold !important;
+  font-size: 1.2rem !important;
+  line-height: 1.5 !important;
+  margin-top: 0.1rem !important;
+}
+
+.pub-content {
+  flex: 1 !important;
+}
+
+/* Make publication items clickable */
+.pub-item-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block !important;
+  transition: all 0.2s ease !important;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin: -0.5rem;
+}
+
+.pub-item-link:hover {
+  background-color: #f8f9fa !important;
+  color: $moca-navy !important;
+}
+
+.pub-item-link:hover .pub-item {
+  text-decoration: none !important;
+}
+
+.pub-item-link:hover strong {
+  color: $moca-navy !important;
+  text-decoration: underline !important;
+}
+
+/* Make entire pub-item show it's clickable when it has a link */
+.pub-item-clickable {
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0.75rem !important;
+  margin-left: -0.75rem !important;
+  margin-right: -0.75rem !important;
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  border-radius: 6px !important;
+  border-left: 3px solid transparent !important;
+}
+
+.pub-item-clickable:hover {
+  background-color: #f8f9fa !important;
+  border-left-color: $moca-gold !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.pub-item-clickable .pub-content {
+  cursor: pointer !important;
+}
+
+/* Add a subtle visual indicator for clickable papers */
+.pub-item-clickable:hover .pub-content strong::after {
+  content: " ↗" !important;
+  color: $moca-gold !important;
+  font-size: 0.85rem !important;
+  margin-left: 0.25rem !important;
+  opacity: 0.7 !important;
+  display: inline-block !important;
+}
+
+/* Publication year navigation */
+.pub-year-nav {
+  padding: 1rem 0;
+  border-bottom: 1px solid $border-light;
+  line-height: 2;
+}
+
+.pub-year-link {
+  display: inline-block;
+  margin-right: 0.25rem;
+  padding: 0 0.25rem;
+  color: $moca-navy !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s ease;
+}
+
+.pub-year-link:hover {
+  opacity: 0.7;
+  text-decoration: underline !important;
+}
+
+/* Back to top link */
+.pub-back-to-top {
+  text-align: right;
+}
+
+.pub-back-to-top a {
+  text-decoration: none !important;
+  color: $moca-navy !important;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease;
+}
+
+.pub-back-to-top a:hover {
+  opacity: 0.7;
+  text-decoration: underline !important;
+}
+
+/* Ensure the top anchor is positioned correctly (accounting for fixed navbar) */
+#pub-top {
+  scroll-margin-top: 4rem; /* Account for fixed navbar height */
+}
+
+/* News section styling */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.news-item {
+  padding: 1.5rem;
+  border-left: 3px solid $border-light;
+  background-color: #fafafa;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.news-item-clickable {
+  cursor: pointer;
+  border-left-color: $moca-gold;
+}
+
+.news-item-clickable:hover {
+  background-color: #f5f5f5;
+  border-left-color: $moca-navy;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.news-item-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+}
+
+.news-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.news-date {
+  font-size: 1rem;
+  color: $moca-gold;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.news-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $moca-navy;
+  font-family: 'Outfit', sans-serif;
+  margin-top: 0.25rem;
+}
+
+.news-item-clickable:hover .news-title {
+  text-decoration: underline;
+}
+
+.news-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: $google-gray;
+  margin-top: 0.25rem;
+}
+
+.news-link {
+  font-size: 1rem;
+  color: $moca-navy;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.news-item-clickable:hover .news-link {
+  color: $moca-gold;
+}
+
+/* Individual news page styling */
+.news-single {
+  max-width: 800px;
+}
+
+.news-single-header {
+  border-bottom: 2px solid $border-light;
+  padding-bottom: 1.5rem;
+}
+
+.news-single-header .news-date {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.news-single-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-top: 2rem;
+}
+
+.news-single-content h2,
+.news-single-content h3,
+.news-single-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: $moca-navy;
+  font-family: 'Outfit', sans-serif;
+}
+
+.news-single-content p {
+  margin-bottom: 1.25rem;
+}
+
+.news-single-footer {
+  border-top: 2px solid $border-light;
+  padding-top: 1.5rem;
+}
+
+.news-single-footer a {
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.news-single-footer a:hover {
+  opacity: 0.7;
+  text-decoration: underline !important;
+}
+
+/* People page cards - larger cards with full-height photo, fixed height */
+.person-card {
+  border: 1px solid $border-light;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  background: #ffffff;
+  height: 320px !important;
+  min-height: 320px !important;
+  max-height: 320px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.person-card-body {
+  padding: 0 !important;
+  height: 100% !important;
+  min-height: 320px !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.person-card-layout {
+  height: 100% !important;
+  min-height: 320px !important;
+  flex: 1;
+  align-items: stretch !important;
+  display: flex;
+}
+
+.person-card-photo-column {
+  padding: 0 !important;
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.person-card-photo-link {
+  text-decoration: none !important;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s ease;
+}
+
+.person-card-photo-link:hover {
+  opacity: 0.8;
+}
+
+.person-card-photo {
+  width: 200px !important;
+  height: 100% !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+.person-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.person-card-info-column {
+  padding: 1.75rem 1.75rem 0 1.75rem !important;
+  padding-right: 1.5rem !important;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.person-card-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.person-card-content-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  max-width: 100%;
+  overflow: hidden;
+  flex: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.person-card-content-link:hover {
+  color: inherit !important;
+  text-decoration: none !important;
+  opacity: 0.85;
+}
+
+.person-card-content-link:hover .person-card-name {
+  color: $moca-navy !important;
+}
+
+.person-card-name {
+  margin-bottom: 0 !important;
+  font-size: 1.5rem !important;
+  line-height: 1.4 !important;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  font-family: 'Outfit', sans-serif;
+  word-break: break-word;
+  max-width: 100%;
+  white-space: normal;
+  overflow: visible;
+  padding-right: 0.25rem;
+  border-bottom: 1px solid rgba(0, 33, 71, 0.2);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem !important;
+}
+
+.person-card-role {
+  font-size: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+  color: $google-gray !important;
+  font-weight: 400;
+  line-height: 1.5 !important;
+  font-family: 'Roboto', sans-serif;
+  padding-right: 0.25rem;
+}
+
+.person-card-affiliation {
+  font-size: 0.9rem !important;
+  color: $google-gray !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.4;
+  padding-right: 0.25rem;
+}
+
+.person-card-institution {
+  font-size: 0.9rem !important;
+  color: $google-gray !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.4;
+  padding-right: 0.25rem;
+}
+
+.person-card-office {
+  font-size: 0.95rem !important;
+  color: $google-gray !important;
+  margin-bottom: 0 !important;
+  padding-right: 0.25rem;
+}
+
+.person-card-email-button {
+  display: block;
+  margin-top: auto;
+  margin-bottom: 0;
+  width: calc(100% + 1.5rem);
+  max-width: calc(100% + 1.5rem);
+  padding-top: 1rem;
+  margin-right: -1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 1.75rem;
+  margin-bottom: -1.75rem;
+  position: relative;
+  z-index: 10;
+}
+
+.person-card-email-button a,
+.person-card-email-button .email-obfuscated a {
+  display: block;
+  background-color: $moca-navy;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem !important;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  transition: background-color 0.2s ease;
+  border: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.person-card-email-button a:hover,
+.person-card-email-button .email-obfuscated a:hover {
+  background-color: darken($moca-navy, 5%) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Style the email placeholder before JavaScript loads */
+.person-card-email-button .email-placeholder {
+  display: block;
+  background-color: $moca-navy;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem !important;
+  border-radius: 4px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 7. Footer - Full-width border with contrasting background */
 .footer {
-  background: #fff;
-  border-top: 1px solid $border-light;
+  background: #f1f3f4;
+  border-top: none;
   margin-top: 4rem;
   padding: 3rem 1.5rem;
+  position: relative;
+}
+
+/* Footer link buttons - larger font size */
+.footer .button.is-text.is-small {
+  font-size: 1rem !important;
+}
+
+.footer::before {
+  content: "" !important;
+  display: block !important;
+  width: 100vw !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  border-top: 1px solid $border-light !important;
+  height: 1px !important;
 }
 
 /* ========================================= */
 /* 8. MOBILE & TABLET OVERRIDES (ADAPTIVE)   */
 /* ========================================= */
 @media screen and (max-width: 1023px) {
-  /* 1. FORCE HERO FULL WIDTH (Fixes the white bars) */
+  /* 2. MAXIMIZE CONTENT WIDTH - Consistent alignment */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important; /* Content starts at container edge */
+    padding-right: 0 !important;
+  }
+  
+  /* 1. FORCE HERO FULL WIDTH - Aligned to vertical line (same approach as desktop) */
   .moca-home-hero {
     width: 100vw !important;
     position: relative;
@@ -148,17 +948,134 @@ html, body {
     margin-left: -50vw !important;
     margin-right: -50vw !important;
     
-    padding-left: 1.5rem; /* Align text inside */
-    padding-right: 1.5rem;
+    padding-left: 1rem !important; /* Match section container's content position */
+    padding-right: 1rem !important;
     padding-top: 6rem;
     padding-bottom: 3rem;
   }
   
-  /* 2. MAXIMIZE CONTENT WIDTH */
-  .container {
-    width: 100% !important;
+  /* Hero body and container - align to vertical line */
+  .moca-home-hero .hero-body {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .moca-home-hero .container {
+    padding-left: 0 !important; /* Content starts at container edge */
+    padding-right: 0 !important;
+    width: 100% !important; /* Match section container width */
     max-width: 100% !important;
-    padding: 0 1rem; /* Tiny padding so cards don't touch edge of glass */
+  }
+  
+  /* Section container - align headings to vertical line */
+  /* Default for tablet ONLY (769px to 1023px) - mobile is handled by standalone query at end */
+  /* Exclude mobile by using min-width */
+  @media screen and (min-width: 769px) and (max-width: 1023px) {
+    .section .container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+  
+  /* Mobile phones - nested inside parent media query */
+  /* NOTE: Container padding rules are handled in standalone media query at end of file */
+  @media screen and (max-width: 768px) {
+    /* Remove section padding */
+    .section {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    
+    /* Content wrappers with max-width should use full available width on mobile */
+    /* Override inline styles with maximum specificity */
+    .content[style*="max-width"],
+    div.content[style*="max-width"],
+    .section .content[style*="max-width"],
+    .section .container .content[style*="max-width"],
+    body .section .container .content[style*="max-width"],
+    html body .section .container .content[style*="max-width"] {
+      max-width: 100% !important;
+      width: 100% !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Boxes - same margins for all pages */
+    .box,
+    .moca-slab,
+    .moca-slab.box,
+    .content .box,
+    .content[style*="max-width"] .box,
+    div.content .box,
+    .section .content .box {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      margin-bottom: 1.5rem !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      border-radius: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Container padding is already set above - 0.75rem for other pages, 0 for home page */
+    
+    /* Remove any margins from content divs - maximum specificity */
+    .content,
+    div.content,
+    .section .content,
+    .section .container .content,
+    body .section .content,
+    html body .section .content {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+  
+  /* Even smaller margins on very small screens - EXTREME for testing */
+  @media screen and (max-width: 480px) {
+    .section .container {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+    }
+    
+    .box {
+      padding-left: 0.875rem !important;
+      padding-right: 0.875rem !important;
+    }
+  }
+  
+  /* Kicker text - two lines on mobile, larger and better aligned */
+  .moca-home-hero .moca-kicker {
+    font-size: 0.85rem !important;
+    letter-spacing: 0.8px !important;
+    margin-bottom: 0.75rem !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    max-width: 100% !important;
+    word-break: break-word !important;
+  }
+  
+  /* Show line break on mobile, hide on desktop */
+  .moca-home-hero .moca-kicker .mobile-break {
+    display: block;
+  }
+  
+  @media (min-width: 769px) {
+    .moca-home-hero .moca-kicker .mobile-break {
+      display: none;
+    }
   }
 
   /* 3. STACK COLUMNS */
@@ -171,6 +1088,160 @@ html, body {
     padding: 0 !important;
     margin-bottom: 1rem;
   }
+  
+  /* People page - PI section mobile alignment */
+  /* Container has padding-left: 1rem, so PI section should align with heading */
+  /* Don't remove padding - let it align naturally with container padding */
+  .pi-section.columns.is-vcentered {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding-left: 0 !important; /* Remove any extra padding */
+    padding-right: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Ensure heading aligns with PI section */
+  .section .container h2[id="principal-investigator"] {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  /* Photo column - no padding, align left */
+  .pi-section .column.is-narrow {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    flex: none !important;
+  }
+  
+  .pi-section .column.is-narrow .pi-photo,
+  .pi-section .column.is-narrow .image {
+    margin: 0 !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 150px !important;
+    max-width: 150px !important;
+  }
+  
+  /* Text column - no padding, align left */
+  .pi-section .column:not(.is-narrow) {
+    width: 100% !important;
+    text-align: left !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Name - align left, reduce bottom margin */
+  .pi-section .pi-name,
+  .pi-section h2.title.is-3 {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Title - align left, reduce margins */
+  .pi-section .pi-title,
+  .pi-section p.subtitle.is-5 {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 0.25rem !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Affiliation - align left, minimal margin */
+  .pi-section .pi-affiliation,
+  .pi-section p.content.pi-affiliation {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 0.1rem !important; /* Reduced spacing */
+    margin-top: 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Institution - align left, minimal margin */
+  .pi-section .pi-institution,
+  .pi-section p.content.pi-institution {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 0.25rem !important; /* Reduced spacing */
+    margin-top: 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Contact - align left, minimal margin */
+  .pi-section .pi-contact,
+  .pi-section p.content.pi-contact {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-top: 0.25rem !important; /* Reduced spacing */
+    margin-bottom: 0 !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+  }
+  
+  /* Override content class defaults - be very aggressive */
+  .pi-section .content {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Override any paragraph margins inside content */
+  .pi-section p.content,
+  .pi-section .content p {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 0.25rem !important;
+    margin-top: 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Ensure all text elements align - target every possible selector */
+  .pi-section p,
+  .pi-section h2,
+  .pi-section h3,
+  .pi-section div {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Override Bulma's content:not(:last-child) margin */
+  .pi-section .content:not(:last-child) {
+    margin-bottom: 0.25rem !important;
+  }
+  
+  /* Ensure strong tags don't add spacing */
+  .pi-section strong {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline !important;
+  }
+  
+  /* CRITICAL: Remove any default list margins that might affect alignment */
+  .pi-section ul,
+  .pi-section ol {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  /* Ensure all direct children of text column align */
+  .pi-section .column:not(.is-narrow) > * {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+  }
 
   /* 4. WIDE CARDS */
   .moca-slab, .pub-item, .content:not(.is-transparent) {
@@ -178,4 +1249,733 @@ html, body {
     padding: 1.5rem !important;
     margin-bottom: 1rem;
   }
+  
+  /* 5. IMPROVE MOBILE TYPOGRAPHY & SPACING */
+  /* Larger kicker text on mobile */
+  .moca-slab .moca-kicker,
+  .moca-kicker--dark {
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Reduce gaps in cards - tighter spacing */
+  .moca-slab .content {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Reduce title margins in cards */
+  .moca-slab .title {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Tighter spacing for card content */
+  .moca-slab p.content {
+    margin-bottom: 1rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Person cards - vertical layout on mobile */
+  .person-card {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Ensure cards match container width on mobile */
+  .columns.is-multiline {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .columns.is-multiline .column {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .person-card-body {
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+  
+  .person-card-layout {
+    flex-direction: column !important;
+    min-height: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+  
+  .person-card-layout.columns {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .person-card-photo-column {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .person-card-photo {
+    width: 100% !important;
+    height: 250px !important;
+    min-height: 250px !important;
+    max-height: 250px !important;
+  }
+  
+  /* CRITICAL: Override Bulma column padding for person card info column on mobile */
+  /* is-gapless removes padding, so we MUST force it back with maximum specificity */
+  .person-card .person-card-body .person-card-layout.columns.is-gapless .column.person-card-info-column,
+  .person-card .person-card-body .person-card-layout.columns .column.person-card-info-column,
+  .person-card .person-card-info-column,
+  .person-card .person-card-info-column.column,
+  .person-card-info-column.column,
+  .person-card-layout .person-card-info-column,
+  .person-card-layout.columns.is-gapless .person-card-info-column,
+  .columns.is-gapless .person-card-info-column,
+  .person-card-layout.columns.is-gapless .column.person-card-info-column,
+  .person-card-layout.columns .column.person-card-info-column,
+  div.person-card-info-column,
+  div.column.person-card-info-column {
+    width: 100% !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Override any global column padding rules for person cards */
+  .section .container .columns .column.person-card-info-column,
+  .section .container .columns.is-gapless .column.person-card-info-column,
+  .section .columns .column.person-card-info-column,
+  .section .columns.is-gapless .column.person-card-info-column,
+  body .section .columns .column.person-card-info-column,
+  body .section .columns.is-gapless .column.person-card-info-column {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  /* Override global content padding rules for person cards */
+  .person-card-info-column .content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Also ensure the info div inside has proper spacing */
+  .person-card-info-column .person-card-info {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .person-card-info {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .person-card-content-link {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .person-card-name,
+  .person-card-role,
+  .person-card-affiliation,
+  .person-card-institution,
+  .person-card-office {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Add margin to text elements to ensure spacing from card edges */
+  .person-card-info-column .person-card-name,
+  .person-card-info-column .person-card-role,
+  .person-card-info-column .person-card-affiliation,
+  .person-card-info-column .person-card-institution,
+  .person-card-info-column .person-card-office {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Ensure the column itself has padding - this is the key */
+  .person-card-info-column {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .person-card-email-button {
+    width: calc(100% + 3rem) !important;
+    max-width: calc(100% + 3rem) !important;
+    margin-left: -1.5rem !important;
+    margin-right: -1.5rem !important;
+    margin-bottom: -1.5rem !important;
+    margin-top: 1.5rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-top: 0.75rem !important;
+  }
+  
+  .person-card-email-button a,
+  .person-card-email-button .email-obfuscated a {
+    border-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+/* ========================================= */
+/* Research Tensor Image Styling            */
+/* ========================================= */
+.research-tensor-image {
+  text-align: center;
+  margin: 2rem 0;
+  
+  img {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* ========================================= */
+/* Research Page Visual Design              */
+/* ========================================= */
+
+/* Research Overview Grid */
+.research-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.overview-card {
+  background: #fafafa;
+  border-left: 4px solid $moca-gold;
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+.overview-card-title {
+  color: $moca-navy;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.overview-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  
+  li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Stakeholder Grid */
+.stakeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stakeholder-item {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid $border-light;
+  
+  strong {
+    color: $moca-navy;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: $google-gray;
+  }
+}
+
+.research-goal {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f0f7ff;
+  border-left: 4px solid $moca-navy;
+  border-radius: 4px;
+  font-size: 1.05rem;
+}
+
+/* Research Perspectives */
+.research-perspectives {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.perspective-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid $border-light;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.perspective-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.perspective-content {
+  flex: 1;
+  
+  h4 {
+    color: $moca-navy;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+  }
+  
+  p {
+    margin: 0;
+    color: $google-gray;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+.research-integration {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  font-style: italic;
+  color: $google-gray;
+}
+
+/* Research Pipeline - Visual Flow */
+.research-pipeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0;
+  position: relative;
+}
+
+.pipeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: #ffffff;
+  border: 2px solid $moca-gold;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Desktop: Horizontal layout */
+@media screen and (min-width: 769px) {
+  .research-pipeline {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch; /* Make all items stretch to same height */
+    gap: 0;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .pipeline-step {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin: 0;
+    gap: 1rem;
+    height: 100%; /* Ensure full height */
+    
+    .pipeline-step-number {
+      margin-bottom: 0.5rem;
+      flex-shrink: 0;
+    }
+    
+    .pipeline-step-content {
+      width: 100%;
+      flex: 1; /* Allow content to grow and fill space */
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .pipeline-step-title {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      flex: 1; /* Allow paragraphs to grow */
+    }
+  }
+  
+  .pipeline-arrow {
+    align-self: center;
+    font-size: 2.5rem;
+    color: $moca-gold;
+    margin: 0 0.25rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+}
+
+.pipeline-step-number {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background: $moca-gold;
+  color: $moca-navy;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.pipeline-step-content {
+  flex: 1;
+}
+
+.pipeline-step-title {
+  color: $moca-navy;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.pipeline-step-content p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: $google-gray;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.pipeline-step-detail {
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+}
+
+.pipeline-arrow {
+  font-size: 2rem;
+  color: $moca-gold;
+  margin: 1rem 0;
+  font-weight: 300;
+}
+
+.pipeline-feedback {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  background: #f0f7ff;
+  border-radius: 8px;
+  border: 2px dashed $moca-navy;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Desktop: Horizontal feedback loop */
+@media screen and (min-width: 769px) {
+  .pipeline-feedback {
+    margin: 2rem auto 0;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    position: relative;
+    left: auto;
+    transform: none;
+    width: auto;
+  }
+}
+
+.pipeline-feedback-arrow {
+  font-size: 2.5rem;
+  color: $moca-navy;
+  margin: 0;
+  animation: rotate 3s linear infinite;
+  line-height: 1;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pipeline-feedback-text {
+  margin: 0;
+  color: $moca-navy;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* Research Directions */
+.research-direction {
+  margin: 1.5rem 0;
+}
+
+.research-focus {
+  background: #fafafa;
+  border-left: 4px solid $moca-gold;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  
+  h4 {
+    color: $moca-navy;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-family: 'Outfit', sans-serif;
+  }
+  
+  ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      color: $google-gray;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.research-impact {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #f0f7ff;
+  border-left: 3px solid $moca-navy;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: $google-gray;
+}
+
+/* Mobile adjustments for research page */
+@media screen and (max-width: 768px) {
+  .research-overview-grid,
+  .stakeholder-grid,
+  .research-perspectives {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .research-pipeline {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+  
+  .pipeline-step {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .pipeline-step-number {
+    margin-bottom: 0;
+  }
+  
+  .pipeline-arrow {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+  
+  .pipeline-feedback {
+    position: relative !important;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    left: auto !important;
+    transform: none !important;
+    flex-direction: column;
+  }
+  
+  .perspective-item {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .perspective-icon {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* ========================================= */
+/* MOBILE PHONES - Single source of truth   */
+/* ========================================= */
+/* This media query handles ALL mobile container padding rules */
+/* Placed at end of file to ensure it overrides everything, including tablet rules */
+@media screen and (max-width: 768px) {
+  /* Step 1: Set default larger margin for ALL pages - must override tablet rule (1rem) */
+  /* Use maximum specificity to ensure it wins over the tablet rule inside @media (max-width: 1023px) */
+  html body .section .container,
+  body .section .container,
+  .section .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  /* Step 2: Override ONLY for home page sections (sections that come AFTER moca-home-hero) */
+  /* This selector matches: <section class="hero moca-home-hero">...<section class="section"> */
+  /* Only matches on home page where moca-home-hero exists and is followed by a section */
+  html body .moca-home-hero ~ .section .container,
+  body .moca-home-hero ~ .section .container,
+  .moca-home-hero ~ .section .container {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  
+  /* Research tensor image - full width on mobile */
+  .research-tensor-image img {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  /* Footer - 1rem margins on mobile */
+  .footer .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Navbar - 1rem margins on mobile for "MoCA Lab" and other items */
+  .navbar .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Person page: Ensure columns respect container padding */
+  /* The columns.is-vcentered on person pages should not have negative margins */
+  /* that would make them extend beyond the container padding */
+  /* This ensures the photo/info section has the same margin as the rest of the page */
+  .section .container .columns.is-vcentered,
+  .section .container > .columns.is-vcentered {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Ensure columns inside person page don't extend beyond container padding */
+  /* This prevents any negative margins or positioning that would make margins appear smaller */
+  .section .container .columns.is-vcentered .column {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Button styling for open positions page */
+.button.is-primary {
+  color: #ffffff !important;
+}
+
+.button.is-primary:hover {
+  color: #ffffff !important;
 }

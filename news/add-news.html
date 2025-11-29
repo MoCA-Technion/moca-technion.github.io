@@ -1,0 +1,455 @@
+---
+layout: page
+title: Add News
+permalink: /news/add-news/
+---
+
+<style>
+.form-section {
+  background: #f8f9fa;
+  border-left: 4px solid #002147;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+
+.field-help {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.field-help.empty-field {
+  color: #999;
+}
+
+.required-badge {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.form-header {
+  background: linear-gradient(135deg, #002147 0%, #003d7a 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+}
+
+.form-body {
+  padding: 2rem;
+  background: white;
+  border-radius: 0 0 8px 8px;
+}
+
+.markdown-editor {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 400px;
+  resize: vertical;
+  width: 100%;
+}
+
+.markdown-preview {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 200px;
+  background: #fafafa;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.editor-button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.editor-button:hover {
+  background: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .form-body {
+    padding: 1rem;
+  }
+}
+</style>
+
+<div class="container" style="max-width: 1000px; margin: 2rem auto;">
+  <div class="box" style="padding: 0; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <div class="form-header">
+      <h1 class="title is-2 has-text-white">Add News</h1>
+      <p class="subtitle has-text-white" style="opacity: 0.9;">Write your news in markdown and download the file to upload</p>
+    </div>
+
+    <form id="newsForm" class="form-body">
+      <div class="form-section">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Basic Information</h2>
+        
+        <div class="field">
+          <label class="label">Date <span class="required-badge">*</span></label>
+          <div class="control">
+            <input class="input" type="text" id="date" name="date" required placeholder="2025-01-15 or 2025-01" oninput="checkDateFormat()">
+          </div>
+          <p class="field-help">Required. Use YYYY-MM-DD for full date (e.g., "2025-01-15") or YYYY-MM for month only (e.g., "2025-01").</p>
+          <p class="field-help" id="dateFormatInfo" style="display: none; color: #002147; font-weight: 500;">
+            <span id="dateFormatIcon">ℹ️</span> Month-only date detected. The markdown file will automatically include <code>date_original</code> and <code>date_month_only</code> fields for proper formatting.
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Title <span class="required-badge">*</span></label>
+          <div class="control">
+            <input class="input" type="text" id="title" name="title" required placeholder="e.g., Paper accepted to Transportation Science">
+          </div>
+          <p class="field-help">Required. The news headline/title.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Summary (for listing) <span class="required-badge">*</span></label>
+          <div class="control">
+            <textarea class="textarea" id="summary" name="summary" rows="3" required placeholder="Short summary that appears on the news listing page."></textarea>
+          </div>
+          <p class="field-help">Required. Short summary text for the news listing page.</p>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Markdown Content (Optional)</h2>
+        <p class="field-help" style="margin-bottom: 1rem;">If you write markdown content below, the website will automatically create an individual news page with a link from the news listing. If left empty, the news will be text-only on the listing page.</p>
+        
+        <div class="field">
+          <label class="label">Markdown Editor</label>
+          <div class="editor-toolbar">
+            <button type="button" class="editor-button" onclick="insertMarkdown('**', '**')" title="Bold">Bold</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('*', '*')" title="Italic">Italic</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('## ', '')" title="Heading">Heading</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('- ', '')" title="List">List</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('[', '](url)')" title="Link">Link</button>
+            <button type="button" class="editor-button" onclick="togglePreview()" id="previewToggle">Show Preview</button>
+          </div>
+          <div class="control">
+            <textarea class="textarea markdown-editor" id="content" name="content" rows="20" placeholder="Write your news content in markdown here...&#10;&#10;Example:&#10;&#10;## Welcome to the Team&#10;&#10;We are thrilled to announce...&#10;&#10;- **Mobility Systems**: Developing scalable models&#10;- **Data Analytics**: Applying machine learning"></textarea>
+          </div>
+          <p class="field-help empty-field">Optional. Full content for the individual news page. Supports markdown formatting. If provided, a slug will be auto-generated and the news will link to an individual page.</p>
+        </div>
+
+        <div class="field" id="previewSection" style="display: none;">
+          <label class="label">Preview</label>
+          <div class="markdown-preview" id="preview"></div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Advanced Options</h2>
+        
+        <div class="field">
+          <label class="label">Slug (URL-friendly identifier)</label>
+          <div class="control">
+            <input class="input" type="text" id="slug" name="slug" placeholder="e.g., paper-accepted-isttt26">
+          </div>
+          <p class="field-help empty-field">If left empty and markdown content is provided, will auto-generate from title. Used in the URL: /news/[slug]/</p>
+        </div>
+
+        <div class="field">
+          <label class="label">External Link</label>
+          <div class="control">
+            <input class="input" type="url" id="link" name="link" placeholder="https://example.com/article">
+          </div>
+          <p class="field-help empty-field">Optional. If provided, news item will link to this external URL instead of creating an individual page. Only used if no markdown content is provided.</p>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top: 2rem;">
+        <div class="control">
+          <button type="submit" class="button is-primary is-large" style="min-width: 200px;">
+            Generate Markdown File
+          </button>
+          <button type="button" class="button is-light is-large" onclick="clearForm()" style="margin-left: 1rem;">
+            <span>Clear Form</span>
+          </button>
+        </div>
+      </div>
+  </form>
+
+  <div id="output" style="display: none; max-width: 1200px; margin: 2rem auto;">
+    <div class="notification is-success">
+      <strong>✓ Success!</strong> Your markdown file is ready. Download it and upload to the <code>_news/</code> directory.
+    </div>
+    
+    <div class="box mb-4">
+      <h3 class="title is-5 mb-3">Markdown File for <code>_news/[slug].md</code></h3>
+      <p class="mb-3">Download this file and save it to <code>_news/[slug].md</code>. The website will automatically pick it up!</p>
+      <div class="field">
+        <div class="control">
+          <textarea class="textarea" id="markdownOutput" rows="30" readonly style="font-family: monospace; font-size: 0.9rem;"></textarea>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="button is-info" onclick="copyToClipboard('markdownOutput')">Copy Markdown</button>
+        <button class="button is-success" onclick="downloadMarkdown()">Download .md File</button>
+      </div>
+    </div>
+
+    <div class="notification is-info">
+      <strong>Instructions:</strong>
+      <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Click "Download .md File" to download the markdown file</li>
+        <li>Save the downloaded file to <code>_news/[slug].md</code> (replace [slug] with the actual slug from the filename)</li>
+        <li>The news item will automatically appear on the home page (latest 5) and news page!</li>
+        <li>If you provided markdown content, the news will have a link to an individual page</li>
+        <li><strong>Note:</strong> You may need to restart your Jekyll server for new files to appear.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+function checkDateFormat() {
+  const dateInput = document.getElementById('date');
+  const dateInfo = document.getElementById('dateFormatInfo');
+  const dateStr = dateInput.value.trim();
+  
+  // Check if it's month-only format (YYYY-MM)
+  const isMonthOnly = /^\d{4}-\d{2}$/.test(dateStr);
+  
+  if (isMonthOnly && dateStr.length > 0) {
+    dateInfo.style.display = 'block';
+  } else {
+    dateInfo.style.display = 'none';
+  }
+}
+
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function insertMarkdown(before, after) {
+  const textarea = document.getElementById('content');
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const selectedText = textarea.value.substring(start, end);
+  const newText = before + selectedText + after;
+  
+  textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+  textarea.focus();
+  textarea.setSelectionRange(start + before.length, start + before.length + selectedText.length);
+  
+  // Update preview if visible
+  if (document.getElementById('previewSection').style.display !== 'none') {
+    updatePreview();
+  }
+}
+
+function updatePreview() {
+  const content = document.getElementById('content').value;
+  if (typeof marked !== 'undefined') {
+    document.getElementById('preview').innerHTML = marked.parse(content);
+  } else {
+    document.getElementById('preview').innerHTML = '<p class="has-text-grey">Preview unavailable. Markdown will be rendered on the website.</p>';
+  }
+}
+
+function togglePreview() {
+  const previewSection = document.getElementById('previewSection');
+  const toggleButton = document.getElementById('previewToggle');
+  
+  if (previewSection.style.display === 'none') {
+    previewSection.style.display = 'block';
+    toggleButton.textContent = 'Hide Preview';
+    updatePreview();
+  } else {
+    previewSection.style.display = 'none';
+    toggleButton.textContent = 'Show Preview';
+  }
+}
+
+// Auto-update preview as user types
+document.addEventListener('DOMContentLoaded', function() {
+  const contentTextarea = document.getElementById('content');
+  let previewTimeout;
+  
+  contentTextarea.addEventListener('input', function() {
+    clearTimeout(previewTimeout);
+    previewTimeout = setTimeout(function() {
+      if (document.getElementById('previewSection').style.display !== 'none') {
+        updatePreview();
+      }
+    }, 500);
+  });
+  
+  // Auto-generate slug from title
+  const titleInput = document.getElementById('title');
+  const slugInput = document.getElementById('slug');
+  let slugManuallyEdited = false;
+  
+  titleInput.addEventListener('input', function() {
+    const title = titleInput.value.trim();
+    if (!slugManuallyEdited && title && !slugInput.value.trim()) {
+      slugInput.value = generateSlug(title);
+    }
+  });
+  
+  slugInput.addEventListener('input', function() {
+    slugManuallyEdited = slugInput.value.trim() !== '';
+  });
+});
+
+function escapeYamlString(str) {
+  if (!str) return '';
+  // Escape quotes and handle special characters
+  return str.replace(/"/g, '\\"').replace(/\n/g, '\\n');
+}
+
+function formatMarkdownFile(formData) {
+  // Determine if we need a slug (if content is provided)
+  const hasContent = formData.content && formData.content.trim();
+  const slug = formData.slug || (hasContent ? generateSlug(formData.title) : null);
+  
+  // Check if date is month-only format (YYYY-MM)
+  const dateStr = formData.date.trim();
+  const isMonthOnly = /^\d{4}-\d{2}$/.test(dateStr);
+  
+  // Always quote date to support both YYYY-MM-DD and YYYY-MM formats
+  const dateValue = `"${dateStr}"`;
+  
+  let markdown = `---\n`;
+  markdown += `layout: news\n`;
+  markdown += `title: "${escapeYamlString(formData.title)}"\n`;
+  markdown += `date: ${dateValue}\n`;
+  
+  // Add date_original and date_month_only if month-only format
+  if (isMonthOnly) {
+    markdown += `date_original: "${dateStr}"\n`;
+    markdown += `date_month_only: true\n`;
+  }
+  
+  markdown += `summary: "${escapeYamlString(formData.summary)}"\n`;
+  
+  if (slug) {
+    markdown += `slug: "${slug}"\n`;
+  }
+  
+  if (formData.link && !hasContent) {
+    markdown += `link: "${formData.link}"\n`;
+  }
+  
+  markdown += `---\n\n`;
+  
+  // Add content if provided
+  if (hasContent) {
+    markdown += `${formData.content}\n`;
+  }
+  
+  return { markdown, slug };
+}
+
+function copyToClipboard(elementId) {
+  const textarea = document.getElementById(elementId);
+  textarea.select();
+  textarea.setSelectionRange(0, 99999); // For mobile devices
+  
+  try {
+    document.execCommand('copy');
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Copied!';
+    button.classList.add('is-success');
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.classList.remove('is-success');
+    }, 2000);
+  } catch (err) {
+    alert('Failed to copy. Please select and copy manually.');
+  }
+}
+
+function clearForm() {
+  document.getElementById('newsForm').reset();
+  document.getElementById('output').style.display = 'none';
+  document.getElementById('previewSection').style.display = 'none';
+  document.getElementById('previewToggle').textContent = 'Show Preview';
+}
+
+function downloadMarkdown() {
+  const markdown = document.getElementById('markdownOutput').value;
+  if (!markdown) {
+    alert('Please generate the markdown file first.');
+    return;
+  }
+  
+  // Extract slug from the markdown content
+  const slugMatch = markdown.match(/slug: "([^"]+)"/);
+  const slug = slugMatch ? slugMatch[1] : 'news-item';
+  const filename = `${slug}.md`;
+  
+  // Create a blob with the markdown content
+  const blob = new Blob([markdown], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  
+  // Create a temporary link and trigger download
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  
+  // Clean up
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('newsForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = {
+    date: document.getElementById('date').value.trim(),
+    title: document.getElementById('title').value.trim(),
+    summary: document.getElementById('summary').value.trim(),
+    content: document.getElementById('content').value.trim(),
+    slug: document.getElementById('slug').value.trim(),
+    link: document.getElementById('link').value.trim()
+  };
+  
+  // Validate date format
+  const datePattern = /^\d{4}-\d{2}(-\d{2})?$/;
+  if (!datePattern.test(formData.date)) {
+    alert('Please enter a valid date in YYYY-MM-DD or YYYY-MM format.');
+    return;
+  }
+  
+  if (!formData.title || !formData.summary) {
+    alert('Please fill in at least Date, Title, and Summary fields.');
+    return;
+  }
+  
+  const result = formatMarkdownFile(formData);
+  document.getElementById('markdownOutput').value = result.markdown;
+  
+  document.getElementById('output').style.display = 'block';
+  document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+});
+</script>

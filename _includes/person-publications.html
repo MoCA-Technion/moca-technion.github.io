@@ -1,0 +1,39 @@
+{% comment %}
+  Include to filter publications by person name
+  Usage: {% include person-publications.html person_name="John Doe" %}
+{% endcomment %}
+
+{% assign person_name = include.person_name %}
+{% assign all_pubs = site.data.publications %}
+
+{% if person_name == site.data.site.pi_name %}
+  {% assign person_pubs = all_pubs %}
+{% else %}
+  {% assign person_pubs = all_pubs | where_exp: "pub", "pub.authors contains person_name" %}
+{% endif %}
+
+{% if person_pubs.size > 0 %}
+<div class="publications-section mt-6">
+  <h2 class="title is-4 mb-3">Publications</h2>
+  <div class="moca-accent mb-4"></div>
+
+  {% assign grouped = person_pubs | group_by: "year" | sort: "name" | reverse %}
+  {% for g in grouped %}
+  <h3 class="title is-5 mt-4 mb-3">{{ g.name }}</h3>
+  {% assign items = g.items | sort: "cited_by" | reverse %}
+  {% for p in items %}
+  <div class="pub-item mb-3">
+    <div><strong>{{ p.title }}</strong></div>
+    <div class="pub-meta">
+      {{ p.authors }}{% if p.venue %}. <em>{{ p.venue }}</em>{% endif %}{% if p.year %} ({{ p.year }}){% endif %}
+    </div>
+    <div class="mt-2">
+      {% if p.link %}<a href="{{ p.link }}" target="_blank" rel="noopener">Link</a>{% endif %}
+      {% if p.cited_by %}<span class="ml-3">Cited by {{ p.cited_by }}</span>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endfor %}
+</div>
+{% endif %}
+

@@ -1,6 +1,14 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
+{% include seo.html %}
+
+<!-- DNS Prefetch and Preconnect for Performance -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Load Fonts with display=swap for better performance -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 
 <script>
 (function () {
@@ -59,11 +67,89 @@
       max-width: 100%;
     }
     
-    /* 3. Kicker text (Technion...) adjustment */
-    .moca-kicker {
-      font-size: 0.7rem !important;
-      letter-spacing: 0.5px !important;
+    /* 3. Kicker text (Technion...) - two lines, larger and better aligned */
+    .moca-home-hero .moca-kicker {
+      font-size: 0.85rem !important;
+      letter-spacing: 0.8px !important;
+      margin-bottom: 0.75rem !important;
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+      text-align: left !important;
+      white-space: normal !important;
+      line-height: 1.4 !important;
+      max-width: 100% !important;
+      word-break: break-word !important;
     }
+    
+    /* Show line break on mobile */
+    .moca-home-hero .moca-kicker .mobile-break {
+      display: block !important;
+    }
+    
+    /* 4. Card kicker text - larger on mobile for better readability */
+    .moca-slab .moca-kicker,
+    .moca-kicker--dark {
+      font-size: 0.9rem !important;
+      font-weight: 600 !important;
+    }
+    
+    /* 5. Better left alignment for hero content - align to vertical line */
+    .moca-home-hero {
+      padding-left: 0 !important;
+    }
+    
+    .moca-home-hero .hero-body {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    
+    .moca-home-hero .container {
+      padding-left: 1rem !important; /* Match section container padding */
+      padding-right: 1rem !important;
+    }
+    
+    /* Section headings align to same vertical line */
+    .section .container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+
+  /* Sticky footer - simple and reliable approach */
+  html {
+    height: 100% !important;
+  }
+  
+  body {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 4rem !important; /* Account for fixed navbar */
+  }
+  
+  /* Skip link doesn't affect layout */
+  body > .is-sr-only {
+    flex: 0 0 auto !important;
+  }
+  
+  /* Navbar is fixed, so it doesn't participate in flex */
+  
+  /* All sections before footer should be flexible */
+  body > section:not(.footer) {
+    flex: 0 0 auto !important;
+  }
+  
+  /* The last content section before footer expands to fill space */
+  body > section.section:last-of-type:not(.footer) {
+    flex: 1 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Footer stays at bottom */
+  .footer {
+    flex: 0 0 auto !important;
+    margin-top: auto !important;
   }
 </style>
 

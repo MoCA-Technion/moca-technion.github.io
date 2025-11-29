@@ -1,0 +1,35 @@
+{% comment %}
+  Performance optimizations and resource hints
+  This file can be included in head-scripts.html or footer-scripts.html
+{% endcomment %}
+
+<!-- Preload critical resources -->
+{% if page.image %}
+<link rel="preload" as="image" href="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+{% endif %}
+
+<!-- Defer non-critical JavaScript -->
+<script>
+  // Load fonts asynchronously
+  if ('fonts' in document) {
+    document.fonts.ready.then(function() {
+      document.documentElement.classList.add('fonts-loaded');
+    });
+  }
+</script>
+
+<!-- Service Worker registration for caching (optional) -->
+{% comment %}
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        console.log('ServiceWorker registration successful');
+      }, function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+</script>
+{% endcomment %}
+

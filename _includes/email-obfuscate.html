@@ -1,0 +1,21 @@
+{% comment %}
+  Email obfuscation include
+  Usage: {% include email-obfuscate.html email="user@example.com" %}
+  Or: {% include email-obfuscate.html email=site.data.site.email display="Email" %}
+{% endcomment %}
+{% if include.email %}
+  {% assign email_parts = include.email | split: "@" %}
+  {% assign local = email_parts[0] %}
+  {% assign domain = email_parts[1] %}
+  {% assign display_text = include.display | default: include.email %}
+  <span class="email-obfuscated" 
+        data-local="{{ local }}" 
+        data-domain="{{ domain }}"
+        data-display="{{ display_text }}">
+    <span class="email-placeholder">{{ local }}[at]{{ domain }}</span>
+    <noscript>
+      <a href="mailto:{{ include.email }}">{{ display_text }}</a>
+    </noscript>
+  </span>
+{% endif %}
+

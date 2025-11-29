@@ -1,0 +1,35 @@
+---
+layout: page
+---
+<div class="news-single">
+  <div class="news-single-header mb-5">
+    <div class="news-date">
+      {% if page.date_original %}
+        {% assign date_to_check = page.date_original | to_string | strip %}
+        {% assign parts = date_to_check | split: "-" %}
+        {% if parts.size == 2 %}
+          {% assign months = "January,February,March,April,May,June,July,August,September,October,November,December" | split: "," %}
+          {% assign month_num = parts[1] | plus: 0 %}
+          {% assign month_index = month_num | minus: 1 %}
+          {{ months[month_index] }} {{ parts[0] }}
+        {% else %}
+          {{ page.date | date: "%B %d, %Y" }}
+        {% endif %}
+      {% elsif page.date_month_only %}
+        {{ page.date | date: "%B %Y" }}
+      {% else %}
+        {{ page.date | date: "%B %d, %Y" }}
+      {% endif %}
+    </div>
+    <h1 class="title is-2">{{ page.title }}</h1>
+  </div>
+  
+  <div class="content news-single-content">
+    {{ content }}
+  </div>
+  
+  <div class="news-single-footer mt-5">
+    <a href="{{ site.baseurl }}/news/" class="has-text-link">← Back to News</a>
+  </div>
+</div>
+

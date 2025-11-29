@@ -1,0 +1,23 @@
+{% comment %}
+  Format news date - supports both full dates (YYYY-MM-DD) and month-only (YYYY-MM)
+  Usage: {% include format-news-date.html date=item.date %}
+{% endcomment %}
+{% assign date_val = include.date %}
+{% assign date_str = date_val | to_string | strip %}
+{% assign date_parts = date_str | split: "-" %}
+{% if date_parts.size == 3 %}
+  {{ date_val | date: "%B %d, %Y" }}
+{% elsif date_parts.size == 2 %}
+  {% assign year = date_parts[0] | strip %}
+  {% assign month_str = date_parts[1] | strip %}
+  {% assign month_num = month_str | plus: 0 %}
+  {% if month_num >= 1 and month_num <= 12 %}
+    {% assign months = "January,February,March,April,May,June,July,August,September,October,November,December" | split: "," %}
+    {{ months[month_num | minus: 1] }} {{ year }}
+  {% else %}
+    {{ date_str }}
+  {% endif %}
+{% else %}
+  {{ date_str }}
+{% endif %}
+

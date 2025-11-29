@@ -1,9 +1,74 @@
 # Add lab members here. Photos should go in /assets/img/people/ and referenced as /assets/img/people/<file>
+# Each person can have:
+# - name: Full name (required)
+# - role: e.g., "Ph.D. Student", "M.Sc. Student", "Postdoc" (required)
+# - slug: URL-friendly identifier for individual page (e.g., "john-doe") - optional but recommended
+# - photo: Path to photo (e.g., "/assets/img/people/john.jpg") - optional
+# - email: Email address - optional
+# - website: Personal website URL - optional
+# - interests: Research interests - optional
+# - bio: Biography text for individual page - optional
+# - education: List of education entries - optional
+# - affiliation: Faculty/Department (e.g., "Faculty of Civil and Environmental Engineering") - optional, shown on card
+# - institution: Institution name (e.g., "Technion – Israel Institute of Technology") - optional, shown on card
+# - office: Office location - optional, shown on card
+# - phone: Phone number - optional
+# - scholar_profile: Google Scholar profile URL - optional
+
 # Example:
 # - name: Jane Doe
-#   role: PhD Student
-#   interests: "Transit operations, discrete choice, causal inference"
+#   role: Ph.D. Student
+#   slug: jane-doe
+#   photo: /assets/img/people/jane.jpg
 #   email: jane.doe@technion.ac.il
 #   website: https://example.com
-#   photo: /assets/img/people/jane.jpg
-[]
+#   interests: "Transit operations, discrete choice, causal inference"
+#   bio: "Jane is a Ph.D. student working on..."
+#   education:
+#     - "Ph.D. student, Aerospace Engineering, Technion, since 2024"
+#     - "M.Sc. Automation Engineering, University of Science and Technology of China, 2023"
+#     - "B.Sc. Automation Engineering, Nanjing University of Aeronautics and Astronautics, 2020"
+
+- name: Rui Yao
+  role: Principal Investigator
+  slug: rui-yao
+  photo: /assets/img/people/rui-yao.jpg
+  email: rui.yao@technion.ac.il
+  scholar_profile: https://scholar.google.com/citations?hl=en&user=lEg_t6kAAAAJ
+  office: Rabin Building 727
+  phone: "+972-4-8293049"
+  affiliation: Faculty of Civil and Environmental Engineering
+  institution: Technion – Israel Institute of Technology
+  interests: "Mobility systems, perturbed utility models, infrastructure analytics, optimization"
+  bio: |
+    Rui Yao is an Assistant Professor in the Faculty of Civil and Environmental Engineering at Technion – Israel Institute of Technology. 
+    His research focuses on scalable, theory-grounded models and computational tools for mobility systems and infrastructure analytics.
+    
+    His work spans perturbed utility frameworks for mobility decisions, supply-demand interactions in on-demand services, 
+    and data-centric approaches for infrastructure condition and resilience analysis.
+  education:
+    - "Ph.D., Civil and Environmental Engineering, MIT, 2020"
+    - "M.Sc., Civil and Environmental Engineering, MIT, 2016"
+    - "B.Sc., Civil Engineering, Tsinghua University, 2014"
+
+- name: Rui Yao
+  role: Principal Investigator
+  slug: rui-yao-2
+  photo: /assets/img/people/rui-yao.jpg
+  email: rui.yao@technion.ac.il
+  scholar_profile: https://scholar.google.com/citations?hl=en&user=lEg_t6kAAAAJ
+  office: Rabin Building 727
+  phone: "+972-4-8293049"
+  affiliation: Faculty of Civil and Environmental Engineering
+  institution: Technion – Israel Institute of Technology
+  interests: "Mobility systems, perturbed utility models, infrastructure analytics, optimization"
+  bio: |
+    Rui Yao is an Assistant Professor in the Faculty of Civil and Environmental Engineering at Technion – Israel Institute of Technology. 
+    His research focuses on scalable, theory-grounded models and computational tools for mobility systems and infrastructure analytics.
+    
+    His work spans perturbed utility frameworks for mobility decisions, supply-demand interactions in on-demand services, 
+    and data-centric approaches for infrastructure condition and resilience analysis.
+  education:
+    - "Ph.D., Civil and Environmental Engineering, MIT, 2020"
+    - "M.Sc., Civil and Environmental Engineering, MIT, 2016"
+    - "B.Sc., Civil Engineering, Tsinghua University, 2014"

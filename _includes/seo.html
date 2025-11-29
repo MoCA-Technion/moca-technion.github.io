@@ -1,0 +1,108 @@
+{% comment %}
+  Comprehensive SEO meta tags, Open Graph, Twitter Cards, and structured data
+  Usage: {% include seo.html %}
+{% endcomment %}
+
+{% assign page_title = page.title | default: site.title %}
+{% assign page_description = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 %}
+{% assign page_url = page.url | replace: 'index.html', '' %}
+{% if page_url == '/' %}{% assign page_url = '' %}{% endif %}
+{% assign page_url = page_url | prepend: site.baseurl | prepend: site.url %}
+{% assign page_image = page.image | default: site.data.site.pi_photo | default: '/assets/img/og-image.jpg' %}
+{% if page_image %}{% unless page_image contains 'http' %}{% assign page_image = page_image | prepend: site.baseurl | prepend: site.url %}{% endunless %}{% endif %}
+{% assign site_name = site.title | default: "MoCA Lab" %}
+
+<!-- Primary Meta Tags -->
+<meta name="title" content="{{ page_title }}">
+<meta name="description" content="{{ page_description }}">
+<meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}mobility systems, transportation engineering, computation methods, network modeling, choice modeling, equilibrium analysis, machine learning, Technion, research lab{% endif %}">
+<meta name="author" content="{{ site.data.site.pi_name | default: 'Rui Yao' }}">
+{% if page.date %}<meta name="date" content="{{ page.date | date: '%Y-%m-%d' }}">{% endif %}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{% if page.layout == 'person' %}profile{% elsif page.layout == 'news' %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ page_url }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:image" content="{{ page_image }}">
+<meta property="og:site_name" content="{{ site_name }}">
+{% if site.data.site.location %}<meta property="og:locale" content="en_US">{% endif %}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ page_url }}">
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ page_description }}">
+<meta name="twitter:image" content="{{ page_image }}">
+{% if site.data.site.pi_name %}<meta name="twitter:creator" content="@{{ site.data.site.pi_name | replace: ' ', '' }}">{% endif %}
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ page_url }}">
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{% if page.layout == 'person' %}Person{% elsif page.layout == 'news' %}NewsArticle{% else %}Organization{% endif %}",
+  {% if page.layout == 'person' %}
+  {% assign person = site.people | where: "slug", page.person_slug | first %}
+  {% if person == nil %}{% assign person = site.data.site %}{% endif %}
+  "name": "{{ person.name | default: site.data.site.pi_name }}",
+  "jobTitle": "{{ person.role | default: site.data.site.pi_title }}",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "{{ person.institution | default: site.data.site.institution }}",
+    "department": "{{ person.affiliation | default: site.data.site.pi_affiliation }}"
+  },
+  {% if person.email or site.data.site.email %}"email": "{{ person.email | default: site.data.site.email }}",{% endif %}
+  {% if person.photo or site.data.site.pi_photo %}"image": "{{ person.photo | default: site.data.site.pi_photo | prepend: site.baseurl | prepend: site.url }}",{% endif %}
+  {% if person.scholar_profile or site.data.site.scholar_profile %}"sameAs": ["{{ person.scholar_profile | default: site.data.site.scholar_profile }}"],{% endif %}
+  {% else %}
+  "name": "{{ site_name }}",
+  "alternateName": "{{ site.tagline }}",
+  "url": "{{ site.url }}{{ site.baseurl }}",
+  "logo": "{{ site.url }}{{ site.baseurl }}/assets/img/logo.png",
+  "description": "{{ site.description }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Haifa",
+    "addressCountry": "IL",
+    "streetAddress": "{{ site.data.site.location }}"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "{{ site.data.site.email }}",
+    "contactType": "Research Lab"
+  },
+  "memberOf": {
+    "@type": "Organization",
+    "name": "{{ site.data.site.institution }}"
+  }
+  {% endif %}
+}
+</script>
+
+{% if page.layout == 'news' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{ page.title }}",
+  "description": "{{ page_description }}",
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ site_name }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site_name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ site.baseurl }}/assets/img/logo.png"
+    }
+  }
+}
+</script>
+{% endif %}
+

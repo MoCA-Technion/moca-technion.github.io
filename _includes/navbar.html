@@ -1,18 +1,18 @@
-<nav class="navbar is-primary{% if site.fixed_navbar == 'top' %} is-fixed-top{% elsif site.fixed_navbar == 'bottom' %} is-fixed-bottom{% endif %}" role="navigation" aria-label="main navigation">
+<nav class="navbar is-primary{% if site.fixed_navbar == 'top' %} is-fixed-top{% elsif site.fixed_navbar == 'bottom' %} is-fixed-bottom{% endif %}" role="navigation" aria-label="main navigation" x-data="{ openNav: false }">
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item has-text-weight-semibold" href="{{ site.baseurl }}/">
         {{ site.title }}
       </a>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mocaNavbar">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" :class="{ 'is-active': openNav }" x-on:click="openNav = !openNav">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div id="mocaNavbar" class="navbar-menu">
+    <div id="mocaNavbar" class="navbar-menu" :class="{ 'is-active': openNav }">
       <div class="navbar-start">
         {% for item in site.data.navigation %}
           <a class="navbar-item" href="{{ site.baseurl }}{{ item.link }}">{{ item.name }}</a>

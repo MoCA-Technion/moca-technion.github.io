@@ -1,0 +1,126 @@
+---
+layout: page
+---
+
+{% assign person = site.people | where: "slug", page.person_slug | first %}
+{% if person == nil %}
+  {% assign person = site.data.site %}
+  {% assign is_pi = true %}
+  {% assign person_name = site.data.site.pi_name %}
+{% else %}
+  {% assign is_pi = false %}
+  {% assign person_name = person.name %}
+{% endif %}
+
+<div class="columns is-vcentered mb-6">
+  <div class="column is-narrow">
+    {% if person.photo or site.data.site.pi_photo %}
+    <figure class="image" style="width: 250px;">
+      <img src="{{ person.photo | default: site.data.site.pi_photo }}" 
+           alt="{{ person.name | default: site.data.site.pi_name }} - {{ person.role | default: site.data.site.pi_title }} at {{ site.data.site.institution }}" 
+           loading="lazy"
+           decoding="async"
+           style="border-radius: 8px; object-fit: cover;"
+           width="250"
+           height="250">
+    </figure>
+    {% else %}
+    <figure class="image" style="width: 250px; background: #f0f0f0; border-radius: 8px; aspect-ratio: 1;">
+      <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999;">No photo</div>
+    </figure>
+    {% endif %}
+  </div>
+  <div class="column">
+    <h1 class="title is-2 mb-1">{{ person.name | default: site.data.site.pi_name }}</h1>
+    <p class="subtitle is-4 mb-3">{{ person.role | default: site.data.site.pi_title }} · {{ person.institution | default: site.data.site.institution }}</p>
+    {% if person.affiliation or site.data.site.pi_affiliation %}
+    <p class="content mb-2">{{ person.affiliation | default: site.data.site.pi_affiliation }}</p>
+    {% endif %}
+    <p class="content">
+      {% if person.office or site.data.site.office %}<strong>Office:</strong> {{ person.office | default: site.data.site.office }}<br>{% endif %}
+      {% if person.phone or site.data.site.phone %}<strong>Phone:</strong> {{ person.phone | default: site.data.site.phone }}<br>{% endif %}
+      <strong>Email:</strong> {% if person.email %}{% include email-obfuscate.html email=person.email %}{% else %}{% include email-obfuscate.html email=site.data.site.email %}{% endif %}<br>
+      {% if person.website %}<strong>Website:</strong> <a href="{{ person.website }}" target="_blank" rel="noopener">{{ person.website }}</a><br>{% endif %}
+      {% if person.scholar_profile or site.data.site.scholar_profile %}<strong>Google Scholar:</strong> <a href="{{ person.scholar_profile | default: site.data.site.scholar_profile }}" target="_blank" rel="noopener">Profile</a>{% endif %}
+    </p>
+  </div>
+</div>
+
+{% if person.bio or person.interests or person.education or content != "" %}
+<div class="content mb-6">
+  {% if person.bio %}
+  <h2 class="title is-4 mb-3">Biography</h2>
+  <p>{{ person.bio }}</p>
+  {% elsif content != "" %}
+  {{ content }}
+  {% endif %}
+  
+  {% if person.interests %}
+  <h2 class="title is-4 mb-3{% unless person.bio or content != "" %} mb-3{% else %} mt-5{% endunless %}">Research Interests</h2>
+  <p>{{ person.interests }}</p>
+  {% endif %}
+  
+  {% if person.education %}
+  <h2 class="title is-4 mb-3 mt-5">Education</h2>
+  <ul>
+    {% for edu in person.education %}
+    <li>{{ edu }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endif %}
+
+{% comment %}
+  Match publications by checking if the person's name appears in the authors field
+  For PI, show all publications
+  Improved matching: check for full name or last name (more reliable than first name)
+{% endcomment %}
+{% assign all_pubs = site.data.publications %}
+{% if is_pi %}
+  {% assign person_pubs = all_pubs %}
+{% else %}
+  {% assign person_pubs = "" | split: "," %}
+  {% assign name_lower = person_name | downcase %}
+  {% assign name_parts = person_name | split: " " %}
+  {% assign last_name = name_parts | last | downcase %}
+  
+  {% for pub in all_pubs %}
+    {% assign authors_lower = pub.authors | downcase %}
+    {% comment %} Check if full name or last name appears in authors {% endcomment %}
+    {% if authors_lower contains name_lower or authors_lower contains last_name %}
+      {% assign person_pubs = person_pubs | push: pub %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if person_pubs.size > 0 %}
+<h2 class="title is-4 mb-3">Publications</h2>
+<div class="moca-accent mb-4"></div>
+
+{% assign grouped = person_pubs | group_by: "year" | sort: "name" | reverse %}
+{% for g in grouped %}
+<h3 class="title is-5 mt-4 mb-3">{{ g.name }}</h3>
+{% assign items = g.items %}
+{% for p in items %}
+<div class="pub-item mb-3{% if p.link %} pub-item-clickable{% endif %}">
+  <div class="pub-bullet">•</div>
+  <div class="pub-content">
+    {% if p.link %}
+    <a href="{{ p.link }}" target="_blank" rel="noopener" class="pub-item-link">
+      <div><strong>{{ p.title }}</strong></div>
+      <div class="pub-meta">
+        {{ p.authors }}{% if p.venue %}. <em>{{ p.venue }}</em>{% endif %}{% if p.year %} ({{ p.year }}){% endif %}
+      </div>
+    </a>
+    {% else %}
+    <div><strong>{{ p.title }}</strong></div>
+    <div class="pub-meta">
+      {{ p.authors }}{% if p.venue %}. <em>{{ p.venue }}</em>{% endif %}{% if p.year %} ({{ p.year }}){% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endfor %}
+{% endif %}

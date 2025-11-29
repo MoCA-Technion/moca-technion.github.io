@@ -1,0 +1,36 @@
+# News items for the home page and news page
+# Each news item can have:
+#   - date: Publication date (YYYY-MM-DD format for full date, or YYYY-MM for month only)
+#   - year: Optional year override (auto-calculated from date if not provided)
+#   - title: News title/headline
+#   - content: News text content (supports markdown) - short summary for listing
+#   - slug: Optional slug for creating individual news pages under the news folder(e.g., "new-phd-student")
+#   - link: Optional link to an external page (if not provided and no slug, news is text-only)
+#   - link_text: Optional custom link text (defaults to "Read more →")
+
+- date: "2025-10"
+  title: "Research visits to GTIIT, SYSU, and HK PolyU"
+  content: "We had a great time visiting Technion's sister compus, GTIIT, in Guangdong, China. Prof. Yao also visited SYSU and HK PolyU to deliver a seminar on perturbed utility Makovian choice models and discuss research collaborations."
+
+
+- date: 2025-11-25
+  title: "Paper accepted to ISTTT 26"
+  content: "Our latest work on modeling strategic interactions in MaaS systems as a multi-leader-multi-follower game has been accepted to 26th International Symposium on Transportation and Traffic Theory (ISTTT26). See you in Munich in 2026!"
+
+
+- date: "2025-10-25"
+  title: "Presentations at the INFORMS annual meeting 2025"
+  content: "We presented our works on MaaS modeling and integrated electrified logistics and power systems at the INFORMS annual meeting 2025."
+
+
+
+# - date: 2025-01-10
+#   title: "Lab welcomes new PhD student"
+#   content: "We're excited to welcome a new member to our research team."
+#   slug: "new-phd-student"
+
+# - date: 2024-12-20
+#   title: "Paper accepted at Transportation Science"
+#   content: "Our paper on stochastic traffic assignment has been accepted for publication."
+#   link: "/publications/"
+

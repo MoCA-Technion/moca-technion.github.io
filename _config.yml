@@ -19,6 +19,11 @@ plugins:
 # Note: jekyll-sitemap plugin auto-generates sitemap.xml
 # Submit to Google Search Console as: sitemap.xml (not full URL)
 
+# Google Analytics - Uncomment and add your Measurement ID to track visitors
+# Get your ID from: https://analytics.google.com/
+# Format: G-XXXXXXXXXX
+# google_analytics: "G-XXXXXXXXXX"
+
 markdown: kramdown
 kramdown:
   input: GFM
@@ -66,6 +71,9 @@ exclude:
   - SEO_PERFORMANCE.md
   - GOOGLE_INDEXING_GUIDE.md
   - QUICK_START_GOOGLE.md
+  - VISITOR_ANALYTICS_GUIDE.md
+  - SITEMAP_TROUBLESHOOTING.md
+  - PERFORMANCE_OPTIMIZATIONS.md
 
 
 sass:

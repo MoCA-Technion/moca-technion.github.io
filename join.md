@@ -137,9 +137,7 @@ Our work integrates choice modeling, network modeling, optimization, machine lea
 Please contact us to discuss your research interests and potential fit with the lab.
 
 <div class="mb-4">
-  <a href="mailto:{{ site.data.site.email }}" class="button is-primary is-medium">
-    Email Us
-  </a>
+  {% include email-button.html email=site.data.site.email %}
 </div>
 
 **Include in your email:**

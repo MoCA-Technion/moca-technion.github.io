@@ -42,9 +42,8 @@ layout: page
   <div class="project-contact-section mt-5 mb-5">
     <p class="mb-4">Interested in this project? Contact us for more details and to apply.</p>
     <div class="mb-4">
-      <a href="mailto:{{ site.data.site.email }}?subject=Inquiry about: {{ page.title | url_encode }}" class="button is-primary is-medium">
-        Contact Us
-      </a>
+      {% assign email_subject = "Inquiry about: " | append: page.title %}
+      {% include email-button.html email=site.data.site.email subject=email_subject %}
     </div>
     <p class="has-text-grey" style="font-size: 0.9rem;">
       <em>Please mention this project in your email and include your CV and research interests.</em>

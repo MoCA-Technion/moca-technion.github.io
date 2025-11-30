@@ -73,11 +73,54 @@
     });
   }
   
+  // Decode email buttons (shows email address as button text)
+  function decodeEmailButtons() {
+    const buttonElements = document.querySelectorAll('.email-button-obfuscated:not(.decoded)');
+    buttonElements.forEach(function(el) {
+      const local = el.getAttribute('data-local');
+      const domain = el.getAttribute('data-domain');
+      const subject = el.getAttribute('data-subject') || '';
+      const buttonClass = el.getAttribute('data-class') || 'button is-primary is-medium';
+      
+      if (local && domain) {
+        const email = local + '@' + domain;
+        const link = document.createElement('a');
+        
+        // Build mailto URL with optional subject
+        let mailtoUrl = 'mailto:' + email;
+        if (subject) {
+          mailtoUrl += '?subject=' + encodeURIComponent(subject);
+        }
+        link.href = mailtoUrl;
+        link.className = buttonClass;
+        link.textContent = email; // Show email address as button text
+        
+        // Remove placeholder and noscript
+        const placeholder = el.querySelector('.email-button-placeholder');
+        if (placeholder) placeholder.remove();
+        const noscript = el.querySelector('noscript');
+        if (noscript) noscript.remove();
+        
+        // Add the link
+        el.appendChild(link);
+        el.classList.add('decoded');
+        el.classList.remove('email-button-obfuscated');
+      }
+    });
+  }
+  
   // Run multiple times to ensure it works
   function runDecode() {
     decodeEmails();
-    setTimeout(decodeEmails, 50);
-    setTimeout(decodeEmails, 200);
+    decodeEmailButtons();
+    setTimeout(function() {
+      decodeEmails();
+      decodeEmailButtons();
+    }, 50);
+    setTimeout(function() {
+      decodeEmails();
+      decodeEmailButtons();
+    }, 200);
   }
   
   if (document.readyState === 'loading') {

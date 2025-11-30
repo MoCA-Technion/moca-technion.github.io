@@ -1,0 +1,39 @@
+{% comment %}
+  Email button with spam protection
+  Usage: {% include email-button.html email=site.data.site.email %}
+  Or: {% include email-button.html email=site.data.site.email subject="Custom Subject" %}
+  
+  This creates a button that displays the email address while protecting it from spam bots.
+  The email is obfuscated in HTML but displayed as button text via JavaScript.
+{% endcomment %}
+{% if include.email %}
+  {% assign email_parts = include.email | split: "@" %}
+  {% assign local = email_parts[0] %}
+  {% assign domain = email_parts[1] %}
+  {% assign button_class = include.class | default: "button is-primary is-medium" %}
+  {% assign subject_text = include.subject | default: "" %}
+  
+  <span class="email-button-obfuscated" 
+        data-local="{{ local }}" 
+        data-domain="{{ domain }}"
+        data-subject="{{ subject_text }}"
+        data-class="{{ button_class }}">
+    <span class="email-button-placeholder">
+      <span class="{{ button_class }}" style="pointer-events: none; opacity: 0.7;">
+        {{ local }}[at]{{ domain }}
+      </span>
+    </span>
+    <noscript>
+      {% if subject_text != "" %}
+        <a href="mailto:{{ include.email }}?subject={{ subject_text | url_encode }}" class="{{ button_class }}">
+          {{ include.email }}
+        </a>
+      {% else %}
+        <a href="mailto:{{ include.email }}" class="{{ button_class }}">
+          {{ include.email }}
+        </a>
+      {% endif %}
+    </noscript>
+  </span>
+{% endif %}
+

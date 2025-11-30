@@ -1,0 +1,829 @@
+---
+layout: page
+title: Update Project
+permalink: /projects/update-project/
+---
+
+<style>
+.form-section {
+  background: #f8f9fa;
+  border-left: 4px solid #002147;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+
+.field-help {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.field-help.empty-field {
+  color: #999;
+}
+
+.required-badge {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.form-header {
+  background: linear-gradient(135deg, #002147 0%, #003d7a 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+}
+
+.form-body {
+  padding: 2rem;
+  background: white;
+  border-radius: 0 0 8px 8px;
+}
+
+.markdown-editor {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 400px;
+  resize: vertical;
+  width: 100%;
+}
+
+.markdown-preview {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 200px;
+  background: #fafafa;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.editor-button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.editor-button:hover {
+  background: #f5f5f5;
+}
+
+.publication-search {
+  position: relative;
+}
+
+.publication-search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.publication-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.publication-results.show {
+  display: block;
+}
+
+.publication-result-item {
+  padding: 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.publication-result-item:hover {
+  background-color: #f8f9fa;
+}
+
+.publication-result-item:last-child {
+  border-bottom: none;
+}
+
+.publication-result-title {
+  font-weight: 600;
+  color: #002147;
+  margin-bottom: 0.25rem;
+}
+
+.publication-result-meta {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.selected-publications {
+  margin-top: 1rem;
+}
+
+.selected-publication {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f0f7ff;
+  border-left: 3px solid #002147;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.selected-publication-title {
+  flex: 1;
+  font-weight: 500;
+  color: #002147;
+}
+
+.remove-publication {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.remove-publication:hover {
+  background: #c82333;
+}
+
+@media (max-width: 768px) {
+  .form-body {
+    padding: 1rem;
+  }
+}
+</style>
+
+<div class="container" style="max-width: 1000px; margin: 2rem auto;">
+  <div class="box" style="padding: 0; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <div class="form-header">
+      <h1 class="title is-2 has-text-white">Update Project</h1>
+      <p class="subtitle has-text-white" style="opacity: 0.9;">Edit an existing project and manage its publications</p>
+    </div>
+
+    <form id="updateProjectForm" class="form-body">
+      <div class="form-section">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Select Project</h2>
+        
+        <div class="field">
+          <label class="label">Project to Update <span class="required-badge">*</span></label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="projectSelect" name="projectSelect" required onchange="loadProject()">
+                <option value="">-- Select a project --</option>
+                {% assign all_projects = site.projects | sort: "title" %}
+                {% for project in all_projects %}
+                <option value="{{ project.slug }}" data-slug="{{ project.slug }}">{{ project.title }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <p class="field-help">Select the project you want to update. The form will be populated with existing data.</p>
+        </div>
+      </div>
+
+      <div class="form-section" id="projectDetailsSection" style="display: none;">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Project Information</h2>
+        
+        <div class="field">
+          <label class="label">Title <span class="required-badge">*</span></label>
+          <div class="control">
+            <input class="input" type="text" id="title" name="title" required placeholder="e.g., Dynamic Route Choice Modeling">
+          </div>
+          <p class="field-help">Required. The project title.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Summary (for listing) <span class="required-badge">*</span></label>
+          <div class="control">
+            <textarea class="textarea" id="summary" name="summary" rows="3" required placeholder="Short summary that appears on the projects listing page."></textarea>
+          </div>
+          <p class="field-help">Required. Short summary text for the projects listing page.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Status</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="status" name="status">
+                <option value="">None</option>
+                <option value="Open">Open</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Concluded">Concluded</option>
+              </select>
+            </div>
+          </div>
+          <p class="field-help empty-field">Optional. Project status: Open (actively recruiting), Ongoing (in progress), or Concluded (completed).</p>
+        </div>
+
+        <div class="field">
+          <label class="label">
+            <input type="checkbox" id="show_contact" name="show_contact" style="margin-right: 0.5rem;">
+            Show contact button on project page
+          </label>
+          <p class="field-help empty-field">If checked and project status is "Open", a contact button will appear on the project page for interested students to apply.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Seeking Students</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="target_students" name="target_students">
+                <option value="">None</option>
+                <option value="Graduate students (PhD/MSc)">Graduate students (PhD/MSc)</option>
+                <option value="PhD students">PhD students</option>
+                <option value="MSc students">MSc students</option>
+                <option value="Research assistants / Master students">Research assistants / Master students</option>
+                <option value="Postdoctoral researchers">Postdoctoral researchers</option>
+                <option value="Graduate students or postdocs">Graduate students or postdocs</option>
+              </select>
+            </div>
+          </div>
+          <p class="field-help empty-field">Optional. What type of students/researchers are you looking for?</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Team</label>
+          <div class="control">
+            <input class="input" type="text" id="team" name="team" placeholder="e.g., Rui Yao, Student Name">
+          </div>
+          <p class="field-help empty-field">Optional. Current team members working on this project.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Date</label>
+          <div class="control">
+            <input class="input" type="text" id="date" name="date" placeholder="2025-01-15 or 2025-01" oninput="checkDateFormat()">
+          </div>
+          <p class="field-help empty-field">Optional. Use YYYY-MM-DD for full date (e.g., "2025-01-15") or YYYY-MM for month only (e.g., "2025-01").</p>
+          <p class="field-help" id="dateFormatInfo" style="display: none; color: #002147; font-weight: 500;">
+            <span id="dateFormatIcon">ℹ️</span> Month-only date detected. The markdown file will automatically include <code>date_original</code> and <code>date_month_only</code> fields for proper formatting.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-section" id="contentSection" style="display: none;">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Markdown Content</h2>
+        <p class="field-help" style="margin-bottom: 1rem;">Edit the project content. If you write markdown content, the website will create an individual project page with a link from the projects listing.</p>
+        
+        <div class="field">
+          <label class="label">Markdown Editor</label>
+          <div class="editor-toolbar">
+            <button type="button" class="editor-button" onclick="insertMarkdown('**', '**')" title="Bold">Bold</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('*', '*')" title="Italic">Italic</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('## ', '')" title="Heading">Heading</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('- ', '')" title="List">List</button>
+            <button type="button" class="editor-button" onclick="insertMarkdown('[', '](url)')" title="Link">Link</button>
+            <button type="button" class="editor-button" onclick="togglePreview()" id="previewToggle">Show Preview</button>
+          </div>
+          <div class="control">
+            <textarea class="textarea markdown-editor" id="content" name="content" rows="20" placeholder="Write your project description in markdown here..."></textarea>
+          </div>
+        </div>
+
+        <div class="field" id="previewSection" style="display: none;">
+          <label class="label">Preview</label>
+          <div class="markdown-preview" id="preview"></div>
+        </div>
+      </div>
+
+      <div class="form-section" id="publicationsSection" style="display: none;">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Related Publications</h2>
+        <p class="field-help" style="margin-bottom: 1rem;">Search and add publications related to this project. Publications are synced from Google Scholar.</p>
+        
+        <div class="field">
+          <label class="label">Search Publications</label>
+          <div class="control publication-search">
+            <input class="input publication-search-input" type="text" id="pubSearch" placeholder="Type to search publications by title or author..." oninput="searchPublications(this.value)">
+            <div class="publication-results" id="pubResults"></div>
+          </div>
+          <p class="field-help empty-field">Start typing to search for publications. Click on a result to add it to the project.</p>
+        </div>
+
+        <div class="selected-publications" id="selectedPublications">
+          <p class="field-help" style="font-style: normal; color: #999;">No publications added yet. Search and select publications above.</p>
+        </div>
+      </div>
+
+      <div class="form-section" id="advancedSection" style="display: none;">
+        <h2 class="title is-5 mb-4" style="color: #002147;">Advanced Options</h2>
+        
+        <div class="field">
+          <label class="label">Slug (URL-friendly identifier)</label>
+          <div class="control">
+            <input class="input" type="text" id="slug" name="slug" placeholder="e.g., dynamic-route-choice-modeling" readonly>
+          </div>
+          <p class="field-help empty-field">Slug is automatically set from the project file. Do not change unless you want to rename the project URL.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">External Link</label>
+          <div class="control">
+            <input class="input" type="url" id="link" name="link" placeholder="https://example.com/project">
+          </div>
+          <p class="field-help empty-field">Optional. If provided, project will link to this external URL instead of creating an individual page. Only used if no markdown content is provided.</p>
+        </div>
+      </div>
+
+      <div class="field" id="submitSection" style="display: none; margin-top: 2rem;">
+        <div class="control">
+          <button type="submit" class="button is-primary is-large" style="min-width: 200px;">
+            Generate Updated Markdown File
+          </button>
+          <button type="button" class="button is-light is-large" onclick="clearForm()" style="margin-left: 1rem;">
+            <span>Clear Form</span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div id="output" style="display: none; max-width: 1200px; margin: 2rem auto; padding: 0 2rem;">
+      <div class="notification is-success">
+        <strong>✓ Success!</strong> Your updated markdown file is ready. Download it and replace the existing file in the <code>_projects/</code> directory.
+      </div>
+      
+      <div class="box mb-4">
+        <h3 class="title is-5 mb-3">Updated Markdown File for <code>_projects/[slug].md</code></h3>
+        <p class="mb-3">Download this file and replace the existing file in <code>_projects/[slug].md</code>. The website will automatically pick up the changes!</p>
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" id="markdownOutput" rows="30" readonly style="font-family: monospace; font-size: 0.9rem;"></textarea>
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="button is-info" onclick="copyToClipboard('markdownOutput')">Copy Markdown</button>
+          <button class="button is-success" onclick="downloadMarkdown()">Download .md File</button>
+        </div>
+      </div>
+
+      <div class="notification is-info">
+        <strong>Instructions:</strong>
+        <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Click "Download .md File" to download the updated markdown file</li>
+          <li>Replace the existing file in <code>_projects/[slug].md</code> with the downloaded file</li>
+          <li>The project will automatically update on the website!</li>
+          <li><strong>Note:</strong> You may need to restart your Jekyll server for changes to appear.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+// Project data storage
+let currentProjectSlug = null;
+let allPublications = [];
+let selectedPublications = [];
+
+// Load publications data
+{% assign pubs = site.data.publications | sort: "year" | reverse %}
+allPublications = [
+  {% for pub in pubs %}
+  {
+    "title": {{ pub.title | jsonify }},
+    "authors": {{ pub.authors | jsonify }},
+    "venue": {{ pub.venue | jsonify }},
+    "year": {{ pub.year | jsonify }},
+    "link": {{ pub.link | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+
+// Embedded project data
+const projectsData = {
+  {% for project in site.projects %}
+  "{{ project.slug }}": {
+    "title": {{ project.title | jsonify }},
+    "summary": {{ project.summary | jsonify }},
+    "status": {{ project.status | jsonify }},
+    "show_contact": {{ project.show_contact | jsonify }},
+    "target_students": {{ project.target_students | jsonify }},
+    "team": {{ project.team | jsonify }},
+    "date": {{ project.date | jsonify }},
+    "date_original": {{ project.date_original | jsonify }},
+    "date_month_only": {{ project.date_month_only | jsonify }},
+    "slug": {{ project.slug | jsonify }},
+    "link": {{ project.link | jsonify }},
+    "content": {{ project.content | jsonify }},
+    "publications": {{ project.publications | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
+
+// Load project data when selected
+function loadProject() {
+  const select = document.getElementById('projectSelect');
+  const slug = select.value;
+  if (!slug) {
+    document.getElementById('projectDetailsSection').style.display = 'none';
+    document.getElementById('contentSection').style.display = 'none';
+    document.getElementById('publicationsSection').style.display = 'none';
+    document.getElementById('advancedSection').style.display = 'none';
+    document.getElementById('submitSection').style.display = 'none';
+    return;
+  }
+  
+  currentProjectSlug = slug;
+  
+  // Show all sections
+  document.getElementById('projectDetailsSection').style.display = 'block';
+  document.getElementById('contentSection').style.display = 'block';
+  document.getElementById('publicationsSection').style.display = 'block';
+  document.getElementById('advancedSection').style.display = 'block';
+  document.getElementById('submitSection').style.display = 'block';
+  
+  // Load project data from embedded data
+  loadProjectData(slug);
+}
+
+function loadProjectData(slug) {
+  const project = projectsData[slug];
+  if (!project) {
+    alert('Project data not found. Please ensure the project file exists.');
+    return;
+  }
+  
+  document.getElementById('title').value = project.title || '';
+  document.getElementById('summary').value = project.summary || '';
+  document.getElementById('status').value = project.status || '';
+  document.getElementById('show_contact').checked = project.show_contact || false;
+  document.getElementById('target_students').value = project.target_students || '';
+  document.getElementById('team').value = project.team || '';
+  
+  // Handle date - use date_original if available for month-only dates
+  if (project.date_original) {
+    document.getElementById('date').value = project.date_original;
+  } else {
+    document.getElementById('date').value = project.date || '';
+  }
+  
+  document.getElementById('slug').value = project.slug || '';
+  document.getElementById('link').value = project.link || '';
+  document.getElementById('content').value = project.content || '';
+  
+  // Load publications
+  if (project.publications && Array.isArray(project.publications)) {
+    selectedPublications = [...project.publications];
+  } else {
+    selectedPublications = [];
+  }
+  updateSelectedPublicationsDisplay();
+  
+  checkDateFormat();
+}
+
+// Publication search
+function searchPublications(query) {
+  const resultsDiv = document.getElementById('pubResults');
+  if (!query || query.trim().length < 2) {
+    resultsDiv.classList.remove('show');
+    return;
+  }
+  
+  const lowerQuery = query.toLowerCase();
+  const matches = allPublications.filter(pub => {
+    const title = (pub.title || '').toLowerCase();
+    const authors = (pub.authors || '').toLowerCase();
+    return title.includes(lowerQuery) || authors.includes(lowerQuery);
+  }).slice(0, 10); // Limit to 10 results
+  
+  if (matches.length === 0) {
+    resultsDiv.innerHTML = '<div class="publication-result-item" style="padding: 1rem; text-align: center; color: #999;">No publications found</div>';
+    resultsDiv.classList.add('show');
+    return;
+  }
+  
+  resultsDiv.innerHTML = matches.map(pub => {
+    const year = pub.year || 'N/A';
+    const venue = pub.venue || '';
+    return `
+      <div class="publication-result-item" onclick="addPublication('${escapeHtml(pub.title)}')">
+        <div class="publication-result-title">${escapeHtml(pub.title)}</div>
+        <div class="publication-result-meta">${escapeHtml(pub.authors)}${venue ? ' • ' + escapeHtml(venue) : ''} (${year})</div>
+      </div>
+    `;
+  }).join('');
+  
+  resultsDiv.classList.add('show');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function addPublication(title) {
+  if (selectedPublications.includes(title)) {
+    return; // Already added
+  }
+  selectedPublications.push(title);
+  updateSelectedPublicationsDisplay();
+  document.getElementById('pubSearch').value = '';
+  document.getElementById('pubResults').classList.remove('show');
+}
+
+function removePublication(title) {
+  selectedPublications = selectedPublications.filter(t => t !== title);
+  updateSelectedPublicationsDisplay();
+}
+
+function updateSelectedPublicationsDisplay() {
+  const container = document.getElementById('selectedPublications');
+  if (selectedPublications.length === 0) {
+    container.innerHTML = '<p class="field-help" style="font-style: normal; color: #999;">No publications added yet. Search and select publications above.</p>';
+    return;
+  }
+  
+  container.innerHTML = selectedPublications.map(title => {
+    return `
+      <div class="selected-publication">
+        <div class="selected-publication-title">${escapeHtml(title)}</div>
+        <button type="button" class="remove-publication" onclick="removePublication('${escapeHtml(title)}')">Remove</button>
+      </div>
+    `;
+  }).join('');
+}
+
+// Close search results when clicking outside
+document.addEventListener('click', function(e) {
+  const searchDiv = document.querySelector('.publication-search');
+  if (searchDiv && !searchDiv.contains(e.target)) {
+    document.getElementById('pubResults').classList.remove('show');
+  }
+});
+
+// Date format checking
+function checkDateFormat() {
+  const dateInput = document.getElementById('date');
+  const dateInfo = document.getElementById('dateFormatInfo');
+  const dateStr = dateInput.value.trim();
+  const isMonthOnly = /^\d{4}-\d{2}$/.test(dateStr);
+  
+  if (isMonthOnly && dateStr.length > 0) {
+    dateInfo.style.display = 'block';
+  } else {
+    dateInfo.style.display = 'none';
+  }
+}
+
+// Markdown editor functions
+function insertMarkdown(before, after) {
+  const textarea = document.getElementById('content');
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const selectedText = textarea.value.substring(start, end);
+  const newText = before + selectedText + after;
+  
+  textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+  textarea.focus();
+  textarea.setSelectionRange(start + before.length, start + before.length + selectedText.length);
+  
+  if (document.getElementById('previewSection').style.display !== 'none') {
+    updatePreview();
+  }
+}
+
+function updatePreview() {
+  const content = document.getElementById('content').value;
+  if (typeof marked !== 'undefined') {
+    document.getElementById('preview').innerHTML = marked.parse(content);
+  } else {
+    document.getElementById('preview').innerHTML = '<p class="has-text-grey">Preview unavailable. Markdown will be rendered on the website.</p>';
+  }
+}
+
+function togglePreview() {
+  const previewSection = document.getElementById('previewSection');
+  const toggleButton = document.getElementById('previewToggle');
+  
+  if (previewSection.style.display === 'none') {
+    previewSection.style.display = 'block';
+    toggleButton.textContent = 'Hide Preview';
+    updatePreview();
+  } else {
+    previewSection.style.display = 'none';
+    toggleButton.textContent = 'Show Preview';
+  }
+}
+
+// Auto-update preview
+document.addEventListener('DOMContentLoaded', function() {
+  const contentTextarea = document.getElementById('content');
+  let previewTimeout;
+  
+  contentTextarea.addEventListener('input', function() {
+    clearTimeout(previewTimeout);
+    previewTimeout = setTimeout(function() {
+      if (document.getElementById('previewSection').style.display !== 'none') {
+        updatePreview();
+      }
+    }, 500);
+  });
+});
+
+function escapeYamlString(str) {
+  if (!str) return '';
+  return str.replace(/"/g, '\\"').replace(/\n/g, '\\n');
+}
+
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function formatMarkdownFile(formData) {
+  const dateStr = formData.date.trim();
+  const isMonthOnly = /^\d{4}-\d{2}$/.test(dateStr);
+  const dateValue = formData.date ? `"${dateStr}"` : null;
+  
+  let markdown = `---\n`;
+  markdown += `layout: project\n`;
+  markdown += `title: "${escapeYamlString(formData.title)}"\n`;
+  
+  if (dateValue) {
+    markdown += `date: ${dateValue}\n`;
+    if (isMonthOnly) {
+      markdown += `date_original: "${dateStr}"\n`;
+      markdown += `date_month_only: true\n`;
+    }
+  }
+  
+  if (formData.status) {
+    markdown += `status: "${escapeYamlString(formData.status)}"\n`;
+  }
+  
+  // Show contact button if checkbox is checked
+  const showContact = document.getElementById('show_contact').checked;
+  if (showContact) {
+    markdown += `show_contact: true\n`;
+  }
+  
+  if (formData.target_students) {
+    markdown += `target_students: "${escapeYamlString(formData.target_students)}"\n`;
+  }
+  
+  if (formData.team) {
+    markdown += `team: "${escapeYamlString(formData.team)}"\n`;
+  }
+  markdown += `summary: "${escapeYamlString(formData.summary)}"\n`;
+  
+  if (formData.slug) {
+    markdown += `slug: "${formData.slug}"\n`;
+  }
+  
+  if (formData.link && !formData.content.trim()) {
+    markdown += `link: "${formData.link}"\n`;
+  }
+  
+  // Add publications if any
+  if (selectedPublications.length > 0) {
+    markdown += `publications:\n`;
+    selectedPublications.forEach(title => {
+      markdown += `  - "${escapeYamlString(title)}"\n`;
+    });
+  }
+  
+  markdown += `---\n\n`;
+  
+  if (formData.content.trim()) {
+    markdown += `${formData.content}\n`;
+  }
+  
+  return { markdown, slug: formData.slug || currentProjectSlug };
+}
+
+function copyToClipboard(elementId) {
+  const textarea = document.getElementById(elementId);
+  textarea.select();
+  textarea.setSelectionRange(0, 99999);
+  
+  try {
+    document.execCommand('copy');
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Copied!';
+    button.classList.add('is-success');
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.classList.remove('is-success');
+    }, 2000);
+  } catch (err) {
+    alert('Failed to copy. Please select and copy manually.');
+  }
+}
+
+function clearForm() {
+  document.getElementById('updateProjectForm').reset();
+  document.getElementById('projectSelect').value = '';
+  document.getElementById('output').style.display = 'none';
+  document.getElementById('previewSection').style.display = 'none';
+  document.getElementById('previewToggle').textContent = 'Show Preview';
+  document.getElementById('dateFormatInfo').style.display = 'none';
+  selectedPublications = [];
+  updateSelectedPublicationsDisplay();
+  loadProject();
+}
+
+function downloadMarkdown() {
+  const markdown = document.getElementById('markdownOutput').value;
+  if (!markdown) {
+    alert('Please generate the markdown file first.');
+    return;
+  }
+  
+  const slugMatch = markdown.match(/slug: "([^"]+)"/);
+  const slug = slugMatch ? slugMatch[1] : 'project-item';
+  const filename = `${slug}.md`;
+  
+  const blob = new Blob([markdown], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('updateProjectForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  if (!currentProjectSlug) {
+    alert('Please select a project to update.');
+    return;
+  }
+  
+  const formData = {
+    title: document.getElementById('title').value.trim(),
+    summary: document.getElementById('summary').value.trim(),
+    status: document.getElementById('status').value.trim(),
+    show_contact: document.getElementById('show_contact').checked,
+    target_students: document.getElementById('target_students').value.trim(),
+    team: document.getElementById('team').value.trim(),
+    date: document.getElementById('date').value.trim(),
+    content: document.getElementById('content').value.trim(),
+    slug: document.getElementById('slug').value.trim() || currentProjectSlug,
+    link: document.getElementById('link').value.trim()
+  };
+  
+  if (!formData.title || !formData.summary) {
+    alert('Please fill in at least Title and Summary fields.');
+    return;
+  }
+  
+  if (formData.date) {
+    const datePattern = /^\d{4}-\d{2}(-\d{2})?$/;
+    if (!datePattern.test(formData.date)) {
+      alert('Please enter a valid date in YYYY-MM-DD or YYYY-MM format.');
+      return;
+    }
+  }
+  
+  const result = formatMarkdownFile(formData);
+  document.getElementById('markdownOutput').value = result.markdown;
+  
+  document.getElementById('output').style.display = 'block';
+  document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+

@@ -147,6 +147,21 @@
   window.addEventListener('load', makeCardsClickable);
 })();
 
+// Projects slider navigation
+function scrollProjectsSlider(direction) {
+  const container = document.querySelector('.projects-slider-container');
+  if (!container) return;
+  
+  const scrollAmount = 350; // Scroll by approximately one card width + gap
+  const currentScroll = container.scrollLeft;
+  const newScroll = currentScroll + (direction * scrollAmount);
+  
+  container.scrollTo({
+    left: newScroll,
+    behavior: 'smooth'
+  });
+}
+
 // Smooth scroll for "Back to Top" links on publications page
 (function() {
   function initBackToTop() {

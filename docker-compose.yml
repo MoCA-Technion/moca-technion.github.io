@@ -1,0 +1,20 @@
+services:
+  jekyll:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: moca-jekyll
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+      - bundle_cache:/root/.rbenv/versions/3.2.9/lib/ruby/gems
+    environment:
+      - JEKYLL_ENV=development
+    command: bundle exec jekyll serve --host 0.0.0.0 --port 4000 --force_polling
+    stdin_open: true
+    tty: true
+
+volumes:
+  bundle_cache:
+

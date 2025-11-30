@@ -23,6 +23,7 @@ Built with [Jekyll](https://jekyllrb.com/) and the [Bulma Clean Theme](https://g
 - **Research** (`research.md`): Lab research directions and methodology
 - **People** (`people.md`): Principal Investigator and research team
 - **Publications** (`publications.md`): Research publications with year navigation
+- **Projects** (`projects.md`): Research projects displayed as cards
 - **News** (`news.md`): Lab news and updates
 - **Join** (`join.md`): Open positions and application process
 - **Contact** (`contact.md`): Contact information
@@ -40,6 +41,13 @@ Built with [Jekyll](https://jekyllrb.com/) and the [Bulma Clean Theme](https://g
 - Supports full dates (YYYY-MM-DD) and month-only dates (YYYY-MM)
 - Permalink: `/news/:name/`
 - Use the [Add News form](https://moca-technion.github.io/news/add-news/) to generate new news items
+
+#### Projects Collection (`_projects/`)
+- Research project pages with optional full pages
+- Supports status badges (Active, Planning, Completed, On Hold)
+- Supports full dates (YYYY-MM-DD) and month-only dates (YYYY-MM)
+- Permalink: `/projects/:name/`
+- Use the [Add Project form](https://moca-technion.github.io/projects/add-project/) to generate new project pages
 
 ### Data Files (`_data/`)
 - `site.json`: Site-wide configuration (PI info, contact details)
@@ -157,6 +165,21 @@ The site will automatically:
 - Display news on the home page (latest 5)
 - List all news on the news page
 - Generate individual news pages if content is provided
+- Support month-only dates (e.g., "January 2025")
+
+### Adding Projects
+
+1. Visit `/projects/add-project/` on the live site
+2. Fill out the form with project information (title, summary, status, team, date)
+3. Optionally add markdown content for a full project page
+4. Copy or download the generated markdown file
+5. Save it to `_projects/<slug>.md`
+6. Commit and push to GitHub
+
+The site will automatically:
+- Display all projects as cards on the projects page
+- Generate individual project pages if content is provided
+- Show status badges (Active, Planning, Completed, On Hold)
 - Support month-only dates (e.g., "January 2025")
 
 ## Customization

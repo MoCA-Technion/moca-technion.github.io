@@ -1,0 +1,104 @@
+---
+layout: page
+---
+<div class="project-single">
+  <div class="project-single-header mb-5">
+    {% if page.status %}
+      {% if page.target_students %}
+        {% assign status_text = page.status %}
+        {% assign students_short = page.target_students | replace: "Graduate students (PhD/MSc)", "PhD/MSc" | replace: "Research assistants / Master students", "MSc/RA" | replace: "PhD students", "PhD" | replace: "MSc students", "MSc" | replace: "Postdoctoral researchers", "Postdoc" | replace: "Graduate students or postdocs", "PhD/MSc/Postdoc" %}
+        <span class="project-status project-status-{{ page.status | downcase }} mb-3">{{ status_text }}, {{ students_short }}</span>
+      {% else %}
+        <span class="project-status project-status-{{ page.status | downcase }} mb-3">{{ page.status }}</span>
+      {% endif %}
+    {% endif %}
+    <h1 class="title is-2">{{ page.title }}</h1>
+    {% if page.date %}
+    <div class="project-date mt-2">
+      {% if page.date_original %}
+        {% assign date_to_check = page.date_original | to_string | strip %}
+        {% assign parts = date_to_check | split: "-" %}
+        {% if parts.size == 2 %}
+          {% assign months = "January,February,March,April,May,June,July,August,September,October,November,December" | split: "," %}
+          {% assign month_num = parts[1] | plus: 0 %}
+          {% assign month_index = month_num | minus: 1 %}
+          {{ months[month_index] }} {{ parts[0] }}
+        {% else %}
+          {{ page.date | date: "%B %d, %Y" }}
+        {% endif %}
+      {% elsif page.date_month_only %}
+        {{ page.date | date: "%B %Y" }}
+      {% else %}
+        {{ page.date | date: "%B %d, %Y" }}
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  
+  <div class="content project-single-content">
+    {{ content }}
+  </div>
+  
+  {% if page.status == "Open" and page.show_contact %}
+  <div class="project-contact-section mt-5 mb-5">
+    <p class="mb-4">Interested in this project? Contact us for more details and to apply.</p>
+    <div class="mb-4">
+      <a href="mailto:{{ site.data.site.email }}?subject=Inquiry about: {{ page.title | url_encode }}" class="button is-primary is-medium">
+        Contact Us
+      </a>
+    </div>
+    <p class="has-text-grey" style="font-size: 0.9rem;">
+      <em>Please mention this project in your email and include your CV and research interests.</em>
+    </p>
+  </div>
+  {% endif %}
+  
+  {% if page.publications and page.publications.size > 0 %}
+  <div class="project-publications mt-5">
+    <h2 class="title is-4 mb-4">Related Publications</h2>
+    <div class="moca-accent mb-4"></div>
+    {% assign all_pubs = site.data.publications %}
+    {% for pub_title in page.publications %}
+      {% assign found_pub = false %}
+      {% for pub in all_pubs %}
+        {% if pub.title == pub_title %}
+          {% assign found_pub = true %}
+          <div class="pub-item mb-3{% if pub.link %} pub-item-clickable{% endif %}">
+            <div class="pub-bullet">•</div>
+            <div class="pub-content">
+              {% if pub.link %}
+              <a href="{{ pub.link }}" target="_blank" rel="noopener" class="pub-item-link">
+                <div><strong>{{ pub.title }}</strong></div>
+                <div class="pub-meta">
+                  {{ pub.authors }}{% if pub.venue %}. <em>{{ pub.venue }}</em>{% endif %}{% if pub.year %} ({{ pub.year }}){% endif %}
+                </div>
+              </a>
+              {% else %}
+              <div><strong>{{ pub.title }}</strong></div>
+              <div class="pub-meta">
+                {{ pub.authors }}{% if pub.venue %}. <em>{{ pub.venue }}</em>{% endif %}{% if pub.year %} ({{ pub.year }}){% endif %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% unless found_pub %}
+      <div class="pub-item mb-3">
+        <div class="pub-bullet">•</div>
+        <div class="pub-content">
+          <div><strong>{{ pub_title }}</strong></div>
+          <div class="pub-meta has-text-grey">(Publication not found in database)</div>
+        </div>
+      </div>
+      {% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  <div class="project-single-footer mt-5">
+    <a href="{{ site.baseurl }}/projects/" class="has-text-link">← Back to Projects</a>
+  </div>
+</div>
+

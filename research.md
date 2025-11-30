@@ -154,100 +154,160 @@ We approach each problem through a flexible three-step process:
 
 ---
 
-# 4. Current Research Directions
+# 4. Open Projects
+
+{% assign open_projects = site.projects | where: "status", "Open" | sort: "date" | reverse %}
+{% if open_projects.size > 0 %}
+<div class="projects-slider-section">
+  <div class="projects-slider-container">
+    <div class="projects-slider">
+      {% for project in open_projects %}
+        {% comment %} Check if project has content beyond front matter {% endcomment %}
+        {% assign has_content = false %}
+        {% if project.content and project.content != "" and project.content != blank %}
+          {% assign content_stripped = project.content | strip %}
+          {% if content_stripped != "" %}
+            {% assign has_content = true %}
+          {% endif %}
+        {% endif %}
+        
+        {% assign has_link = false %}
+        {% if project.slug and has_content %}{% assign has_link = true %}{% endif %}
+        {% if project.link %}{% assign has_link = true %}{% endif %}
+        
+        <div class="project-slider-card">
+          {% if project.slug and has_content %}
+          <a href="{{ site.baseurl }}/projects/{{ project.slug }}/" class="project-slider-card-link">
+          {% elsif project.link %}
+          <a href="{{ project.link }}" class="project-slider-card-link" target="_blank" rel="noopener">
+          {% else %}
+          <div class="project-slider-card-content">
+          {% endif %}
+            <div class="project-slider-card-inner {% if project.status == 'Open' %}project-slider-open{% endif %}">
+              {% if project.status %}
+                {% if project.target_students %}
+                  {% assign status_text = project.status %}
+                  {% assign students_short = project.target_students | replace: "Graduate students (PhD/MSc)", "PhD/MSc" | replace: "Research assistants / Master students", "MSc/RA" | replace: "PhD students", "PhD" | replace: "MSc students", "MSc" | replace: "Postdoctoral researchers", "Postdoc" | replace: "Graduate students or postdocs", "PhD/MSc/Postdoc" %}
+                  <span class="project-status project-status-{{ project.status | downcase }}">{{ status_text }}, {{ students_short }}</span>
+                {% else %}
+                  <span class="project-status project-status-{{ project.status | downcase }}">{{ project.status }}</span>
+                {% endif %}
+              {% endif %}
+              <h3 class="project-slider-title">{{ project.title }}</h3>
+              {% if project.summary %}
+              <p class="project-slider-summary">{{ project.summary }}</p>
+              {% endif %}
+              {% if has_link %}
+              <span class="project-slider-link">{% if project.slug and has_content %}Read more →{% else %}View project →{% endif %}</span>
+              {% endif %}
+            </div>
+          {% if project.slug and has_content or project.link %}
+          </a>
+          {% else %}
+          </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="projects-slider-nav">
+    <button class="slider-nav-button slider-nav-prev" onclick="scrollProjectsSlider(-1)" aria-label="Previous projects">
+      ‹
+    </button>
+    <button class="slider-nav-button slider-nav-next" onclick="scrollProjectsSlider(1)" aria-label="Next projects">
+      ›
+    </button>
+  </div>
+</div>
+{% else %}
+<p class="has-text-grey">No open projects at the moment. Check back soon!</p>
+{% endif %}
+
+---
+
+# 5. Research Directions
 
 Although our lab is young, several research directions already guide our work.
 
+## <a id="41-behavioral-foundations"></a>5.1 Behavioral foundations
 
-## <a id="41-behavioral-foundations"></a>4.1 Behavioral foundations
+We study how travelers and platforms make decisions, and how to model these decisions in a way that is flexible, scalable, and consistent with real-world behavior.
 
-<div class="research-direction">
-  <p>We study how travelers and platforms make decisions, and how to model these decisions in a way that is flexible, scalable, and consistent with real-world behavior.</p>
-  
-  <div class="research-focus">
-    <h4>This includes modeling:</h4>
-    <ul>
-      <li>preferences and trade-offs between choice alternatives under different contexts</li>
-      <li>behavioral and physical constraints and habits</li>
-      <li>rich patterns of substitution and heterogeneity</li>
-    </ul>
-  </div>
-  
-  <p class="research-impact">These behavioral foundations support everything we build on top.</p>
+<div class="research-focus">
+  <h4>This includes modeling:</h4>
+  <ul>
+    <li>preferences and trade-offs between choice alternatives under different contexts</li>
+    <li>behavioral and physical constraints and habits</li>
+    <li>rich patterns of substitution and heterogeneity</li>
+  </ul>
+</div>
+
+<p class="research-impact">These behavioral foundations support everything we build on top.</p>
+
+---
+
+## <a id="42-dynamic-decisions-and-adaptation"></a>5.2 Dynamic decisions and adaptation
+
+Mobility is not static. Travelers learn, adapt, and respond to new information and changing conditions. Platforms adjust prices, allocate vehicles, and update routes in real time.
+
+<div class="research-focus">
+  <h4>We study:</h4>
+  <ul>
+    <li>sequential decision-making</li>
+    <li>repeated interactions</li>
+    <li>adaptive behaviors</li>
+    <li>dynamic system feedback</li>
+  </ul>
+</div>
+
+<p class="research-impact">This helps us understand not only what people do today, but how their behavior evolves over time.</p>
+
+---
+
+## <a id="43-information-and-guidance"></a>5.3 Information and guidance
+
+Digital platforms now influence travel through suggestions, notifications, and personalized guidance. These tools can improve travel, but they can also reshape network conditions or create new inequalities.
+
+<div class="research-focus">
+  <h4>At a high level, we study:</h4>
+  <ul>
+    <li>how travelers respond to guidance</li>
+    <li>how guidance affects network conditions</li>
+    <li>how to evaluate interventions from a public-interest perspective</li>
+  </ul>
 </div>
 
 ---
 
-## <a id="42-dynamic-decisions-and-adaptation"></a>4.2 Dynamic decisions and adaptation
+## <a id="44-equilibrium-stability-and-system-design"></a>5.4 Equilibrium, stability, and system design
 
-<div class="research-direction">
-  <p>Mobility is not static. Travelers learn, adapt, and respond to new information and changing conditions. Platforms adjust prices, allocate vehicles, and update routes in real time.</p>
-  
-  <div class="research-focus">
-    <h4>We study:</h4>
-    <ul>
-      <li>sequential decision-making</li>
-      <li>repeated interactions</li>
-      <li>adaptive behaviors</li>
-      <li>dynamic system feedback</li>
-    </ul>
-  </div>
-  
-  <p class="research-impact">This helps us understand not only what people do today, but how their behavior evolves over time.</p>
+When many agents interact, unexpected system-level behaviors can emerge — stability, oscillations, congestion surges, and more.
+
+<div class="research-focus">
+  <h4>We study:</h4>
+  <ul>
+    <li>demand–supply equilibrium</li>
+    <li>pricing and incentive mechanisms</li>
+    <li>multimodal system integration</li>
+    <li>conditions for stability and robustness</li>
+  </ul>
 </div>
+
+<p class="research-impact">These insights support the design of better and more resilient mobility systems.</p>
 
 ---
 
-## <a id="43-information-and-guidance"></a>4.3 Information and guidance
+## <a id="45-human-ai-mobility-ecosystems"></a>5.5 Human–AI mobility ecosystems
 
-<div class="research-direction">
-  <p>Digital platforms now influence travel through suggestions, notifications, and personalized guidance. These tools can improve travel, but they can also reshape network conditions or create new inequalities.</p>
-  
-  <div class="research-focus">
-    <h4>At a high level, we study:</h4>
-    <ul>
-      <li>how travelers respond to guidance</li>
-      <li>how guidance affects network conditions</li>
-      <li>how to evaluate interventions from a public-interest perspective</li>
-    </ul>
-  </div>
+Digital tools, navigation apps, and emerging AI assistants increasingly participate in mobility decisions. As these technologies become part of everyday travel, mobility systems may evolve in new and unexpected ways.
+
+<div class="research-focus">
+  <h4>At a high level, we are interested in:</h4>
+  <ul>
+    <li>how digital tools and automated systems influence mobility choices</li>
+    <li>how human and non-human decision-makers coexist in mobility networks</li>
+    <li>what opportunities and challenges arise as these technologies become more widely used</li>
+  </ul>
 </div>
 
----
-
-## <a id="44-equilibrium-stability-and-system-design"></a>4.4 Equilibrium, stability, and system design
-
-<div class="research-direction">
-  <p>When many agents interact, unexpected system-level behaviors can emerge — stability, oscillations, congestion surges, and more.</p>
-  
-  <div class="research-focus">
-    <h4>We study:</h4>
-    <ul>
-      <li>demand–supply equilibrium</li>
-      <li>pricing and incentive mechanisms</li>
-      <li>multimodal system integration</li>
-      <li>conditions for stability and robustness</li>
-    </ul>
-  </div>
-  
-  <p class="research-impact">These insights support the design of better and more resilient mobility systems.</p>
-</div>
-
----
-
-## <a id="45-human-ai-mobility-ecosystems"></a>4.5 Human–AI mobility ecosystems
-
-<div class="research-direction">
-  <p>Digital tools, navigation apps, and emerging AI assistants increasingly participate in mobility decisions. As these technologies become part of everyday travel, mobility systems may evolve in new and unexpected ways.</p>
-  
-  <div class="research-focus">
-    <h4>At a high level, we are interested in:</h4>
-    <ul>
-      <li>how digital tools and automated systems influence mobility choices</li>
-      <li>how human and non-human decision-makers coexist in mobility networks</li>
-      <li>what opportunities and challenges arise as these technologies become more widely used</li>
-    </ul>
-  </div>
-  
-  <p class="research-impact">This direction helps us prepare for mobility systems where humans and algorithms share decision-making roles.</p>
-</div>
+<p class="research-impact">This direction helps us prepare for mobility systems where humans and algorithms share decision-making roles.</p>

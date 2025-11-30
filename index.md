@@ -18,12 +18,6 @@ hide_hero: true
         Scalable, theory-grounded models and computational tools<br>for
         <strong>next-generation mobility systems</strong>.
       </p>
-      
-      <div class="mt-5">
-        <a href="{{ site.baseurl }}/join/" class="button is-medium moca-hero-button">
-          We are hiring
-        </a>
-      </div>
     </div>
   </div>
 </section>
@@ -74,6 +68,80 @@ hide_hero: true
         </a>
       </div>
     </div>
+
+    {% assign all_projects = site.projects | sort: "date" | reverse %}
+    {% if all_projects.size > 0 %}
+    <div class="mt-6 mb-5">
+      <h2 class="title is-3 mb-2">Our Projects</h2>
+      <div class="moca-accent mb-4"></div>
+      
+      <div class="projects-slider-section">
+        <div class="projects-slider-container">
+          <div class="projects-slider">
+            {% for project in all_projects %}
+              {% comment %} Check if project has content beyond front matter {% endcomment %}
+              {% assign has_content = false %}
+              {% if project.content and project.content != "" and project.content != blank %}
+                {% assign content_stripped = project.content | strip %}
+                {% if content_stripped != "" %}
+                  {% assign has_content = true %}
+                {% endif %}
+              {% endif %}
+              
+              {% assign has_link = false %}
+              {% if project.slug and has_content %}{% assign has_link = true %}{% endif %}
+              {% if project.link %}{% assign has_link = true %}{% endif %}
+              
+              <div class="project-slider-card">
+                {% if project.slug and has_content %}
+                <a href="{{ site.baseurl }}/projects/{{ project.slug }}/" class="project-slider-card-link">
+                {% elsif project.link %}
+                <a href="{{ project.link }}" class="project-slider-card-link" target="_blank" rel="noopener">
+                {% else %}
+                <div class="project-slider-card-content">
+                {% endif %}
+                  <div class="project-slider-card-inner {% if project.status == 'Open' %}project-slider-open{% endif %}">
+                    {% if project.status %}
+                      {% if project.target_students %}
+                        {% assign status_text = project.status %}
+                        {% assign students_short = project.target_students | replace: "Graduate students (PhD/MSc)", "PhD/MSc" | replace: "Research assistants / Master students", "MSc/RA" | replace: "PhD students", "PhD" | replace: "MSc students", "MSc" | replace: "Postdoctoral researchers", "Postdoc" | replace: "Graduate students or postdocs", "PhD/MSc/Postdoc" %}
+                        <span class="project-status project-status-{{ project.status | downcase }}">{{ status_text }}, {{ students_short }}</span>
+                      {% else %}
+                        <span class="project-status project-status-{{ project.status | downcase }}">{{ project.status }}</span>
+                      {% endif %}
+                    {% endif %}
+                    <h3 class="project-slider-title">{{ project.title }}</h3>
+                    {% if project.summary %}
+                    <p class="project-slider-summary">{{ project.summary }}</p>
+                    {% endif %}
+                    {% if has_link %}
+                    <span class="project-slider-link">{% if project.slug and has_content %}Read more →{% else %}View project →{% endif %}</span>
+                    {% endif %}
+                  </div>
+                {% if project.slug and has_content or project.link %}
+                </a>
+                {% else %}
+                </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="projects-slider-nav">
+          <button class="slider-nav-button slider-nav-prev" onclick="scrollProjectsSlider(-1)" aria-label="Previous projects">
+            ‹
+          </button>
+          <button class="slider-nav-button slider-nav-next" onclick="scrollProjectsSlider(1)" aria-label="Next projects">
+            ›
+          </button>
+        </div>
+      </div>
+      
+      <p class="mt-3">
+        <a href="{{ site.baseurl }}/projects/" class="has-text-weight-semibold">All projects →</a>
+      </p>
+    </div>
+    {% endif %}
 
     <div class="mt-6">
       <h2 class="title is-3 mb-2">News</h2>

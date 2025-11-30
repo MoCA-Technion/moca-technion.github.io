@@ -10,6 +10,9 @@ vendor/
 *.tmp
 *.bak
 ~*
+.git/
+.gitignore
+node_modules/
+README.md
+SEO_PERFORMANCE.md
 
-# Docker
-.docker/

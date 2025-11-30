@@ -1,0 +1,12 @@
+/* TEAM */
+Principal Investigator: Rui Yao
+Lab: MoCA — Mobility Computation & Analytics Lab
+Institution: Technion – Israel Institute of Technology
+Location: Technion, Haifa, Israel
+Email: rui.yao@technion.ac.il
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript
+Components: Jekyll, Bulma CSS
+Software: GitHub Pages
+

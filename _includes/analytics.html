@@ -1,0 +1,37 @@
+{% comment %}
+  Analytics scripts
+  Usage: {% include analytics.html %}
+  
+  To enable Google Analytics:
+  1. Get your Google Analytics tracking ID (e.g., G-XXXXXXXXXX)
+  2. Add it to _config.yml: google_analytics: "G-XXXXXXXXXX"
+  3. Uncomment the Google Analytics section below
+{% endcomment %}
+
+{% if site.google_analytics %}
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics }}', {
+    'anonymize_ip': true,
+    'cookie_flags': 'SameSite=None;Secure'
+  });
+</script>
+{% endif %}
+
+{% comment %}
+<!-- Alternative: Google Analytics 4 (GA4) -->
+{% if site.google_analytics %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics }}');
+</script>
+{% endif %}
+{% endcomment %}
+

@@ -1,4 +1,6 @@
 {% include seo.html %}
+{% include analytics.html %}
+{% include search-engine-ping.html %}
 
 <!-- Favicon - Comprehensive support for all browsers and platforms -->
 <link rel="icon" type="image/jpeg" href="{{ site.baseurl }}/moca_lab_icon.jpg">
@@ -12,10 +14,16 @@
 <!-- Windows Tiles -->
 <meta name="msapplication-TileImage" content="{{ site.baseurl }}/moca_lab_icon.jpg">
 <meta name="msapplication-TileColor" content="#002147">
+<meta name="msapplication-config" content="{{ site.baseurl }}/browserconfig.xml">
 <!-- Safari Pinned Tab -->
 <link rel="mask-icon" href="{{ site.baseurl }}/moca_lab_icon.jpg" color="#002147">
 <!-- Theme Color -->
 <meta name="theme-color" content="#002147">
+<meta name="msapplication-navbutton-color" content="#002147">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Web App Manifest -->
+<link rel="manifest" href="{{ site.baseurl }}/manifest.json">
 
 <!-- DNS Prefetch and Preconnect for Performance -->
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">

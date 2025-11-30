@@ -1,0 +1,32 @@
+# Workflow to ping search engines when sitemap is updated
+# This helps notify Google and Bing when new content is published
+name: Ping Search Engines
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '_projects/**'
+      - '_news/**'
+      - '_people/**'
+      - '*.md'
+      - 'index.md'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Google
+        run: |
+          curl -s "https://www.google.com/ping?sitemap=https://moca-technion.github.io/sitemap.xml" || true
+      
+      - name: Ping Bing
+        run: |
+          curl -s "https://www.bing.com/ping?sitemap=https://moca-technion.github.io/sitemap.xml" || true
+      
+      - name: Ping Yandex (optional)
+        run: |
+          curl -s "https://webmaster.yandex.com/ping?sitemap=https://moca-technion.github.io/sitemap.xml" || true
+

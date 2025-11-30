@@ -7,13 +7,26 @@
 {% assign page_description = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 %}
 {% assign page_url = page.url | replace: 'index.html', '' %}
 {% if page_url == '/' %}{% assign page_url = '' %}{% endif %}
-{% assign page_url = page_url | prepend: site.baseurl | prepend: site.url %}
+{% comment %}Use production URL from config, not localhost{% endcomment %}
+{% if site.url contains '0.0.0.0' or site.url contains 'localhost' %}
+  {% assign page_url = page_url | prepend: site.baseurl | prepend: 'https://moca-technion.github.io' %}
+{% else %}
+  {% assign page_url = page_url | prepend: site.baseurl | prepend: site.url %}
+{% endif %}
 {% if page.layout == 'person' %}
   {% assign page_image = page.image | default: site.data.site.pi_photo | default: '/moca_lab_icon.jpg' %}
 {% else %}
   {% assign page_image = page.image | default: '/moca_lab_icon.jpg' %}
 {% endif %}
-{% if page_image %}{% unless page_image contains 'http' %}{% assign page_image = page_image | prepend: site.baseurl | prepend: site.url %}{% endunless %}{% endif %}
+{% if page_image %}
+  {% unless page_image contains 'http' %}
+    {% if site.url contains '0.0.0.0' or site.url contains 'localhost' %}
+      {% assign page_image = page_image | prepend: site.baseurl | prepend: 'https://moca-technion.github.io' %}
+    {% else %}
+      {% assign page_image = page_image | prepend: site.baseurl | prepend: site.url %}
+    {% endif %}
+  {% endunless %}
+{% endif %}
 {% assign site_name = site.title | default: "MoCA Lab" %}
 
 <!-- Primary Meta Tags -->
@@ -64,14 +77,35 @@
     "name": "{{ person.institution | default: site.data.site.institution }}",
     "department": "{{ person.affiliation | default: site.data.site.pi_affiliation }}"
   },
-  {% if person.email or site.data.site.email %}"email": "{{ person.email | default: site.data.site.email }}",{% endif %}
-  {% if person.photo or site.data.site.pi_photo %}"image": "{{ person.photo | default: site.data.site.pi_photo | prepend: site.baseurl | prepend: site.url }}",{% endif %}
+  {% comment %}Email in structured data - obfuscated to prevent spam{% endcomment %}
+  {% if person.email or site.data.site.email %}
+    {% assign person_email = person.email | default: site.data.site.email %}
+    {% assign email_parts = person_email | split: "@" %}
+    {% if email_parts.size == 2 %}
+      "email": "{{ email_parts[0] }}[at]{{ email_parts[1] }}",
+    {% else %}
+      "email": "{{ person_email }}",
+    {% endif %}
+  {% endif %}
+  {% if person.photo or site.data.site.pi_photo %}
+    {% assign person_image = person.photo | default: site.data.site.pi_photo %}
+    {% if site.url contains '0.0.0.0' or site.url contains 'localhost' %}
+      "image": "{{ person_image | prepend: site.baseurl | prepend: 'https://moca-technion.github.io' }}",
+    {% else %}
+      "image": "{{ person_image | prepend: site.baseurl | prepend: site.url }}",
+    {% endif %}
+  {% endif %}
   {% if person.scholar_profile or site.data.site.scholar_profile %}"sameAs": ["{{ person.scholar_profile | default: site.data.site.scholar_profile }}"],{% endif %}
   {% else %}
   "name": "{{ site_name }}",
   "alternateName": "{{ site.tagline }}",
+  {% if site.url contains '0.0.0.0' or site.url contains 'localhost' %}
+  "url": "https://moca-technion.github.io{{ site.baseurl }}",
+  "logo": "https://moca-technion.github.io{{ site.baseurl }}/assets/img/logo.png",
+  {% else %}
   "url": "{{ site.url }}{{ site.baseurl }}",
   "logo": "{{ site.url }}{{ site.baseurl }}/assets/img/logo.png",
+  {% endif %}
   "description": "{{ site.description }}",
   "address": {
     "@type": "PostalAddress",
@@ -81,7 +115,12 @@
   },
   "contactPoint": {
     "@type": "ContactPoint",
+    {% assign email_parts = site.data.site.email | split: "@" %}
+    {% if email_parts.size == 2 %}
+    "email": "{{ email_parts[0] }}[at]{{ email_parts[1] }}",
+    {% else %}
     "email": "{{ site.data.site.email }}",
+    {% endif %}
     "contactType": "Research Lab"
   },
   "memberOf": {

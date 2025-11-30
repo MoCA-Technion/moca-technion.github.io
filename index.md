@@ -102,13 +102,12 @@ hide_hero: true
                 {% endif %}
                   <div class="project-slider-card-inner {% if project.status == 'Open' %}project-slider-open{% endif %}">
                     {% if project.status %}
-                      {% if project.target_students %}
-                        {% assign status_text = project.status %}
-                        {% assign students_short = project.target_students | replace: "Graduate students (PhD/MSc)", "PhD/MSc" | replace: "Research assistants / Master students", "MSc/RA" | replace: "PhD students", "PhD" | replace: "MSc students", "MSc" | replace: "Postdoctoral researchers", "Postdoc" | replace: "Graduate students or postdocs", "PhD/MSc/Postdoc" %}
-                        <span class="project-status project-status-{{ project.status | downcase }}">{{ status_text }}, {{ students_short }}</span>
-                      {% else %}
-                        <span class="project-status project-status-{{ project.status | downcase }}">{{ project.status }}</span>
-                      {% endif %}
+                      <span class="project-status project-status-{{ project.status | downcase }}">{{ project.status }}</span>
+                    {% endif %}
+                    {% if project.status == "Open" and project.target_students %}
+                      <div class="project-slider-seeking">
+                        <strong>Seeking:</strong> {{ project.target_students }}
+                      </div>
                     {% endif %}
                     <h3 class="project-slider-title">{{ project.title }}</h3>
                     {% if project.summary %}

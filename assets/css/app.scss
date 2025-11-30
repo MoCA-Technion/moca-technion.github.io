@@ -792,8 +792,14 @@ hr {
   font-size: 0.95rem;
   color: $moca-navy;
   font-weight: 500;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  
+  strong {
+    color: $moca-navy;
+    font-weight: 600;
+  }
 }
 
 .project-team {
@@ -936,6 +942,7 @@ hr {
   scrollbar-width: thin;
   scrollbar-color: $moca-gold transparent;
   padding-bottom: 0.5rem;
+  position: relative;
   
   &::-webkit-scrollbar {
     height: 8px;
@@ -952,6 +959,21 @@ hr {
     &:hover {
       background-color: darken($moca-gold, 10%);
     }
+  }
+  
+  /* Fade gradient on right edge for mobile - indicates more content */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    opacity: var(--fade-opacity, 0);
+    transition: opacity 0.3s ease;
+    z-index: 2;
   }
 }
 
@@ -1037,11 +1059,34 @@ hr {
 }
 
 .project-slider-seeking {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: $moca-navy;
   font-weight: 500;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  
+  strong {
+    color: $moca-navy;
+    font-weight: 600;
+  }
+}
+
+/* Project page seeking section */
+.project-single-seeking {
+  font-size: 1.1rem;
+  color: $moca-navy;
+  font-weight: 500;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 33, 71, 0.05);
+  border-left: 3px solid $moca-gold;
+  border-radius: 4px;
+  line-height: 1.6;
+  
+  strong {
+    color: $moca-navy;
+    font-weight: 600;
+  }
 }
 
 .project-slider-team {
@@ -1113,7 +1158,29 @@ hr {
   
   .projects-slider-container {
     padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-right: 1.5rem; /* Extra padding on right to show partial card */
+    margin-right: -1.5rem; /* Pull container to edge */
+    
+    /* Show fade gradient on mobile when there's more content */
+    &::after {
+      opacity: var(--fade-opacity, 1);
+    }
+  }
+  
+  /* Add swipe hint text on mobile - only show if there are multiple cards */
+  .projects-slider-section {
+    position: relative;
+    
+    &::after {
+      content: '← Swipe to see more →';
+      display: block;
+      text-align: center;
+      font-size: 0.85rem;
+      color: $google-gray;
+      margin-top: 0.75rem;
+      font-style: italic;
+      opacity: 0.6;
+    }
   }
 }
 

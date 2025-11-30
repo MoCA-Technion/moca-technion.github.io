@@ -162,6 +162,42 @@ function scrollProjectsSlider(direction) {
   });
 }
 
+// Update mobile scroll indicators based on scroll position
+(function() {
+  function updateScrollIndicators() {
+    const containers = document.querySelectorAll('.projects-slider-container');
+    containers.forEach(function(container) {
+      const afterElement = container;
+      const isScrollable = container.scrollWidth > container.clientWidth;
+      const isAtStart = container.scrollLeft <= 10;
+      const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 10;
+      
+      // Only show fade on mobile and when there's more content
+      if (window.innerWidth <= 768 && isScrollable) {
+        if (!isAtEnd) {
+          afterElement.style.setProperty('--fade-opacity', '1');
+        } else {
+          afterElement.style.setProperty('--fade-opacity', '0');
+        }
+      } else {
+        afterElement.style.setProperty('--fade-opacity', '0');
+      }
+    });
+  }
+  
+  // Update on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const containers = document.querySelectorAll('.projects-slider-container');
+    containers.forEach(function(container) {
+      container.addEventListener('scroll', updateScrollIndicators);
+      // Check on resize
+      window.addEventListener('resize', updateScrollIndicators);
+    });
+    // Initial check
+    updateScrollIndicators();
+  });
+})();
+
 // Smooth scroll for "Back to Top" links on publications page
 (function() {
   function initBackToTop() {

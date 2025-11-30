@@ -4,15 +4,14 @@ layout: page
 <div class="project-single">
   <div class="project-single-header mb-5">
     {% if page.status %}
-      {% if page.target_students %}
-        {% assign status_text = page.status %}
-        {% assign students_short = page.target_students | replace: "Graduate students (PhD/MSc)", "PhD/MSc" | replace: "Research assistants / Master students", "MSc/RA" | replace: "PhD students", "PhD" | replace: "MSc students", "MSc" | replace: "Postdoctoral researchers", "Postdoc" | replace: "Graduate students or postdocs", "PhD/MSc/Postdoc" %}
-        <span class="project-status project-status-{{ page.status | downcase }} mb-3">{{ status_text }}, {{ students_short }}</span>
-      {% else %}
-        <span class="project-status project-status-{{ page.status | downcase }} mb-3">{{ page.status }}</span>
-      {% endif %}
+      <span class="project-status project-status-{{ page.status | downcase }} mb-3">{{ page.status }}</span>
     {% endif %}
     <h1 class="title is-2">{{ page.title }}</h1>
+    {% if page.status == "Open" and page.target_students %}
+      <div class="project-single-seeking mt-3 mb-3">
+        <strong>Seeking:</strong> {{ page.target_students }}
+      </div>
+    {% endif %}
     {% if page.date %}
     <div class="project-date mt-2">
       {% if page.date_original %}

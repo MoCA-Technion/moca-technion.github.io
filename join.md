@@ -120,6 +120,12 @@ We have **full funding available** for PhD students, MSc students, and postdocto
   - Experience with computational methods and/or large-scale data analysis
 </div>
 
+<div class="box mb-5" style="border-left: 4px solid #002147; background-color: #fafafa;" markdown="1">
+  <h3 class="title is-4 mb-4">Semester Projects & Visiting Students</h3>
+  
+  We welcome undergraduate and graduate students for semester projects, as well as visiting students and researchers from other institutions. Please contact us to discuss opportunities.
+</div>
+
 ## Research Areas
 
 We work in five main research directions:

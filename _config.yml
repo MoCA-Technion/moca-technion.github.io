@@ -16,15 +16,8 @@ plugins:
   - jekyll-feed
 
 # Sitemap configuration for better SEO
-sitemap:
-  # Change frequency options: always, hourly, daily, weekly, monthly, yearly, never
-  changefreq: weekly
-  # Priority: 0.0 to 1.0 (default: 0.5)
-  priority: 0.7
-  # Exclude specific files/paths from sitemap
-  exclude:
-    - "/404.html"
-    - "/feed.xml"
+# Note: jekyll-sitemap plugin auto-generates sitemap.xml
+# Submit to Google Search Console as: sitemap.xml (not full URL)
 
 markdown: kramdown
 kramdown:

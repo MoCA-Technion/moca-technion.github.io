@@ -8,7 +8,11 @@
 {% assign page_url = page.url | replace: 'index.html', '' %}
 {% if page_url == '/' %}{% assign page_url = '' %}{% endif %}
 {% assign page_url = page_url | prepend: site.baseurl | prepend: site.url %}
-{% assign page_image = page.image | default: site.data.site.pi_photo | default: '/assets/img/og-image.jpg' %}
+{% if page.layout == 'person' %}
+  {% assign page_image = page.image | default: site.data.site.pi_photo | default: '/moca_lab_icon.jpg' %}
+{% else %}
+  {% assign page_image = page.image | default: '/moca_lab_icon.jpg' %}
+{% endif %}
 {% if page_image %}{% unless page_image contains 'http' %}{% assign page_image = page_image | prepend: site.baseurl | prepend: site.url %}{% endunless %}{% endif %}
 {% assign site_name = site.title | default: "MoCA Lab" %}
 

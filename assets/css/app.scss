@@ -335,13 +335,13 @@ hr {
 @media (max-width: 768px) {
   .moca-home-hero .moca-hero-title {
     margin-bottom: 0 !important;
-    margin-top: 2.5rem !important; /* extra space from kicker on mobile too */
+    margin-top: 4rem !important; /* extra space from kicker on mobile */
   }
   
   .moca-hero-tagline {
     font-size: 1.1rem !important;
     margin-top: 0 !important;
-    margin-bottom: 2.5rem !important; /* more space before subtitle on mobile */
+    margin-bottom: 4rem !important; /* more space before subtitle on mobile */
     line-height: 1.4 !important;
   }
 }
@@ -1626,7 +1626,7 @@ hr {
   .moca-home-hero .moca-kicker {
     font-size: 0.85rem !important;
     letter-spacing: 0.8px !important;
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
     margin-left: 0 !important;
     padding-left: 0 !important;
     text-align: left !important;

@@ -14,7 +14,7 @@ hide_hero: true
 
       <h1 class="moca-hero-title">MoCA Lab</h1>
       
-      <p class="moca-hero-tagline">Mobility Computation &amp; Analytics Laboratory</p>
+      <p class="moca-hero-tagline"><strong>Mo</strong>bility <strong>C</strong>omputation &amp; <strong>A</strong>nalytics Laboratory</p>
 
       <p class="moca-hero-subtitle">
         We study how <strong>people, platforms, and policies</strong> interact in mobility systems,<br>

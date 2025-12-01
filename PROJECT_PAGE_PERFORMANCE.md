@@ -75,3 +75,4 @@ If publications database grows significantly (1000+):
 - `_layouts/project.html` - Project page layout (optimized)
 - `_data/publications.json` - Publications database (122 entries)
 
+

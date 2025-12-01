@@ -15,8 +15,8 @@ hide_hero: true
       <h1 class="moca-hero-title">MoCA Lab</h1>
 
       <p class="moca-hero-subtitle">
-        Scalable, theory-grounded models and computational tools<br>for
-        <strong>next-generation mobility systems</strong>.
+        We study how <strong>people, platforms, and policies</strong> interact in mobility systems,<br>
+        building models and tools for <strong>efficient, fair, and human-centered</strong> transportation.
       </p>
     </div>
   </div>
@@ -46,7 +46,7 @@ hide_hero: true
 
       <div class="column is-4">
         <a href="{{ site.baseurl }}/research/#42-dynamic-decisions-and-adaptation" class="moca-slab moca-slab--cream moca-slab-link" style="height:100%; display: block; text-decoration: none; color: inherit;">
-          <p class="moca-kicker moca-kicker--dark mb-2">Dynamic systems</p>
+          <p class="moca-kicker moca-kicker--dark mb-2">Mobility systems</p>
           <h2 class="title is-4 mb-2">Equilibrium & Learning</h2>
           <div class="moca-accent mb-4"></div>
           <p class="content">

@@ -9,10 +9,12 @@ hide_hero: true
   <div class="hero-body">
     <div class="container">
       <p class="moca-kicker" style="color: #D59F0F; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
-        Technion - Israel Institute of Technology<br class="mobile-break"> Mobility Computation &amp; Analytics Lab
+        Technion - Israel Institute of Technology
       </p>
 
       <h1 class="moca-hero-title">MoCA Lab</h1>
+      
+      <p class="moca-hero-tagline">Mobility Computation &amp; Analytics Laboratory</p>
 
       <p class="moca-hero-subtitle">
         We study how <strong>people, platforms, and policies</strong> interact in mobility systems,<br>

@@ -309,6 +309,38 @@ hr {
   transform: translateY(0) !important;
 }
 
+/* Hero title - spacing from kicker, no gap before tagline */
+.moca-home-hero .moca-hero-title {
+  margin-bottom: 0 !important;
+  margin-top: 8rem !important; /* more space from kicker */
+}
+
+/* Hero tagline - full lab name below title, tight to title but some space before subtitle */
+.moca-hero-tagline {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 0 !important;
+  margin-bottom: 5rem !important; /* more space before subtitle */
+  letter-spacing: 0.01em !important;
+  line-height: 1.4 !important;
+}
+
+@media (max-width: 768px) {
+  .moca-home-hero .moca-hero-title {
+    margin-bottom: 0 !important;
+    margin-top: 2.5rem !important; /* extra space from kicker on mobile too */
+  }
+  
+  .moca-hero-tagline {
+    font-size: 1.1rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 2.5rem !important; /* more space before subtitle on mobile */
+    line-height: 1.4 !important;
+  }
+}
+
 /* 6. CARD SYSTEM */
 @mixin moca-card-style {
   background: #ffffff;

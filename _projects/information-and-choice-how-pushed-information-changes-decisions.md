@@ -1,8 +1,10 @@
 ---
 layout: project
 title: "Information and choice: how pushed information changes decisions"
-date: "2025-10-01"
-status: "Ongoing"
+date: "2025-11"
+date_original: "2025-11"
+date_month_only: true
+status: "Open"
 show_contact: true
 target_students: "Graduate students (PhD/MSc)"
 summary: "Navigation apps and platforms do not just show information. They increasingly push recommendations and alerts, sometimes simple, sometimes personalized. This project studies how such information ultimately change how people choose where, when, and how to travel."

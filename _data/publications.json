@@ -16,14 +16,6 @@
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ce2CqMG-AY4C"
   },
   {
-    "title": "Sensitivity Analysis of The Perturbed Utility Stochastic Traffic Equilibrium",
-    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
-    "venue": "Available at SSRN 5276550, 2025",
-    "year": 2025,
-    "cited_by": null,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:2l5NCbZemmgC"
-  },
-  {
     "title": "Perturbed utility stochastic traffic assignment",
     "authors": "R Yao, M Fosgerau, M Paulsen, TK Rasmussen",
     "venue": "Transportation Science, 2024",
@@ -44,7 +36,7 @@
     "authors": "R Yao, K Zhang",
     "venue": "Transportation Research Part B: Methodological 189, 102991, 2024",
     "year": 2024,
-    "cited_by": 7,
+    "cited_by": 8,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:HtS1dXgVpQUC"
   },
   {
@@ -72,11 +64,19 @@
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:CaZNVDsoPx4C"
   },
   {
+    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "arXiv preprint arXiv:2409.08347, 2024",
+    "year": 2024,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:RfUwGJFMQ-0C"
+  },
+  {
     "title": "A general equilibrium model for multi-passenger ridesharing systems with stable matching",
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part B: Methodological 175, 102775, 2023",
     "year": 2023,
-    "cited_by": 11,
+    "cited_by": 12,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:_FM0Bhl9EiAC"
   },
   {

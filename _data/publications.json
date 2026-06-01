@@ -1,5 +1,13 @@
 [
   {
+    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "Transportation Research Part C: Emerging Technologies 189, 105716, 2026",
+    "year": 2026,
+    "cited_by": 1,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:u_mOZUIutIEC"
+  },
+  {
     "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
     "authors": "R Yao, X Ma, K Zhang",
     "venue": "arXiv preprint arXiv:2601.19880, 2026",
@@ -32,28 +40,20 @@
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:HtS1dXgVpQUC"
   },
   {
+    "title": "Deep neural networks for choice analysis: Enhancing behavioral regularity with gradient regularization",
+    "authors": "S Feng, R Yao, S Hess, RA Daziano, T Brathwaite, J Walker, S Wang",
+    "venue": "Transportation Research Part C: Emerging Technologies 166, 104767, 2024",
+    "year": 2024,
+    "cited_by": 17,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:sNmaIFBj_lkC"
+  },
+  {
     "title": "Perturbed utility stochastic traffic assignment",
     "authors": "R Yao, M Fosgerau, M Paulsen, TK Rasmussen",
     "venue": "Transportation Science, 2024",
     "year": 2024,
     "cited_by": 17,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
-  },
-  {
-    "title": "Deep neural networks for choice analysis: Enhancing behavioral regularity with gradient regularization",
-    "authors": "S Feng, R Yao, S Hess, RA Daziano, T Brathwaite, J Walker, S Wang",
-    "venue": "Transportation Research Part C: Emerging Technologies 166, 104767, 2024",
-    "year": 2024,
-    "cited_by": 16,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:sNmaIFBj_lkC"
-  },
-  {
-    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
-    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
-    "venue": "arXiv preprint arXiv:2409.08347, 2024",
-    "year": 2024,
-    "cited_by": 1,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:u_mOZUIutIEC"
   },
   {
     "title": "Substitution in the perturbed utility route choice model",

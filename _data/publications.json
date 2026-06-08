@@ -1,13 +1,5 @@
 [
   {
-    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
-    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
-    "venue": "Transportation Research Part C: Emerging Technologies 189, 105716, 2026",
-    "year": 2026,
-    "cited_by": 1,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:u_mOZUIutIEC"
-  },
-  {
     "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
     "authors": "R Yao, X Ma, K Zhang",
     "venue": "arXiv preprint arXiv:2601.19880, 2026",
@@ -36,7 +28,7 @@
     "authors": "R Yao, K Zhang",
     "venue": "Transportation Research Part B: Methodological 189, 102991, 2024",
     "year": 2024,
-    "cited_by": 19,
+    "cited_by": 20,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:HtS1dXgVpQUC"
   },
   {
@@ -54,6 +46,14 @@
     "year": 2024,
     "cited_by": 17,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
+  },
+  {
+    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "arXiv preprint arXiv:2409.08347, 2024",
+    "year": 2024,
+    "cited_by": 1,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:u_mOZUIutIEC"
   },
   {
     "title": "Substitution in the perturbed utility route choice model",
@@ -92,7 +92,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part B: Methodological 158, 273-294, 2022",
     "year": 2022,
-    "cited_by": 29,
+    "cited_by": 30,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:M05iB0D1s5AC"
   },
   {

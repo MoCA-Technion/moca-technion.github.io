@@ -1,13 +1,5 @@
 [
   {
-    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
-    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
-    "venue": "Transportation Research Part C: Emerging Technologies 189, 105716, 2026",
-    "year": 2026,
-    "cited_by": 1,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:u_mOZUIutIEC"
-  },
-  {
     "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
     "authors": "R Yao, X Ma, K Zhang",
     "venue": "arXiv preprint arXiv:2601.19880, 2026",
@@ -36,7 +28,7 @@
     "authors": "R Yao, K Zhang",
     "venue": "Transportation Research Part B: Methodological 189, 102991, 2024",
     "year": 2024,
-    "cited_by": 20,
+    "cited_by": 21,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:HtS1dXgVpQUC"
   },
   {
@@ -56,20 +48,20 @@
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
   },
   {
+    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "arXiv preprint arXiv:2409.08347, 2024",
+    "year": 2024,
+    "cited_by": 2,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:u_mOZUIutIEC"
+  },
+  {
     "title": "A perturbed utility model with semi-nonparametric perturbation function",
     "authors": "R Yao, X Liu, M Fosgerau, K Zhang",
     "venue": "Conference in Emerging Technologies in Transportation Systems (TRC-30), 2024, 2024",
     "year": 2024,
     "cited_by": 1,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:jL-93Qbq4QoC"
-  },
-  {
-    "title": "Substitution in the perturbed utility route choice model",
-    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
-    "venue": "arXiv preprint arXiv:2409.08347, 2024",
-    "year": 2024,
-    "cited_by": 1,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:SGW5VrABaM0C"
   },
   {
     "title": "Estimating the perturbed utility route choice model with individual-level data",

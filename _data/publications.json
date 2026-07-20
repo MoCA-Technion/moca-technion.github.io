@@ -4,7 +4,7 @@
     "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
     "venue": "Transportation Research Part C: Emerging Technologies 189, 105716, 2026",
     "year": 2026,
-    "cited_by": 1,
+    "cited_by": 2,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:rpSJNIKeXWsC"
   },
   {
@@ -16,6 +16,22 @@
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:wkm4DBaukwsC"
   },
   {
+    "title": "Perturbed utility Markovian traffic equilibrium: theory and computation",
+    "authors": "R Yao, K Zhang",
+    "venue": "arXiv preprint arXiv:2607.09568, 2026",
+    "year": 2026,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:VjBpw8Hezy4C"
+  },
+  {
+    "title": "Perturbed utility Markovian choice model: choice probability generation function and estimation",
+    "authors": "R Yao, K Zhang",
+    "venue": "The 12th Triennial Symposium on Transportation Analysis conference (TRISTAN …, 2025",
+    "year": 2025,
+    "cited_by": 2,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ce2CqMG-AY4C"
+  },
+  {
     "title": "Integrated equilibrium model for electrified logistics and power systems",
     "authors": "R Yao, X Liu, A Scaglione, S Bekhor, K Zhang",
     "venue": "2025 IEEE 64th Conference on Decision and Control (CDC), 1156-1161, 2025",
@@ -24,12 +40,12 @@
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:hKjooKYXoHIC"
   },
   {
-    "title": "Perturbed utility Markovian choice model: choice probability generation function and estimation",
-    "authors": "R Yao, K Zhang",
-    "venue": "The 12th Triennial Symposium on Transportation Analysis conference (TRISTAN …, 2025",
+    "title": "Population Markov Potential Game: An Alternative Framework for Markovian Traffic Assignment",
+    "authors": "X Liu, K Zhang, R Yao",
+    "venue": "12th Triennial Symposium on Transportation Analysis conference, 2025",
     "year": 2025,
     "cited_by": 1,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ce2CqMG-AY4C"
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:HKviVsUxM5wC"
   },
   {
     "title": "Design an intermediary mobility-as-a-service (MaaS) platform using many-to-many stable matching framework",
@@ -44,7 +60,7 @@
     "authors": "S Feng, R Yao, S Hess, RA Daziano, T Brathwaite, J Walker, S Wang",
     "venue": "Transportation Research Part C: Emerging Technologies 166, 104767, 2024",
     "year": 2024,
-    "cited_by": 17,
+    "cited_by": 19,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:sNmaIFBj_lkC"
   },
   {
@@ -52,7 +68,7 @@
     "authors": "R Yao, M Fosgerau, M Paulsen, TK Rasmussen",
     "venue": "Transportation Science, 2024",
     "year": 2024,
-    "cited_by": 17,
+    "cited_by": 18,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
   },
   {
@@ -84,7 +100,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part B: Methodological 158, 273-294, 2022",
     "year": 2022,
-    "cited_by": 30,
+    "cited_by": 31,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:M05iB0D1s5AC"
   },
   {
@@ -100,7 +116,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Networks and Spatial Economics 21 (4), 801 - 837, 2021",
     "year": 2021,
-    "cited_by": 22,
+    "cited_by": 23,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:3fE2CSJIrl8C"
   },
   {
@@ -118,5 +134,13 @@
     "year": 2020,
     "cited_by": 6,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ZHo1McVdvXMC"
+  },
+  {
+    "title": "Route choice set generation using variational autoencoders",
+    "authors": "R Yao, S Bekhor",
+    "venue": "",
+    "year": null,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:cF7EPgIk0B4C"
   }
 ]

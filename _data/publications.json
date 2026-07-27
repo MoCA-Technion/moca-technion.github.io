@@ -1,13 +1,5 @@
 [
   {
-    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
-    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
-    "venue": "Transportation Research Part C: Emerging Technologies 189, 105716, 2026",
-    "year": 2026,
-    "cited_by": 2,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:rpSJNIKeXWsC"
-  },
-  {
     "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
     "authors": "R Yao, X Ma, K Zhang",
     "venue": "arXiv preprint arXiv:2601.19880, 2026",
@@ -52,7 +44,7 @@
     "authors": "R Yao, K Zhang",
     "venue": "Transportation Research Part B: Methodological 189, 102991, 2024",
     "year": 2024,
-    "cited_by": 24,
+    "cited_by": 23,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:HtS1dXgVpQUC"
   },
   {
@@ -70,6 +62,14 @@
     "year": 2024,
     "cited_by": 18,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
+  },
+  {
+    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "arXiv preprint arXiv:2409.08347, 2024",
+    "year": 2024,
+    "cited_by": 2,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:rpSJNIKeXWsC"
   },
   {
     "title": "A perturbed utility model with semi-nonparametric perturbation function",
@@ -92,7 +92,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part B: Methodological 175, 102775, 2023",
     "year": 2023,
-    "cited_by": 21,
+    "cited_by": 22,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:_FM0Bhl9EiAC"
   },
   {
@@ -100,7 +100,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part B: Methodological 158, 273-294, 2022",
     "year": 2022,
-    "cited_by": 31,
+    "cited_by": 30,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:M05iB0D1s5AC"
   },
   {
@@ -124,7 +124,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part C: Emerging Technologies 121, 102832, 2020",
     "year": 2020,
-    "cited_by": 69,
+    "cited_by": 68,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:Tyk-4Ss8FVUC"
   },
   {

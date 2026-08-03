@@ -1,8 +1,16 @@
 [
   {
+    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
+    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
+    "venue": "Transportation Research Part C: Emerging Technologies 189, 105716, 2026",
+    "year": 2026,
+    "cited_by": 2,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:rpSJNIKeXWsC"
+  },
+  {
     "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
     "authors": "R Yao, X Ma, K Zhang",
-    "venue": "arXiv preprint arXiv:2601.19880, 2026",
+    "venue": "Transportation Research Part C: Emerging Technologies 188, 105703, 2026",
     "year": 2026,
     "cited_by": null,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:wkm4DBaukwsC"
@@ -52,7 +60,7 @@
     "authors": "S Feng, R Yao, S Hess, RA Daziano, T Brathwaite, J Walker, S Wang",
     "venue": "Transportation Research Part C: Emerging Technologies 166, 104767, 2024",
     "year": 2024,
-    "cited_by": 19,
+    "cited_by": 21,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:sNmaIFBj_lkC"
   },
   {
@@ -60,16 +68,8 @@
     "authors": "R Yao, M Fosgerau, M Paulsen, TK Rasmussen",
     "venue": "Transportation Science, 2024",
     "year": 2024,
-    "cited_by": 18,
+    "cited_by": 19,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
-  },
-  {
-    "title": "Sensitivity analysis of the perturbed utility stochastic traffic equilibrium",
-    "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
-    "venue": "arXiv preprint arXiv:2409.08347, 2024",
-    "year": 2024,
-    "cited_by": 2,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:rpSJNIKeXWsC"
   },
   {
     "title": "A perturbed utility model with semi-nonparametric perturbation function",
@@ -124,7 +124,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part C: Emerging Technologies 121, 102832, 2020",
     "year": 2020,
-    "cited_by": 68,
+    "cited_by": 67,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:Tyk-4Ss8FVUC"
   },
   {
@@ -132,7 +132,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "arXiv preprint arXiv:2006.04536, 2020",
     "year": 2020,
-    "cited_by": 6,
+    "cited_by": 5,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ZHo1McVdvXMC"
   },
   {

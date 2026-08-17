@@ -4,8 +4,16 @@
     "authors": "M Fosgerau, N Nielsen, M Paulsen, TK Rasmussen, R Yao",
     "venue": "Transportation Research Part C: Emerging Technologies 189, 105716, 2026",
     "year": 2026,
-    "cited_by": 2,
+    "cited_by": 3,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:rpSJNIKeXWsC"
+  },
+  {
+    "title": "Estimating the perturbed utility route choice model with trip-level data",
+    "authors": "M Fosgerau, N Nielsen, T Rasmussen, R Yao",
+    "venue": "arXiv preprint arXiv:2608.11464, 2026",
+    "year": 2026,
+    "cited_by": null,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:J4E9jCG1tHUC"
   },
   {
     "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
@@ -68,7 +76,7 @@
     "authors": "R Yao, M Fosgerau, M Paulsen, TK Rasmussen",
     "venue": "Transportation Science, 2024",
     "year": 2024,
-    "cited_by": 19,
+    "cited_by": 20,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:DJbcl8HfkQkC"
   },
   {
@@ -108,7 +116,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Journal of Intelligent Transportation Systems 28 (1), 31-53, 2022",
     "year": 2022,
-    "cited_by": 20,
+    "cited_by": 22,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:tS2w5q8j5-wC"
   },
   {
@@ -134,13 +142,5 @@
     "year": 2020,
     "cited_by": 5,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:ZHo1McVdvXMC"
-  },
-  {
-    "title": "Route choice set generation using variational autoencoders",
-    "authors": "R Yao, S Bekhor",
-    "venue": "",
-    "year": null,
-    "cited_by": null,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:cF7EPgIk0B4C"
   }
 ]

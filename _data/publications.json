@@ -12,8 +12,16 @@
     "authors": "R Yao, K Zhang",
     "venue": "arXiv preprint arXiv:2607.09568, 2026",
     "year": 2026,
-    "cited_by": 1,
+    "cited_by": 2,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:VjBpw8Hezy4C"
+  },
+  {
+    "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
+    "authors": "R Yao, X Ma, K Zhang",
+    "venue": "Transportation Research Part C: Emerging Technologies 188, 105703, 2026",
+    "year": 2026,
+    "cited_by": 1,
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:wkm4DBaukwsC"
   },
   {
     "title": "Estimating the perturbed utility route choice model with trip-level data",
@@ -22,14 +30,6 @@
     "year": 2026,
     "cited_by": null,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:J4E9jCG1tHUC"
-  },
-  {
-    "title": "Mobility-as-a-service (MaaS) system as a multi-leader-multi-follower game: A single-level variational inequality (VI) formulation",
-    "authors": "R Yao, X Ma, K Zhang",
-    "venue": "Transportation Research Part C: Emerging Technologies 188, 105703, 2026",
-    "year": 2026,
-    "cited_by": null,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:wkm4DBaukwsC"
   },
   {
     "title": "Perturbed utility Markovian choice model: choice probability generation function and estimation",
@@ -108,7 +108,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Journal of Intelligent Transportation Systems 28 (1), 31-53, 2022",
     "year": 2022,
-    "cited_by": 22,
+    "cited_by": 23,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:tS2w5q8j5-wC"
   },
   {
@@ -124,7 +124,7 @@
     "authors": "R Yao, S Bekhor",
     "venue": "Transportation Research Part C: Emerging Technologies 121, 102832, 2020",
     "year": 2020,
-    "cited_by": 73,
+    "cited_by": 74,
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lEg_t6kAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=lEg_t6kAAAAJ:Tyk-4Ss8FVUC"
   },
   {
